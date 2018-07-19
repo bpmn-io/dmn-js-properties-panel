@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+.editor-container .tjs-container,
+.editor-container .viewer-container {
+  padding: 10px;
+}
+
+.test-content-container {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+}
+
+.editor-container {
+  flex-grow: 1;
+}
+
+.properties-container {
+  flex: initial;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  outline: none;
+  background: #f8f8f8;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border-left: solid 1px #CCC;
+}
