@@ -17,7 +17,7 @@ var propertiesPanelModule = require('../../../../lib'),
     propertiesProviderModule = require('../../../../lib/provider/dmn'),
     getBusinessObject = require('dmn-js-shared/lib/util/ModelUtil').getBusinessObject;
 
-describe.only('id-properties', function() {
+describe('id-properties', function() {
 
   var diagramXML = require('./Id.dmn');
 
