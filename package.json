@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "description": "A properties panel for dmn-js",
   "scripts": {
-    "all": "run-s lint test distro test:distro",
-    "dev": "npm test -- --auto-watch --no-single-run",
-    "less": "lessc styles/properties.less dist/assets/dmn-js-properties-panel.css",
     "lint": "eslint .",
-    "test": "karma start test/config/karma.unit.js"
+    "all": "run-s lint test build",
+    "dev": "npm test -- --no-single-run --auto-watch",
+    "build": "run-s build:*",
+    "build:less": "lessc --include-path=node_modules styles/properties.less dist/assets/dmn-js-properties-panel.css",
+    "test": "karma start",
+    "prepublishOnly": "run-s build"
   },
   "repository": {
     "type": "git",

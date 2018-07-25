@@ -1,8 +1,6 @@
 var path = require('path');
 
-var basePath = '../../';
-
-var absoluteBasePath = path.resolve(path.join(__dirname, basePath));
+var absoluteBasePath = path.resolve(__dirname);
 
 /* global process */
 
@@ -28,8 +26,6 @@ var browsers =
 
 module.exports = function(karma) {
   karma.set({
-
-    basePath: basePath,
 
     frameworks: [
       'mocha',
@@ -76,12 +72,6 @@ module.exports = function(karma) {
         ]
       },
       resolve: {
-        mainFields: [
-          'dev:module',
-          'browser',
-          'module',
-          'main'
-        ],
         modules: [
           'node_modules',
           absoluteBasePath
