@@ -127,10 +127,6 @@ describe('PropertiesPanel', function() {
     function getActiveTabId(container) {
       var activeTabNode = domQuery('.dpp-properties-tab.dpp-active', container);
 
-      if (!activeTabNode) {
-        throw new Error('active tab not found');
-      }
-
       return domAttr(activeTabNode, 'data-tab');
     }
 
@@ -161,7 +157,7 @@ describe('PropertiesPanel', function() {
       }));
 
 
-    it.skip('should select the first tab because the selected tab does not exist',
+    it('should select the first tab because the selected tab does not exist',
       inject(function(propertiesPanel, selection, elementRegistry) {
 
         // select decision table
