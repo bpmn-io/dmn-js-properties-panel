@@ -1,17 +1,11 @@
 'use strict';
 
-var TestHelper = require('../TestHelper');
-
 var TestContainer = require('mocha-test-container-support');
 
 var helper = require('test/helper'),
     bootstrapModeler = helper.bootstrapModeler,
     inject = helper.inject,
     openView = helper.openView;
-
-
-/* sinon */
-
 
 var propertiesPanelModule = require('../../lib'),
     propertiesProviderModule = require('./properties');
@@ -57,7 +51,7 @@ describe('PropertiesPanel', function() {
 
 
   it('should attach to element', inject(function(propertiesPanel) {
-    
+
     // when
     propertiesPanel.attachTo(container);
 
@@ -170,8 +164,6 @@ describe('PropertiesPanel', function() {
     it.skip('should select the first tab because the selected tab does not exist',
       inject(function(propertiesPanel, selection, elementRegistry) {
 
-        debugger
-
         // select decision table
         var shape = elementRegistry.get('dish-decision');
         selection.select(shape);
@@ -184,7 +176,6 @@ describe('PropertiesPanel', function() {
 
         // select literal expression
         shape = elementRegistry.get('literal-expression');
-        console.log('selecting literal expression');
         selection.select(shape);
 
         // check selected tab again

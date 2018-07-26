@@ -42,21 +42,21 @@ function PropertiesProvider(eventBus) {
 
   this.getTabs = function(element) {
 
-      var tabs = [{
-        id: 'tab1',
-        label: 'Tab 1',
+    var tabs = [{
+      id: 'tab1',
+      label: 'Tab 1',
+      groups: createGroups(element)
+    }];
+
+    if (getBusinessObject(element).decisionTable) {
+      tabs.push({
+        id: 'tab2',
+        label: 'Tab 2',
         groups: createGroups(element)
-      }];
+      });
+    }
 
-      if (getBusinessObject(element).decisionTable) {
-        tabs.push({
-          id: 'tab2',
-          label: 'Tab 2',
-          groups: createGroups(element)
-        });
-      }
-
-      return tabs;
+    return tabs;
 
   };
 }

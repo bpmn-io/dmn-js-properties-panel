@@ -2,8 +2,6 @@
 
 var TestHelper = require('../../../TestHelper');
 
-var TestContainer = require('mocha-test-container-support');
-
 var helper = require('test/helper'),
     bootstrapModeler = helper.bootstrapModeler,
     inject = helper.inject,
@@ -23,12 +21,6 @@ describe('history-time-to-live-properties', function() {
     propertiesPanelModule,
     propertiesProviderModule
   ];
-
-  var container;
-
-  beforeEach(function() {
-    container = TestContainer.get(this);
-  });
 
 
   var diagramXML = require('./HistoryTimeToLive.dmn');

@@ -1,16 +1,12 @@
 'use strict';
 
-var TestHelper = require('../../TestHelper');
-
-var TestContainer = require('mocha-test-container-support');
-
 var helper = require('../../helper'),
     bootstrapModeler = helper.bootstrapModeler,
     inject = helper.inject,
     openView = helper.openView;
 
 
-/* sinon */
+/* global sinon */
 
 
 var propertiesPanelModule = require('../../../lib'),
@@ -27,12 +23,6 @@ describe('DrdAdapter', function() {
     propertiesPanelModule,
     propertiesProviderModule
   ];
-
-  var container;
-
-  beforeEach(function() {
-    container = TestContainer.get(this);
-  });
 
   beforeEach(bootstrapModeler(diagramXML, {
     drd: {
@@ -52,34 +42,34 @@ describe('DrdAdapter', function() {
       // then
       expect(propertiesPanel._container.parentNode).to.exist;
     }));
-  
-  
+
+
     it('should detach on modeler detach', inject(function(drd, propertiesPanel) {
-  
+
       // when
       drd.detach();
-  
+
       // then
       expect(propertiesPanel._container.parentNode).not.to.exist;
     }));
-  
-  
+
+
     it('should detach on modeler destroy', inject(function(drd, propertiesPanel) {
-  
+
       // when
       drd.destroy();
-  
+
       // then
       expect(propertiesPanel._container.parentNode).not.to.exist;
     }));
 
   });
 
-  
+
   describe('update', function() {
 
     it('should update on root added', inject(function(canvas, eventBus, propertiesPanel) {
-  
+
       // given
       var spy = sinon.spy(propertiesPanel, 'update');
 
@@ -158,7 +148,7 @@ describe('DrdAdapter', function() {
             elementRegistry.get('definitions_dish'),
             elementRegistry.get('season')
           ]
-        })
+        });
 
         // then
         expect(spy).to.have.been.called;
@@ -178,7 +168,7 @@ describe('DrdAdapter', function() {
             elementRegistry.get('dish-decision'),
             elementRegistry.get('season')
           ]
-        })
+        });
 
         // then
         expect(spy).to.not.have.been.called;

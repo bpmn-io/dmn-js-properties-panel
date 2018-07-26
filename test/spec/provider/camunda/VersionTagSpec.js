@@ -2,8 +2,6 @@
 
 var TestHelper = require('../../../TestHelper');
 
-var TestContainer = require('mocha-test-container-support');
-
 var helper = require('test/helper'),
     bootstrapModeler = helper.bootstrapModeler,
     inject = helper.inject,
@@ -26,12 +24,6 @@ describe('version-tag-properties', function() {
     propertiesPanelModule,
     propertiesProviderModule
   ];
-
-  var container;
-
-  beforeEach(function() {
-    container = TestContainer.get(this);
-  });
 
   beforeEach(bootstrapModeler(diagramXML, {
     drd: {

@@ -1,16 +1,12 @@
 'use strict';
 
-var TestHelper = require('../../TestHelper');
-
-var TestContainer = require('mocha-test-container-support');
-
 var helper = require('../../helper'),
     bootstrapModeler = helper.bootstrapModeler,
     inject = helper.inject,
     openView = helper.openView;
 
 
-/* sinon */
+/* global sinon */
 
 
 var propertiesPanelModule = require('../../../lib'),
@@ -27,12 +23,6 @@ describe('DecisionTableAdapter', function() {
     propertiesPanelModule,
     propertiesProviderModule
   ];
-
-  var container;
-
-  beforeEach(function() {
-    container = TestContainer.get(this);
-  });
 
   beforeEach(bootstrapModeler(diagramXML, {
     decisionTable: {
@@ -52,18 +42,18 @@ describe('DecisionTableAdapter', function() {
       // then
       expect(propertiesPanel._container.parentNode).to.exist;
     }));
-  
-  
+
+
     it('should detach on editor detach', inject(function(decisionTable, propertiesPanel) {
-  
+
       // when
       decisionTable.detach();
-  
+
       // then
       expect(propertiesPanel._container.parentNode).not.to.exist;
     }));
-  
-  
+
+
     it('should detach on editor destroy', inject(function(decisionTable, propertiesPanel) {
 
       // when
@@ -75,11 +65,11 @@ describe('DecisionTableAdapter', function() {
 
   });
 
-  
+
   describe('update', function() {
 
     it('should update on root added', inject(function(sheet, eventBus, propertiesPanel) {
-  
+
       // given
       var spy = sinon.spy(propertiesPanel, 'update');
 

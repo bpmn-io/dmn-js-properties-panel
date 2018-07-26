@@ -2,8 +2,6 @@
 
 var TestHelper = require('../../../TestHelper');
 
-var TestContainer = require('mocha-test-container-support');
-
 var helper = require('test/helper'),
     bootstrapModeler = helper.bootstrapModeler,
     inject = helper.inject,
@@ -42,12 +40,6 @@ describe('name-properties', function() {
     propertiesProviderModule
   ];
 
-  var container;
-
-  beforeEach(function() {
-    container = TestContainer.get(this);
-  });
-
   beforeEach(bootstrapModeler(diagramXML, {
     drd: {
       additionalModules: testModules.concat(drdAdapterModule)
@@ -80,7 +72,7 @@ describe('name-properties', function() {
       // when
       TestHelper.triggerValue(nameField, 'foo', 'change');
     }));
-      
+
 
     describe('in the DOM', function() {
 

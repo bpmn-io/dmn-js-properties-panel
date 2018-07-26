@@ -1,50 +1,27 @@
-import {
-  assign,
-  isFunction,
-  merge
-} from 'min-dash';
+var merge = require('min-dash').merge;
 
-import TestContainer from 'mocha-test-container-support';
+var TestContainer = require('mocha-test-container-support');
 
-import DmnModeler from 'dmn-js/lib/Modeler';
+var DmnJS = require('dmn-js/lib/Modeler').default;
 
-import DrdModeler from 'dmn-js-drd/lib/Modeler';
-import DecisionTableViewer from 'dmn-js-decision-table/lib/Viewer';
-import DecisionTableEditor from 'dmn-js-decision-table/lib/Editor';
-import LiteralExpressionViewer from 'dmn-js-literal-expression/lib/Viewer';
-import LiteralExpressionEditor from 'dmn-js-literal-expression/lib/Editor';
+var DrdModeler = require('dmn-js-drd/lib/Modeler').default;
+var DecisionTableViewer = require('dmn-js-decision-table/lib/Viewer').default;
+var DecisionTableEditor = require('dmn-js-decision-table/lib/Editor').default;
+var LiteralExpressionViewer = require('dmn-js-literal-expression/lib/Viewer').default;
+var LiteralExpressionEditor = require('dmn-js-literal-expression/lib/Editor').default;
 
-var OPTIONS, DMN_JS;
+var DMN_JS;
 
 
 /**
- * Bootstrap the modeler given the specified options and a
- * number of locals (i.e. services)
+ * Bootstrap DmnJS given the specified options.
  *
- * @example
+ * @param {String} diagram - DMN diagram to import.
+ * @param {Object} [options] - Options for creating DmnJS instance.
  *
- * describe(function() {
- *
- *   var mockEvents;
- *
- *   beforeEach(bootstrapDiagram(function() {
- *     mockEvents = new Events();
- *
- *     return {
- *       events: mockEvents
- *     };
- *   }));
- *
- * });
- *
- * @param  {Object} [options] optional options to be passed to the
- *                            diagram upon instantiation
- * @param  {Object|Function}  locals  the local overrides to be used
- *                            by the diagram or a function that produces
- *                            them
- * @return {Function}         a function to be passed to beforeEach
+ * @return {Function} a function to be passed to beforeEach
  */
-function bootstrapDmnJS(DmnJS, diagram, options, locals) {
+function bootstrapDmnJS(diagram, options) {
 
   return function(done) {
 
@@ -75,47 +52,7 @@ function bootstrapDmnJS(DmnJS, diagram, options, locals) {
 
     testContainer.appendChild(propertiesContainer);
 
-    if (typeof diagram !== 'string') {
-      options = diagram;
-      locals = options;
-      diagram = undefined;
-    }
-
-    var _options = options,
-        _locals = locals,
-        _modules;
-
-    if (!_locals && isFunction(_options)) {
-      _locals = _options;
-      _options = {};
-    }
-
-    if (isFunction(_options)) {
-      _options = _options();
-    }
-
-    if (isFunction(_locals)) {
-      _locals = _locals();
-    }
-
-    // _modules = (_options || {})._modules || [];
-
-    // if (_locals) {
-    //   var mockModule = {};
-
-    //   forEach(_locals, function(v, k) {
-    //     mockModule[k] = ['value', v];
-    //   });
-
-    //   _modules = [].concat(_modules, [ mockModule ]);
-    // }
-
-    // if (_modules.length === 0) {
-    //   _modules = undefined;
-    // }
-
-    // TODO(philippfromme): refactor
-    _options = merge({
+    var _options = merge({
       container: editorContainer,
       drd: options.drd && {
         propertiesPanel: {
@@ -155,6 +92,18 @@ function bootstrapDmnJS(DmnJS, diagram, options, locals) {
 }
 
 /**
+ * Bootstrap DmnJS given the specified options.
+ *
+ * @param {String} diagram - DMN diagram to import.
+ * @param {Object} [options] - Options for creating DmnJS instance.
+ *
+ * @return {Function} a function to be passed to beforeEach
+ */
+function bootstrapModeler(diagram, options) {
+  return bootstrapDmnJS(diagram, options);
+}
+
+/**
  * Injects services of an instantiated diagram into the argument.
  *
  * Use it in conjunction with {@link #bootstrapModeler}.
@@ -176,7 +125,7 @@ function bootstrapDmnJS(DmnJS, diagram, options, locals) {
  * @param  {Function} fn the function to inject to
  * @return {Function} a function that can be passed to it to carry out the injection
  */
-export function inject(fn) {
+function inject(fn) {
   return function() {
 
     if (!DMN_JS) {
@@ -196,7 +145,7 @@ export function inject(fn) {
   };
 }
 
-export function injectAsync(doneFn) {
+function injectAsync(doneFn) {
   return function(done) {
     var testFn = doneFn(done);
 
@@ -204,48 +153,15 @@ export function injectAsync(doneFn) {
   };
 }
 
-/**
- * Bootstrap the Modeler given the specified options
- * and a number of locals (i.e. services)
- *
- * @example
- *
- * describe(function() {
- *
- *   var mockEvents;
- *
- *   beforeEach(bootstrapModeler('some-xml', function() {
- *     mockEvents = new Events();
- *
- *     return {
- *       events: mockEvents
- *     };
- *   }));
- *
- * });
- *
- * @param  {String} xml document to display
- * @param  {Object} (options) optional options to be passed
- *                            to the diagram upon instantiation
- * @param  {Object|Function} locals the local overrides to be
- *                           used by the diagram or a function
- *                           that produces them
- *
- * @return {Function} a function to be passed to beforeEach
- */
-export function bootstrapModeler(diagram, options, locals) {
-  return bootstrapDmnJS(DmnModeler, diagram, options, locals);
-}
-
-export function getDmnJS() {
+function getDmnJS() {
   return DMN_JS;
 }
 
-export function getActiveViewer() {
+function getActiveViewer() {
   return DMN_JS.getActiveViewer();
 }
 
-export function openView(elementId) {
+function openView(elementId) {
   if (!DMN_JS) {
     throw new Error(
       'no bootstraped modeler, ' +
@@ -266,7 +182,7 @@ export function openView(elementId) {
   DMN_JS.open(view);
 }
 
-export function insertCSS(name, css) {
+function insertCSS(name, css) {
   if (document.querySelector('[data-css-file="' + name + '"]')) {
     return;
   }
@@ -284,3 +200,14 @@ export function insertCSS(name, css) {
 
   head.appendChild(style);
 }
+
+module.exports = {
+  bootstrapDmnJS: bootstrapDmnJS,
+  bootstrapModeler: bootstrapModeler,
+  inject: inject,
+  injectAsync: injectAsync,
+  getDmnJS: getDmnJS,
+  getActiveViewer: getActiveViewer,
+  openView: openView,
+  insertCSS: insertCSS
+};
