@@ -27,12 +27,13 @@ Provide two HTML elements, one for the properties panel and one for the DMN diag
 </div>
 ```
 
-Bootstrap [dmn-js](https://github.com/bpmn-io/dmn-js) with the properties panel and a [properties provider](./lib/provider):
+Bootstrap [dmn-js](https://github.com/bpmn-io/dmn-js) with the properties panel, a [properties provider](./lib/provider) and an [adapter](./lib/adapters) for each editor:
 
 ```javascript
 var DmnJS = require('dmn-js/lib/Modeler'),
     propertiesPanelModule = require('dmn-js-properties-panel'),
-    propertiesProviderModule = require('dmn-js-properties-panel/lib/provider/dmn');
+    propertiesProviderModule = require('dmn-js-properties-panel/lib/provider/dmn'),
+    drdAdapterModule = require('dmn-js-properties-panel/lib/adapters/drd');
 
 var dmnJS = new Dmn({
   drd: {
@@ -41,7 +42,8 @@ var dmnJS = new Dmn({
     },
     additionalModules: [
       propertiesPanelModule,
-      propertiesProviderModule
+      propertiesProviderModule,
+      drdAdapterModule
     ]
   },
   container: '#canvas'
@@ -73,7 +75,8 @@ In addition, you need to define the `camunda` namespace via [camunda-dmn-moddle]
 var DmnJS = require('dmn-js/lib/Modeler'),
     propertiesPanelModule = require('dmn-js-properties-panel'),
     // use Camunda properties provider
-    propertiesProviderModule = require('dmn-js-properties-panel/lib/provider/camunda');
+    propertiesProviderModule = require('dmn-js-properties-panel/lib/provider/camunda'),
+    drdAdapterModule = require('dmn-js-properties-panel/lib/adapters/drd');
 
 // a descriptor that defines Camunda related DMN 1.1 XML extensions
 var camundaModdleDescriptor = require('camunda-dmn-moddle/resources/camunda');
@@ -85,7 +88,8 @@ var dmnJS = new DmnJS({
     },
     additionalModules: [
       propertiesPanelModule,
-      propertiesProviderModule
+      propertiesProviderModule,
+      drdAdapterModule
     ]
   },
   container: '#canvas'
