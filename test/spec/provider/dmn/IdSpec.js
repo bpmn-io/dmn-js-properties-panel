@@ -7,7 +7,7 @@ var helper = require('test/helper'),
     inject = helper.inject,
     openView = helper.openView;
 
-var drdAdapterModule = require('lib/adapters/drd');
+var drdAdapterModule = require('lib/adapter/drd');
 
 var propertiesPanelModule = require('../../../../lib'),
     domQuery = require('min-dom').query,

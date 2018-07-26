@@ -12,12 +12,12 @@ var helper = require('../../helper'),
 var propertiesPanelModule = require('../../../lib'),
     propertiesProviderModule = require('../properties');
 
-var decisionTableAdapterModule = require('../../../lib/adapters/decision-table');
+var literalExpressionAdapterModule = require('../../../lib/adapter/literal-expression');
 
 
-describe('DecisionTableAdapter', function() {
+describe('LiteralExpressionAdapter', function() {
 
-  var diagramXML = require('./adapters.dmn');
+  var diagramXML = require('./adapter.dmn');
 
   var testModules = [
     propertiesPanelModule,
@@ -25,13 +25,13 @@ describe('DecisionTableAdapter', function() {
   ];
 
   beforeEach(bootstrapModeler(diagramXML, {
-    decisionTable: {
-      additionalModules: testModules.concat(decisionTableAdapterModule)
+    literalExpression: {
+      additionalModules: testModules.concat(literalExpressionAdapterModule)
     }
   }));
 
   beforeEach(function() {
-    openView('season');
+    openView('literal-expression');
   });
 
 
@@ -44,20 +44,20 @@ describe('DecisionTableAdapter', function() {
     }));
 
 
-    it('should detach on editor detach', inject(function(decisionTable, propertiesPanel) {
+    it('should detach on editor detach', inject(function(viewer, propertiesPanel) {
 
       // when
-      decisionTable.detach();
+      viewer.detach();
 
       // then
       expect(propertiesPanel._container.parentNode).not.to.exist;
     }));
 
 
-    it('should detach on editor destroy', inject(function(decisionTable, propertiesPanel) {
+    it('should detach on editor destroy', inject(function(viewer, propertiesPanel) {
 
       // when
-      decisionTable.destroy();
+      viewer.destroy();
 
       // then
       expect(propertiesPanel._container.parentNode).not.to.exist;
@@ -68,37 +68,16 @@ describe('DecisionTableAdapter', function() {
 
   describe('update', function() {
 
-    it('should update on root added', inject(function(sheet, eventBus, propertiesPanel) {
+    it('should update on import', inject(function(eventBus, propertiesPanel) {
 
       // given
       var spy = sinon.spy(propertiesPanel, 'update');
 
-      var root = sheet.getRoot();
-
       // when
-      eventBus.fire('root.added', {
-        root: root
-      });
+      eventBus.fire('import');
 
       // expect
       expect(spy).to.have.been.called;
-    }));
-
-
-    it('should not update on implicit root added', inject(function(eventBus, propertiesPanel) {
-
-      // given
-      var spy = sinon.spy(propertiesPanel, 'update');
-
-      // when
-      eventBus.fire('root.added', {
-        root: {
-          id: '__implicitroot'
-        }
-      });
-
-      // expect
-      expect(spy).to.not.have.been.called;
     }));
 
 

@@ -13,7 +13,7 @@ var propertiesPanelModule = require('lib'),
     camundaModdlePackage = require('camunda-dmn-moddle/resources/camunda'),
     getBusinessObject = require('dmn-js-shared/lib/util/ModelUtil').getBusinessObject;
 
-var drdAdapterModule = require('lib/adapters/drd');
+var drdAdapterModule = require('lib/adapter/drd');
 
 
 describe('history-time-to-live-properties', function() {

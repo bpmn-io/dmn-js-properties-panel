@@ -12,12 +12,12 @@ var helper = require('../../helper'),
 var propertiesPanelModule = require('../../../lib'),
     propertiesProviderModule = require('../properties');
 
-var drdAdapterModule = require('../../../lib/adapters/drd');
+var drdAdapterModule = require('../../../lib/adapter/drd');
 
 
 describe('DrdAdapter', function() {
 
-  var diagramXML = require('./adapters.dmn');
+  var diagramXML = require('./adapter.dmn');
 
   var testModules = [
     propertiesPanelModule,

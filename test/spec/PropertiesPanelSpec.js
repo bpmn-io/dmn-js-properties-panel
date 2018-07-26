@@ -10,9 +10,9 @@ var helper = require('test/helper'),
 var propertiesPanelModule = require('../../lib'),
     propertiesProviderModule = require('./properties');
 
-var drdAdapterModule = require('lib/adapters/drd'),
-    decisionTableAdapter = require('lib/adapters/decision-table'),
-    literalExpressionAdapter = require('lib/adapters/literal-expression');
+var drdAdapterModule = require('lib/adapter/drd'),
+    decisionTableAdapter = require('lib/adapter/decision-table'),
+    literalExpressionAdapter = require('lib/adapter/literal-expression');
 
 var domQuery = require('min-dom').query,
     domAttr = require('min-dom').attr;

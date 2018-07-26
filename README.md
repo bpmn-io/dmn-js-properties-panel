@@ -27,13 +27,13 @@ Provide two HTML elements, one for the properties panel and one for the DMN diag
 </div>
 ```
 
-Bootstrap [dmn-js](https://github.com/bpmn-io/dmn-js) with the properties panel, a [properties provider](./lib/provider) and an [adapter](./lib/adapters) for each editor:
+Bootstrap [dmn-js](https://github.com/bpmn-io/dmn-js) with the properties panel, a [properties provider](./lib/provider) and an [adapter](./lib/adapter) for each editor:
 
 ```javascript
 var DmnJS = require('dmn-js/lib/Modeler'),
     propertiesPanelModule = require('dmn-js-properties-panel'),
     propertiesProviderModule = require('dmn-js-properties-panel/lib/provider/dmn'),
-    drdAdapterModule = require('dmn-js-properties-panel/lib/adapters/drd');
+    drdAdapterModule = require('dmn-js-properties-panel/lib/adapter/drd');
 
 var dmnJS = new Dmn({
   drd: {
@@ -76,7 +76,7 @@ var DmnJS = require('dmn-js/lib/Modeler'),
     propertiesPanelModule = require('dmn-js-properties-panel'),
     // use Camunda properties provider
     propertiesProviderModule = require('dmn-js-properties-panel/lib/provider/camunda'),
-    drdAdapterModule = require('dmn-js-properties-panel/lib/adapters/drd');
+    drdAdapterModule = require('dmn-js-properties-panel/lib/adapter/drd');
 
 // a descriptor that defines Camunda related DMN 1.1 XML extensions
 var camundaModdleDescriptor = require('camunda-dmn-moddle/resources/camunda');
