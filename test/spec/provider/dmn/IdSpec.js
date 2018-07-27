@@ -1,23 +1,29 @@
 'use strict';
 
-var TestHelper = require('../../../TestHelper');
+import { triggerValue } from '../../../TestHelper';
 
-var helper = require('test/helper'),
-    bootstrapModeler = helper.bootstrapModeler,
-    inject = helper.inject,
-    openView = helper.openView;
+import {
+  bootstrapModeler,
+  inject,
+  openView
+} from '../../../helper';
 
-var drdAdapterModule = require('lib/adapter/drd');
+import propertiesPanelModule from '../../../../lib';
+import propertiesProviderModule from '../../../../lib/provider/dmn';
 
-var propertiesPanelModule = require('../../../../lib'),
-    domQuery = require('min-dom').query,
-    domClasses = require('min-dom').classes,
-    propertiesProviderModule = require('../../../../lib/provider/dmn'),
-    getBusinessObject = require('dmn-js-shared/lib/util/ModelUtil').getBusinessObject;
+import drdAdapterModule from 'lib/adapter/drd';
+
+import { getBusinessObject } from 'dmn-js-shared/lib/util/ModelUtil';
+
+import {
+  classes as domClasses,
+  query as domQuery
+} from 'min-dom';
+
+import diagramXML from './Id.dmn';
+
 
 describe('id-properties', function() {
-
-  var diagramXML = require('./Id.dmn');
 
   var testModules = [
     propertiesPanelModule,
@@ -71,7 +77,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, 'foo', 'change');
+      triggerValue(textField, 'foo', 'change');
 
       // then
       expect(getTextField().value).to.equal('foo');
@@ -85,7 +91,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, '', 'change');
+      triggerValue(textField, '', 'change');
 
       // then
       expect(businessObject.get('id')).to.equal('dish-decision');
@@ -98,7 +104,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, 'foo bar', 'change');
+      triggerValue(textField, 'foo bar', 'change');
 
       // then
       expect(businessObject.get('id')).to.equal('dish-decision');
@@ -111,7 +117,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, '::FOO', 'change');
+      triggerValue(textField, '::FOO', 'change');
 
       // then
       expect(businessObject.get('id')).to.equal('dish-decision');
@@ -124,7 +130,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, '<hello>', 'change');
+      triggerValue(textField, '<hello>', 'change');
 
       // then
       expect(businessObject.get('id')).to.equal('dish-decision');
@@ -137,7 +143,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, '${VERSION_TAG}_foo', 'change');
+      triggerValue(textField, '${VERSION_TAG}_foo', 'change');
 
       // then
       expect(getTextField().value).to.equal('${VERSION_TAG}_foo');
@@ -151,7 +157,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, 'foo_${VERSION_TAG}', 'change');
+      triggerValue(textField, 'foo_${VERSION_TAG}', 'change');
 
       // then
       expect(getTextField().value).to.equal('foo_${VERSION_TAG}');
@@ -165,7 +171,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, 'foo_${VERSION_TAG}_bar', 'change');
+      triggerValue(textField, 'foo_${VERSION_TAG}_bar', 'change');
 
       // then
       expect(getTextField().value).to.equal('foo_${VERSION_TAG}_bar');
@@ -179,7 +185,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, '${VERSION_TAG}', 'change');
+      triggerValue(textField, '${VERSION_TAG}', 'change');
 
       // then
       expect(getTextField().value).to.equal('${VERSION_TAG}');
@@ -193,7 +199,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, '${VERSION:TAG}', 'change');
+      triggerValue(textField, '${VERSION:TAG}', 'change');
 
       // then
       expect(businessObject.get('id')).to.equal('dish-decision');
@@ -206,7 +212,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, '${123}', 'change');
+      triggerValue(textField, '${123}', 'change');
 
       // then
       expect(businessObject.get('id')).to.equal('dish-decision');
@@ -219,7 +225,7 @@ describe('id-properties', function() {
       expect(textField.value).to.equal('dish-decision');
 
       // when
-      TestHelper.triggerValue(textField, '${}', 'change');
+      triggerValue(textField, '${}', 'change');
 
       // then
       expect(businessObject.get('id')).to.equal('dish-decision');
@@ -234,7 +240,7 @@ describe('id-properties', function() {
     it('should not be shown if id is valid', function() {
 
       // when
-      TestHelper.triggerValue(textField, 'foo', 'change');
+      triggerValue(textField, 'foo', 'change');
 
       // then
       expect(domClasses(getTextField()).has('invalid')).to.be.false;
@@ -244,7 +250,7 @@ describe('id-properties', function() {
     it('should be shown if id gets removed', function() {
 
       // when
-      TestHelper.triggerValue(textField, '', 'change');
+      triggerValue(textField, '', 'change');
 
       // then
       expect(domClasses(getTextField()).has('invalid')).to.be.true;
@@ -254,7 +260,7 @@ describe('id-properties', function() {
     it('should be shown if id contains space', function() {
 
       // when
-      TestHelper.triggerValue(textField, 'foo bar', 'change');
+      triggerValue(textField, 'foo bar', 'change');
 
       // then
       expect(domClasses(getTextField()).has('invalid')).to.be.true;
@@ -264,7 +270,7 @@ describe('id-properties', function() {
     it('should be shown if id is invalid QName', function() {
 
       // when
-      TestHelper.triggerValue(textField, '::FOO', 'change');
+      triggerValue(textField, '::FOO', 'change');
 
       // then
       expect(domClasses(getTextField()).has('invalid')).to.be.true;
@@ -274,7 +280,7 @@ describe('id-properties', function() {
     it('should be shown if id contains HTML characters', function() {
 
       // when
-      TestHelper.triggerValue(textField, '<hello>', 'change');
+      triggerValue(textField, '<hello>', 'change');
 
       // then
       expect(domClasses(getTextField()).has('invalid')).to.be.true;

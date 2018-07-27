@@ -1,18 +1,25 @@
 'use strict';
 
-var TestHelper = require('../../../TestHelper');
+import {
+  triggerValue
+} from '../../../TestHelper';
 
-var helper = require('test/helper'),
-    bootstrapModeler = helper.bootstrapModeler,
-    inject = helper.inject,
-    openView = helper.openView;
+import {
+  bootstrapModeler,
+  inject,
+  openView
+} from '../../../helper';
 
-var drdAdapterModule = require('lib/adapter/drd');
+import propertiesPanelModule from '../../../../lib';
+import propertiesProviderModule from '../../../../lib/provider/dmn';
 
-var propertiesPanelModule = require('../../../../lib'),
-    domQuery = require('min-dom').query,
-    propertiesProviderModule = require('../../../../lib/provider/dmn'),
-    getBusinessObject = require('dmn-js-shared/lib/util/ModelUtil').getBusinessObject;
+import drdAdapterModule from 'lib/adapter/drd';
+
+import { getBusinessObject } from 'dmn-js-shared/lib/util/ModelUtil';
+
+import { query as domQuery } from 'min-dom';
+
+import diagramXML from './Name.dmn';
 
 function getEntry(container, entryId) {
   return domQuery('div[data-entry="' + entryId + '"]', container);
@@ -32,8 +39,6 @@ function getTextBoxRows(field) {
 }
 
 describe('name-properties', function() {
-
-  var diagramXML = require('./Name.dmn');
 
   var testModules = [
     propertiesPanelModule,
@@ -70,7 +75,7 @@ describe('name-properties', function() {
       nameField = getNameField(container);
 
       // when
-      TestHelper.triggerValue(nameField, 'foo', 'change');
+      triggerValue(nameField, 'foo', 'change');
     }));
 
 
@@ -173,7 +178,7 @@ describe('name-properties', function() {
       var field = getNameField(propertiesPanel._container);
 
       // when
-      TestHelper.triggerValue(field, 'a\nb', 'change');
+      triggerValue(field, 'a\nb', 'change');
 
       // then
       expect(getTextBoxRows(field)).to.equal(2);
@@ -189,7 +194,7 @@ describe('name-properties', function() {
       var field = getNameField(propertiesPanel._container);
 
       // when
-      TestHelper.triggerValue(field, 'a\nb', 'change');
+      triggerValue(field, 'a\nb', 'change');
 
       // then
       expect(getTextBoxRows(field)).to.equal(2);
@@ -205,7 +210,7 @@ describe('name-properties', function() {
       var field = getNameField(propertiesPanel._container);
 
       // when
-      TestHelper.triggerValue(field, 'a\nb\nc\nd\ne', 'change');
+      triggerValue(field, 'a\nb\nc\nd\ne', 'change');
 
       // then
       expect(getTextBoxRows(field)).to.equal(5);
@@ -221,7 +226,7 @@ describe('name-properties', function() {
       var field = getNameField(propertiesPanel._container);
 
       // when
-      TestHelper.triggerValue(field, 'a', 'change');
+      triggerValue(field, 'a', 'change');
 
       // then
       expect(getTextBoxRows(field)).to.equal(1);

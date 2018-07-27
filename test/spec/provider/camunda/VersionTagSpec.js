@@ -1,24 +1,31 @@
 'use strict';
 
-var TestHelper = require('../../../TestHelper');
+import {
+  triggerValue
+} from '../../../TestHelper';
 
-var helper = require('test/helper'),
-    bootstrapModeler = helper.bootstrapModeler,
-    inject = helper.inject,
-    openView = helper.openView;
+import {
+  bootstrapModeler,
+  inject,
+  openView
+} from '../../../helper';
 
-var propertiesPanelModule = require('lib'),
-    domQuery = require('min-dom').query,
-    propertiesProviderModule = require('lib/provider/camunda'),
-    camundaModdlePackage = require('camunda-dmn-moddle/resources/camunda'),
-    getBusinessObject = require('dmn-js-shared/lib/util/ModelUtil').getBusinessObject;
 
-var drdAdapterModule = require('lib/adapter/drd');
+import propertiesPanelModule from '../../../../lib';
+import propertiesProviderModule from '../../../../lib/provider/camunda';
+
+import drdAdapterModule from 'lib/adapter/drd';
+
+import camundaModdlePackage from 'camunda-dmn-moddle/resources/camunda';
+
+import { getBusinessObject } from 'dmn-js-shared/lib/util/ModelUtil';
+
+import { query as domQuery } from 'min-dom';
+
+import diagramXML from './VersionTag.dmn';
 
 
 describe('version-tag-properties', function() {
-
-  var diagramXML = require('./VersionTag.dmn');
 
   var testModules = [
     propertiesPanelModule,
@@ -49,10 +56,10 @@ describe('version-tag-properties', function() {
     var bo = getBusinessObject(shape),
         inputElement = domQuery(inputEl, propertiesPanel._container);
 
-    TestHelper.triggerValue(inputElement, '', 'change');
+    triggerValue(inputElement, '', 'change');
 
     // when
-    TestHelper.triggerValue(inputElement, '1.0.2', 'change');
+    triggerValue(inputElement, '1.0.2', 'change');
 
     // then
     expect(bo.get('camunda:versionTag')).to.equal('1.0.2');
@@ -84,7 +91,7 @@ describe('version-tag-properties', function() {
         inputElement = domQuery(inputEl, propertiesPanel._container);
 
     // when
-    TestHelper.triggerValue(inputElement, '1.0.2', 'change');
+    triggerValue(inputElement, '1.0.2', 'change');
 
     // then
     expect(bo.get('camunda:versionTag')).to.equal('1.0.2');
@@ -103,7 +110,7 @@ describe('version-tag-properties', function() {
         inputElement = domQuery(inputEl, propertiesPanel._container);
 
     // when
-    TestHelper.triggerValue(inputElement, '', 'change');
+    triggerValue(inputElement, '', 'change');
 
     // then
     expect(bo.get('camunda:versionTag')).to.be.undefined;
@@ -123,7 +130,7 @@ describe('version-tag-properties', function() {
           inputElement = domQuery(inputEl, propertiesPanel._container);
 
       // given
-      TestHelper.triggerValue(inputElement, '', 'change');
+      triggerValue(inputElement, '', 'change');
 
       // when
       commandStack.undo();

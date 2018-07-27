@@ -1,23 +1,23 @@
 'use strict';
 
-var helper = require('../../helper'),
-    bootstrapModeler = helper.bootstrapModeler,
-    inject = helper.inject,
-    openView = helper.openView;
-
+import {
+  bootstrapModeler,
+  inject,
+  openView
+} from '../../helper';
 
 /* global sinon */
 
 
-var propertiesPanelModule = require('../../../lib'),
-    propertiesProviderModule = require('../properties');
+import propertiesPanelModule from '../../../lib';
+import propertiesProviderModule from '../properties';
 
-var decisionTableAdapterModule = require('../../../lib/adapter/decision-table');
+import diagramXML from './adapter.dmn';
+
+import decisionTableAdapterModule from '../../../lib/adapter/decision-table';
 
 
 describe('DecisionTableAdapter', function() {
-
-  var diagramXML = require('./adapter.dmn');
 
   var testModules = [
     propertiesPanelModule,

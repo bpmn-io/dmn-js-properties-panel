@@ -1,23 +1,23 @@
 'use strict';
 
-var helper = require('../../helper'),
-    bootstrapModeler = helper.bootstrapModeler,
-    inject = helper.inject,
-    openView = helper.openView;
-
+import {
+  bootstrapModeler,
+  inject,
+  openView
+} from '../../helper';
 
 /* global sinon */
 
 
-var propertiesPanelModule = require('../../../lib'),
-    propertiesProviderModule = require('../properties');
+import propertiesPanelModule from '../../../lib';
+import propertiesProviderModule from '../properties';
 
-var literalExpressionAdapterModule = require('../../../lib/adapter/literal-expression');
+import literalExpressionAdapterModule from '../../../lib/adapter/literal-expression';
+
+import diagramXML from './adapter.dmn';
 
 
 describe('LiteralExpressionAdapter', function() {
-
-  var diagramXML = require('./adapter.dmn');
 
   var testModules = [
     propertiesPanelModule,

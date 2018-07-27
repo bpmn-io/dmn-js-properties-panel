@@ -1,26 +1,30 @@
 'use strict';
 
-var TestContainer = require('mocha-test-container-support');
+import TestContainer from 'mocha-test-container-support';
 
-var helper = require('test/helper'),
-    bootstrapModeler = helper.bootstrapModeler,
-    inject = helper.inject,
-    openView = helper.openView;
+import {
+  bootstrapModeler,
+  inject,
+  openView
+} from '../helper';
 
-var propertiesPanelModule = require('../../lib'),
-    propertiesProviderModule = require('./properties');
+import propertiesPanelModule from '../../lib';
+import propertiesProviderModule from './properties';
 
-var drdAdapterModule = require('lib/adapter/drd'),
-    decisionTableAdapter = require('lib/adapter/decision-table'),
-    literalExpressionAdapter = require('lib/adapter/literal-expression');
+import drdAdapterModule from '../../lib/adapter/drd';
+import literalExpressionAdapter from '../../lib/adapter/literal-expression';
 
-var domQuery = require('min-dom').query,
-    domAttr = require('min-dom').attr;
+import decisionTableAdapter from '../../lib/adapter/decision-table';
+
+import {
+  query as domQuery,
+  attr as domAttr
+} from 'min-dom';
+
+import diagramXML from './test.dmn';
 
 
 describe('PropertiesPanel', function() {
-
-  var diagramXML = require('./test.dmn');
 
   var testModules = [
     propertiesPanelModule,

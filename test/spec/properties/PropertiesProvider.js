@@ -1,12 +1,12 @@
 'use strict';
 
-var inherits = require('inherits');
+import inherits from 'inherits';
 
-var PropertiesActivator = require('../../../lib/PropertiesActivator');
+import PropertiesActivator from '../../../lib/PropertiesActivator';
 
-var entryFactory = require('../../../lib/factory/EntryFactory');
+import entryFactory from '../../../lib/factory/EntryFactory';
 
-var getBusinessObject = require('dmn-js-shared/lib/util/ModelUtil').getBusinessObject;
+import { getBusinessObject } from 'dmn-js-shared/lib/util/ModelUtil';
 
 
 function createGroups(element) {
@@ -63,4 +63,4 @@ function PropertiesProvider(eventBus) {
 
 inherits(PropertiesProvider, PropertiesActivator);
 
-module.exports = PropertiesProvider;
+export default PropertiesProvider;

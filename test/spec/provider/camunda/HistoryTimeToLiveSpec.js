@@ -1,29 +1,36 @@
 'use strict';
 
-var TestHelper = require('../../../TestHelper');
+import {
+  triggerValue
+} from '../../../TestHelper';
 
-var helper = require('test/helper'),
-    bootstrapModeler = helper.bootstrapModeler,
-    inject = helper.inject,
-    openView = helper.openView;
+import {
+  bootstrapModeler,
+  inject,
+  openView
+} from '../../../helper';
 
-var propertiesPanelModule = require('lib'),
-    domQuery = require('min-dom').query,
-    propertiesProviderModule = require('lib/provider/camunda'),
-    camundaModdlePackage = require('camunda-dmn-moddle/resources/camunda'),
-    getBusinessObject = require('dmn-js-shared/lib/util/ModelUtil').getBusinessObject;
 
-var drdAdapterModule = require('lib/adapter/drd');
+import propertiesPanelModule from '../../../../lib';
+import propertiesProviderModule from '../../../../lib/provider/camunda';
+
+import drdAdapterModule from 'lib/adapter/drd';
+
+import camundaModdlePackage from 'camunda-dmn-moddle/resources/camunda';
+
+import { getBusinessObject } from 'dmn-js-shared/lib/util/ModelUtil';
+
+import { query as domQuery } from 'min-dom';
+
+import diagramXML from './HistoryTimeToLive.dmn';
 
 
 describe('history-time-to-live-properties', function() {
+
   var testModules = [
     propertiesPanelModule,
     propertiesProviderModule
   ];
-
-
-  var diagramXML = require('./HistoryTimeToLive.dmn');
 
   beforeEach(bootstrapModeler(diagramXML, {
     drd: {
@@ -68,7 +75,7 @@ describe('history-time-to-live-properties', function() {
         bo = getBusinessObject(shape);
 
     // when
-    TestHelper.triggerValue(inputElement, 'bar', 'change');
+    triggerValue(inputElement, 'bar', 'change');
 
     // then
     expect(bo.get('historyTimeToLive')).to.equal('bar');

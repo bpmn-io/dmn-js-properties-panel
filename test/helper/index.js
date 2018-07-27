@@ -1,14 +1,14 @@
-var merge = require('min-dash').merge;
+import { merge } from 'min-dash';
 
-var TestContainer = require('mocha-test-container-support');
+import TestContainer from 'mocha-test-container-support';
 
-var DmnJS = require('dmn-js/lib/Modeler').default;
+import DmnJS from 'dmn-js/lib/Modeler';
 
-var DrdModeler = require('dmn-js-drd/lib/Modeler').default;
-var DecisionTableViewer = require('dmn-js-decision-table/lib/Viewer').default;
-var DecisionTableEditor = require('dmn-js-decision-table/lib/Editor').default;
-var LiteralExpressionViewer = require('dmn-js-literal-expression/lib/Viewer').default;
-var LiteralExpressionEditor = require('dmn-js-literal-expression/lib/Editor').default;
+import DrdModeler from 'dmn-js-drd/lib/Modeler';
+import DecisionTableViewer from 'dmn-js-decision-table/lib/Viewer';
+import DecisionTableEditor from 'dmn-js-decision-table/lib/Editor';
+import LiteralExpressionViewer from 'dmn-js-literal-expression/lib/Viewer';
+import LiteralExpressionEditor from 'dmn-js-literal-expression/lib/Editor';
 
 var DMN_JS;
 
@@ -21,7 +21,7 @@ var DMN_JS;
  *
  * @return {Function} a function to be passed to beforeEach
  */
-function bootstrapDmnJS(diagram, options) {
+export function bootstrapDmnJS(diagram, options) {
 
   return function(done) {
 
@@ -99,7 +99,7 @@ function bootstrapDmnJS(diagram, options) {
  *
  * @return {Function} a function to be passed to beforeEach
  */
-function bootstrapModeler(diagram, options) {
+export function bootstrapModeler(diagram, options) {
   return bootstrapDmnJS(diagram, options);
 }
 
@@ -125,7 +125,7 @@ function bootstrapModeler(diagram, options) {
  * @param  {Function} fn the function to inject to
  * @return {Function} a function that can be passed to it to carry out the injection
  */
-function inject(fn) {
+export function inject(fn) {
   return function() {
 
     if (!DMN_JS) {
@@ -145,7 +145,7 @@ function inject(fn) {
   };
 }
 
-function injectAsync(doneFn) {
+export function injectAsync(doneFn) {
   return function(done) {
     var testFn = doneFn(done);
 
@@ -153,15 +153,15 @@ function injectAsync(doneFn) {
   };
 }
 
-function getDmnJS() {
+export function getDmnJS() {
   return DMN_JS;
 }
 
-function getActiveViewer() {
+export function getActiveViewer() {
   return DMN_JS.getActiveViewer();
 }
 
-function openView(elementId) {
+export function openView(elementId) {
   if (!DMN_JS) {
     throw new Error(
       'no bootstraped modeler, ' +
@@ -182,7 +182,7 @@ function openView(elementId) {
   DMN_JS.open(view);
 }
 
-function insertCSS(name, css) {
+export function insertCSS(name, css) {
   if (document.querySelector('[data-css-file="' + name + '"]')) {
     return;
   }
@@ -200,14 +200,3 @@ function insertCSS(name, css) {
 
   head.appendChild(style);
 }
-
-module.exports = {
-  bootstrapDmnJS: bootstrapDmnJS,
-  bootstrapModeler: bootstrapModeler,
-  inject: inject,
-  injectAsync: injectAsync,
-  getDmnJS: getDmnJS,
-  getActiveViewer: getActiveViewer,
-  openView: openView,
-  insertCSS: insertCSS
-};

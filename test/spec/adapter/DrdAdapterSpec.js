@@ -1,23 +1,23 @@
 'use strict';
 
-var helper = require('../../helper'),
-    bootstrapModeler = helper.bootstrapModeler,
-    inject = helper.inject,
-    openView = helper.openView;
-
+import {
+  bootstrapModeler,
+  inject,
+  openView
+} from '../../helper';
 
 /* global sinon */
 
 
-var propertiesPanelModule = require('../../../lib'),
-    propertiesProviderModule = require('../properties');
+import propertiesPanelModule from '../../../lib';
+import propertiesProviderModule from '../properties';
 
-var drdAdapterModule = require('../../../lib/adapter/drd');
+import drdAdapterModule from '../../../lib/adapter/drd';
+
+import diagramXML from './adapter.dmn';
 
 
 describe('DrdAdapter', function() {
-
-  var diagramXML = require('./adapter.dmn');
 
   var testModules = [
     propertiesPanelModule,
