@@ -2,7 +2,7 @@
 
 This is properties panel extension for [dmn-js](https://github.com/bpmn-io/dmn-js).
 
-![dmn-js-properties-panel screenshot](./docs/screenshot.png "Screenshot of the bpmn-js modeler + properties panel")
+![dmn-js-properties-panel screenshot](./docs/screenshot.png "Screenshot of the dmn-js editor + the properties panel")
 
 
 ## Features
@@ -30,12 +30,14 @@ Provide two HTML elements, one for the properties panel and one for the DMN diag
 Bootstrap [dmn-js](https://github.com/bpmn-io/dmn-js) with the properties panel, a [properties provider](./lib/provider) and an [adapter](./lib/adapter) for each editor:
 
 ```javascript
-var DmnJS = require('dmn-js/lib/Modeler'),
-    propertiesPanelModule = require('dmn-js-properties-panel'),
-    propertiesProviderModule = require('dmn-js-properties-panel/lib/provider/dmn'),
-    drdAdapterModule = require('dmn-js-properties-panel/lib/adapter/drd');
+import DmnModeler from 'dmn-js/lib/Modeler';
 
-var dmnJS = new Dmn({
+import propertiesPanelModule from 'dmn-js-properties-panel';
+import drdAdapterModule from 'dmn-js-properties-panel/lib/adapter/drd';
+
+import propertiesProviderModule from 'dmn-js-properties-panel/lib/provider/dmn';
+
+var dmnModeler = new DmnModeler({
   drd: {
     propertiesPanel: {
       parent: '#properties'
@@ -72,16 +74,17 @@ In order to be able to edit [Camunda](https://camunda.org) related properties, u
 In addition, you need to define the `camunda` namespace via [camunda-dmn-moddle](https://github.com/camunda/camunda-dmn-moddle).
 
 ```javascript
-var DmnJS = require('dmn-js/lib/Modeler'),
-    propertiesPanelModule = require('dmn-js-properties-panel'),
-    // use Camunda properties provider
-    propertiesProviderModule = require('dmn-js-properties-panel/lib/provider/camunda'),
-    drdAdapterModule = require('dmn-js-properties-panel/lib/adapter/drd');
+import DmnModeler from 'dmn-js/lib/Modeler';
+import propertiesPanelModule from 'dmn-js-properties-panel';
+import drdAdapterModule from 'dmn-js-properties-panel/lib/adapter/drd';
+
+// use Camunda properties provider
+import propertiesProviderModule from 'dmn-js-properties-panel/lib/provider/camunda';
 
 // a descriptor that defines Camunda related DMN 1.1 XML extensions
-var camundaModdleDescriptor = require('camunda-dmn-moddle/resources/camunda');
+import camundaModdleDescriptor from 'camunda-dmn-moddle/resources/camunda';
 
-var dmnJS = new DmnJS({
+var dmnModeler = new DmnModeler({
   drd: {
     propertiesPanel: {
       parent: '#properties'
