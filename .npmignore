@@ -1,5 +1,6 @@
 .github
 docs
+styles
 test/*
 !test/helper
 !dist/*
