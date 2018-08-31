@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.1.2
+
+* `FIX`: properly namespace font to `dmn-js-pp`
+
 ## 0.1.1
 
 * `FIX`: use `lodash` in a way that allows tree-shaking ([#2](https://github.com/bpmn-io/dmn-js-properties-panel/issues/2))
