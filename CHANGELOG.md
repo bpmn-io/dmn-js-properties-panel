@@ -6,6 +6,11 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.2.0
+
+* `CHORE`: mark as compatible with `dmn-js@6`
+* `FIX`: don't restrict properties panel height unnecessarily ([#5](https://github.com/bpmn-io/dmn-js-properties-panel/issues/5))
+
 ## 0.1.2
 
 * `FIX`: properly namespace font to `dmn-js-pp`
