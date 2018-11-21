@@ -29,7 +29,7 @@
   "devDependencies": {
     "camunda-dmn-moddle": "^1.0.0",
     "chai": "^4.1.2",
-    "diagram-js": "^2.1.1",
+    "diagram-js": "^3.0.1",
     "dmn-js": "^5.1.1",
     "dmn-moddle": "^6.0.0",
     "eslint": "^5.2.0",
