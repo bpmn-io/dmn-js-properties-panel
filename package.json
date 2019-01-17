@@ -30,10 +30,10 @@
     "camunda-dmn-moddle": "^1.0.0",
     "chai": "^4.1.2",
     "diagram-js": "^3.0.1",
-    "dmn-js": "^6.0.0",
+    "dmn-js": "^6.2.0",
     "dmn-moddle": "^6.0.0",
     "eslint": "^5.2.0",
-    "eslint-plugin-bpmn-io": "^0.5.3",
+    "eslint-plugin-bpmn-io": "^0.6.0",
     "karma": "^2.0.5",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -58,7 +58,7 @@
     "webpack": "^4.16.2"
   },
   "dependencies": {
-    "ids": "^0.2.0",
+    "ids": "^1.0.0",
     "inherits": "^2.0.1",
     "lodash": "^4.17.10",
     "min-dom": "^3.1.1",
