@@ -11,6 +11,7 @@ ___Note:__ Yet to be released changes appear here._
 * `FEAT`: sanitize entities when building HTML ([#9](https://github.com/bpmn-io/dmn-js-properties-panel/issues/9))
 * `FEAT`: add hint about decision definition key
 * `FIX`: remove accidentially added whitespace
+* `FEAT`: translate error messages
 
 ## 0.2.0
 
