@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.3.1
+
+* `FIX`: Support line breaks in Entry Field Description ([#12](https://github.com/bpmn-io/dmn-js-properties-panel/pull/12))
+
 ## 0.3.0
 
 * `FEAT`: sanitize entities when building HTML ([#9](https://github.com/bpmn-io/dmn-js-properties-panel/issues/9))
