@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.3.2
+
+* `CHORE`: mark as `dmn-js@7` compatible
+
 ## 0.3.1
 
 * `FIX`: Support line breaks in Entry Field Description ([#12](https://github.com/bpmn-io/dmn-js-properties-panel/pull/12))
