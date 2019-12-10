@@ -137,7 +137,7 @@ describe('id-properties', function() {
     }));
 
 
-    it('should set the id with the expression at the beginning', function() {
+    it('should not set the id with the expression at the beginning', function() {
 
       // assume
       expect(textField.value).to.equal('dish-decision');
@@ -146,12 +146,11 @@ describe('id-properties', function() {
       triggerValue(textField, '${VERSION_TAG}_foo', 'change');
 
       // then
-      expect(getTextField().value).to.equal('${VERSION_TAG}_foo');
-      expect(businessObject.get('id')).to.equal('${VERSION_TAG}_foo');
+      expect(businessObject.get('id')).to.equal('dish-decision');
     });
 
 
-    it('should set the id with the expression at the end', function() {
+    it('should not set the id with the expression at the end', function() {
 
       // assume
       expect(textField.value).to.equal('dish-decision');
@@ -160,12 +159,11 @@ describe('id-properties', function() {
       triggerValue(textField, 'foo_${VERSION_TAG}', 'change');
 
       // then
-      expect(getTextField().value).to.equal('foo_${VERSION_TAG}');
-      expect(businessObject.get('id')).to.equal('foo_${VERSION_TAG}');
+      expect(businessObject.get('id')).to.equal('dish-decision');
     });
 
 
-    it('should set the id with the expression in the middle', function() {
+    it('should not set the id with the expression in the middle', function() {
 
       // assume
       expect(textField.value).to.equal('dish-decision');
@@ -174,12 +172,11 @@ describe('id-properties', function() {
       triggerValue(textField, 'foo_${VERSION_TAG}_bar', 'change');
 
       // then
-      expect(getTextField().value).to.equal('foo_${VERSION_TAG}_bar');
-      expect(businessObject.get('id')).to.equal('foo_${VERSION_TAG}_bar');
+      expect(businessObject.get('id')).to.equal('dish-decision');
     });
 
 
-    it('should set the id which is only an expression', function() {
+    it('should not set the id which is only an expression', function() {
 
       // assume
       expect(textField.value).to.equal('dish-decision');
@@ -188,8 +185,7 @@ describe('id-properties', function() {
       triggerValue(textField, '${VERSION_TAG}', 'change');
 
       // then
-      expect(getTextField().value).to.equal('${VERSION_TAG}');
-      expect(businessObject.get('id')).to.equal('${VERSION_TAG}');
+      expect(businessObject.get('id')).to.equal('dish-decision');
     });
 
 
