@@ -1,6 +1,6 @@
 {
   "name": "dmn-js-properties-panel",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A properties panel for dmn-js",
   "scripts": {
     "lint": "eslint .",
