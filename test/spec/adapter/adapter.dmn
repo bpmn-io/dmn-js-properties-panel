@@ -1,62 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="definitions_dish" name="Dish" namespace="http://camunda.org/schema/1.0/dmn">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="definitions_dish" name="Dish" namespace="http://camunda.org/schema/1.0/dmn">
   <inputData id="dayType_id" name="Type of day">
-    <extensionElements>
-      <biodi:bounds x="240" y="270" width="125" height="45" />
-    </extensionElements>
     <variable id="dayType_ii" name="Type of day" typeRef="string" />
   </inputData>
   <inputData id="temperature_id" name="Weather in Celsius">
-    <extensionElements>
-      <biodi:bounds x="5" y="270" width="125" height="45" />
-    </extensionElements>
     <variable id="temperature_ii" name="Weather in Celsius" typeRef="integer" />
   </inputData>
-  <knowledgeSource id="host_ks" name="Host">
-    <extensionElements>
-      <biodi:bounds x="493" y="4" width="100" height="63" />
-    </extensionElements>
-  </knowledgeSource>
+  <knowledgeSource id="host_ks" name="Host" />
   <knowledgeSource id="guest_ks" name="Guest Type">
-    <extensionElements>
-      <biodi:bounds x="495" y="147" width="100" height="63" />
-      <biodi:edge source="guestCount">
-        <biodi:waypoints x="410" y="172" />
-        <biodi:waypoints x="495" y="172" />
-      </biodi:edge>
-    </extensionElements>
-    <authorityRequirement>
+    <authorityRequirement id="AuthorityRequirement_1qslno3">
       <requiredDecision href="#guestCount" />
     </authorityRequirement>
   </knowledgeSource>
-  <businessKnowledgeModel id="elMenu" name="El menú">
-    <extensionElements>
-      <biodi:bounds x="450" y="250" width="135" height="46" />
-    </extensionElements>
-  </businessKnowledgeModel>
+  <businessKnowledgeModel id="elMenu" name="El menú" />
   <decision id="dish-decision" name="Dish Decision">
-    <extensionElements>
-      <biodi:bounds x="140" y="5" width="180" height="80" />
-      <biodi:edge source="season">
-        <biodi:waypoints x="80" y="132" />
-        <biodi:waypoints x="140" y="81" />
-      </biodi:edge>
-      <biodi:edge source="guestCount">
-        <biodi:waypoints x="345" y="138" />
-        <biodi:waypoints x="257" y="85" />
-      </biodi:edge>
-      <biodi:edge source="host_ks">
-        <biodi:waypoints x="493" y="24" />
-        <biodi:waypoints x="320" y="25" />
-      </biodi:edge>
-    </extensionElements>
-    <informationRequirement>
+    <informationRequirement id="InformationRequirement_0x9fc6u">
       <requiredDecision href="#season" />
     </informationRequirement>
-    <informationRequirement>
+    <informationRequirement id="InformationRequirement_1oxkq80">
       <requiredDecision href="#guestCount" />
     </informationRequirement>
-    <authorityRequirement>
+    <authorityRequirement id="AuthorityRequirement_0o6mxuj">
       <requiredAuthority href="#host_ks" />
     </authorityRequirement>
     <decisionTable id="dishDecisionTable">
@@ -159,14 +123,7 @@ else
     </decisionTable>
   </decision>
   <decision id="season" name="Season decision">
-    <extensionElements>
-      <biodi:bounds x="10" y="132" width="180" height="80" />
-      <biodi:edge source="temperature_id">
-        <biodi:waypoints x="80" y="270" />
-        <biodi:waypoints x="80" y="212" />
-      </biodi:edge>
-    </extensionElements>
-    <informationRequirement>
+    <informationRequirement id="InformationRequirement_12wwqwr">
       <requiredInput href="#temperature_id" />
     </informationRequirement>
     <decisionTable id="seasonDecisionTable">
@@ -203,21 +160,10 @@ else
     </decisionTable>
   </decision>
   <decision id="guestCount" name="Guest Count">
-    <extensionElements>
-      <biodi:bounds x="230" y="138" width="180" height="80" />
-      <biodi:edge source="dayType_id">
-        <biodi:waypoints x="340" y="270" />
-        <biodi:waypoints x="340" y="218" />
-      </biodi:edge>
-      <biodi:edge source="elMenu">
-        <biodi:waypoints x="450" y="275" />
-        <biodi:waypoints x="410" y="209" />
-      </biodi:edge>
-    </extensionElements>
-    <informationRequirement>
+    <informationRequirement id="InformationRequirement_05kp955">
       <requiredInput href="#dayType_id" />
     </informationRequirement>
-    <knowledgeRequirement>
+    <knowledgeRequirement id="KnowledgeRequirement_0ou53h4">
       <requiredKnowledge href="#elMenu" />
     </knowledgeRequirement>
     <decisionTable id="guestCountDecisionTable">
@@ -254,28 +200,82 @@ else
     </decisionTable>
   </decision>
   <decision id="literal-expression" name="It&#39;s lit">
-    <extensionElements>
-      <biodi:bounds x="670" y="141" width="180" height="80" />
-    </extensionElements>
     <variable id="InformationItem_10cg57g" name="itsLit" typeRef="string" />
     <literalExpression id="LiteralExpression_0bhgyiw" expressionLanguage="javascript">
       <text>return "It's lit!";</text>
     </literalExpression>
   </decision>
   <textAnnotation id="TextAnnotation_1t4zaz9">
-    <extensionElements>
-      <biodi:bounds x="240" y="400" width="125" height="45" />
-    </extensionElements>
     <text>foobar</text>
   </textAnnotation>
   <association id="Association_1c4jixb">
-    <extensionElements>
-      <biodi:edge source="dayType_id">
-        <biodi:waypoints x="275" y="315" />
-        <biodi:waypoints x="240" y="400" />
-      </biodi:edge>
-    </extensionElements>
     <sourceRef href="#dayType_id" />
     <targetRef href="#TextAnnotation_1t4zaz9" />
   </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_0brulot">
+      <dmndi:DMNShape id="dayType_id_di" dmnElementRef="dayType_id">
+        <dc:Bounds height="45" width="125" x="240" y="270" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="temperature_id_di" dmnElementRef="temperature_id">
+        <dc:Bounds height="45" width="125" x="5" y="270" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="host_ks_di" dmnElementRef="host_ks">
+        <dc:Bounds height="63" width="100" x="493" y="4" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="guest_ks_di" dmnElementRef="guest_ks">
+        <dc:Bounds height="63" width="100" x="495" y="147" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="AuthorityRequirement_1qslno3_di" dmnElementRef="AuthorityRequirement_1qslno3">
+        <di:waypoint x="410" y="172" />
+        <di:waypoint x="495" y="172" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="elMenu_di" dmnElementRef="elMenu">
+        <dc:Bounds height="46" width="135" x="450" y="250" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dish-decision_di" dmnElementRef="dish-decision">
+        <dc:Bounds height="80" width="180" x="140" y="5" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="InformationRequirement_0x9fc6u_di" dmnElementRef="InformationRequirement_0x9fc6u">
+        <di:waypoint x="80" y="132" />
+        <di:waypoint x="140" y="81" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="InformationRequirement_1oxkq80_di" dmnElementRef="InformationRequirement_1oxkq80">
+        <di:waypoint x="345" y="138" />
+        <di:waypoint x="257" y="85" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="AuthorityRequirement_0o6mxuj_di" dmnElementRef="AuthorityRequirement_0o6mxuj">
+        <di:waypoint x="493" y="24" />
+        <di:waypoint x="320" y="25" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="season_di" dmnElementRef="season">
+        <dc:Bounds height="80" width="180" x="10" y="132" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="InformationRequirement_12wwqwr_di" dmnElementRef="InformationRequirement_12wwqwr">
+        <di:waypoint x="80" y="270" />
+        <di:waypoint x="80" y="212" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="guestCount_di" dmnElementRef="guestCount">
+        <dc:Bounds height="80" width="180" x="230" y="138" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="InformationRequirement_05kp955_di" dmnElementRef="InformationRequirement_05kp955">
+        <di:waypoint x="340" y="270" />
+        <di:waypoint x="340" y="218" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="KnowledgeRequirement_0ou53h4_di" dmnElementRef="KnowledgeRequirement_0ou53h4">
+        <di:waypoint x="450" y="275" />
+        <di:waypoint x="410" y="209" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="literal-expression_di" dmnElementRef="literal-expression">
+        <dc:Bounds height="80" width="180" x="670" y="141" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="TextAnnotation_1t4zaz9_di" dmnElementRef="TextAnnotation_1t4zaz9">
+        <dc:Bounds height="45" width="125" x="240" y="400" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="Association_1c4jixb_di" dmnElementRef="Association_1c4jixb">
+        <di:waypoint x="275" y="315" />
+        <di:waypoint x="240" y="400" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
 </definitions>

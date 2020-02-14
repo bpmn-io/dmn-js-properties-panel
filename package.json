@@ -30,8 +30,7 @@
     "camunda-dmn-moddle": "^1.0.0",
     "chai": "^4.1.2",
     "diagram-js": "^6.0.1",
-    "dmn-js": "^7.2.0",
-    "dmn-moddle": "^6.0.0",
+    "dmn-js": "^8.0.0-alpha.1",
     "eslint": "^5.2.0",
     "eslint-plugin-bpmn-io": "^0.6.0",
     "karma": "^4.1.0",
@@ -66,6 +65,6 @@
     "selection-update": "^0.1.2"
   },
   "peerDependencies": {
-    "dmn-js": "^5.1.0 || ^6 || ^7"
+    "dmn-js": "^8"
   }
 }
