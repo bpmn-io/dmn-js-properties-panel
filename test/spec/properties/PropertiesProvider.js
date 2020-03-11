@@ -44,6 +44,15 @@ function createGroups(element) {
           modelProperty : 'maliciousLinkText'
         })
       ]
+    },
+    {
+      id: 'inputs',
+      entries: [
+        {
+          id: 'contenteditable',
+          html: '<div>Content editable:<div contenteditable></div></div>'
+        }
+      ]
     }
   ];
 }
