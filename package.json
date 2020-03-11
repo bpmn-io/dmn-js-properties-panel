@@ -30,7 +30,7 @@
     "camunda-dmn-moddle": "^1.0.0",
     "chai": "^4.1.2",
     "diagram-js": "^6.0.1",
-    "dmn-js": "^7.2.0",
+    "dmn-js": "^7.4.4",
     "dmn-moddle": "^6.0.0",
     "eslint": "^5.2.0",
     "eslint-plugin-bpmn-io": "^0.6.0",
