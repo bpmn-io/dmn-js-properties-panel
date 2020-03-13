@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.3.5
+
+* `FIX`: paste always as plain text ([#15](https://github.com/bpmn-io/dmn-js-properties-panel/pull/15))
+
 ## 0.3.4
 
 * `FIX`: Do not allow placeholders in IDs ([#13](https://github.com/bpmn-io/dmn-js-properties-panel/pull/13))
