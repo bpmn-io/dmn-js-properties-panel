@@ -6,7 +6,10 @@ import PropertiesActivator from '../../../lib/PropertiesActivator';
 
 import entryFactory from '../../../lib/factory/EntryFactory';
 
-import { getBusinessObject } from 'dmn-js-shared/lib/util/ModelUtil';
+import {
+  getBusinessObject,
+  is
+} from 'dmn-js-shared/lib/util/ModelUtil';
 
 
 function createGroups(element) {
@@ -69,7 +72,9 @@ function PropertiesProvider(eventBus) {
       groups: createGroups(element)
     }];
 
-    if (getBusinessObject(element).decisionTable) {
+    var decisionLogic = getBusinessObject(element).decisionLogic;
+
+    if (is(decisionLogic, 'dmn:DecisionTable')) {
       tabs.push({
         id: 'tab2',
         label: 'Tab 2',

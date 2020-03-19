@@ -121,7 +121,7 @@ describe('name-properties', function() {
         commandStack.undo();
 
         // then
-        expect(element.name).to.be.undefined;
+        expect(element.name).to.equal('');
       }));
 
 
