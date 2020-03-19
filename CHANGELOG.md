@@ -6,6 +6,11 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.4.0
+
+* `FEAT`: show ID props for any element ([#14](https://github.com/bpmn-io/dmn-js-properties-panel/pull/14))
+* `CHORE`: bump to [`dmn-js@8.2.0`](https://github.com/bpmn-io/dmn-js)
+
 ## 0.3.4
 
 * `FIX`: Do not allow placeholders in IDs ([#13](https://github.com/bpmn-io/dmn-js-properties-panel/pull/13))
