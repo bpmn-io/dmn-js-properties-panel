@@ -2,9 +2,6 @@
   padding: 6px 15px 6px 15px;
   position: relative;
   overflow: hidden;
-  transition: max-height 0.218s ease-in-out,
-              padding-top 0.218s ease-in-out,
-              padding-bottom 0.218s ease-in-out;
 
   &:empty {
     display: none;
@@ -16,53 +13,49 @@
     left: 0;
     bottom: 0;
     width: 4px;
-    cursor: pointer;
-    transition: background-color 0.218s linear;
     &:hover {
-      background-color: @dpp-color-toggle;
+      background-color: @dpp-group-toggle-hover-color;
     }
   }
 
   > .group-label {
     .label();
-    font-size: 120%;
+
     margin-top: 5px;
     margin-bottom: 10px;
-    transition: margin 0.218s linear;
-    font-style: italic;
+
+    font-size: 16px;
   }
 
   &:hover > .group-toggle {
-    background-color: @dpp-color-gray-light;
+    background-color: @dpp-group-toggle-color;
     &:hover {
-      background-color: @dpp-color-toggle;
+      background-color: @dpp-group-toggle-hover-color;
     }
   }
 
   &.group-closed {
-    max-height: 20px;
     border-top: none;
-    cursor: pointer;
-    background-color: fade(@dpp-color-toggle, 10%);
-    padding-top: 0;
-    padding-bottom: 0;
+
+    > .group-toggle {
+      background-color: @dpp-group-toggle-color;
+    }
+
+    &:hover > .group-toggle {
+      background-color: @dpp-group-toggle-hover-color;
+    }
 
     > div {
-      visibility: hidden;
+      display: none;
     }
 
     > .group-label {
-      margin-top: 2px;
-      margin-bottom: 2px;
-    }
-
-    &:hover > .group-label {
-      color: @dpp-color-toggle;
+      margin-bottom: 5px;
     }
   }
 
   + .dpp-properties-group {
-    border-top: 1px dotted @dpp-color-gray-light;
+    border-top: 1px solid @dpp-group-border-color;
   }
 
   &:last-child {
