@@ -1,13 +1,11 @@
 .invalid() {
   border-color: @dpp-color-error;
-  background: @dpp-color-error-bg;
 }
 
 .focus() {
-  // outline-color: @dpp-color-primary;
   outline: none;
   border-color: @dpp-color-primary;
-  box-shadow: 0 0 1px 2px fade(@dpp-color-primary, 20%);
+  box-shadow: 0 0 0 2px @dpp-color-primary-shadow, 0 0 0 1px @dpp-color-primary-shadow-inset inset;
 }
 
 
@@ -59,7 +57,7 @@
   }
 
   &:hover {
-    color: @dpp-color-primary;
+    color: @dpp-color-primary-action-hover;
   }
 }
 
