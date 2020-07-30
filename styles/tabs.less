@@ -1,12 +1,11 @@
 .dpp-properties-tab-bar {
-  border-bottom: 1px solid @dpp-color-gray-light;
+  border-bottom: 1px solid @dpp-tabs-border-color;
   padding: 0 15px;
 
   .scroll-tabs-button {
-    cursor: pointer;
     font-size: 16px;
     padding: 3px 4px 3px 4px;
-    color: @dpp-color-gray;
+    color: @dpp-tabs-button-color;
 
     &:hover {
       font-weight: bold;
@@ -50,17 +49,19 @@ ul.dpp-properties-tabs-links {
       font-size: 12px;
       padding: 4px 7px;
 
-      border: 1px solid @dpp-color-gray-light;
+      border: 1px solid @dpp-tabs-tab-link-border-color;
       border-radius: 3px 3px 0 0;
       border-bottom: transparent;
 
-      background-color: @dpp-color-gray-lighter;
-      color: @dpp-color-gray;
+      background-color: @dpp-tabs-tab-link-background-color;
+      color: @dpp-tabs-tab-link-color;
 
       text-decoration: none;
 
+      cursor: default;
+
       &:hover {
-        color: darken(@dpp-color-gray, 10%);
+        color: darken(@dpp-tabs-tab-link-color, 10%);
       }
     }
   }
@@ -74,7 +75,7 @@ ul.dpp-properties-tabs-links {
     a {
       padding-bottom: 5px;
 
-      border-top: 2px solid @dpp-active-tab;
+      border-top: 3px solid @dpp-tab-active-border-color;
       border-bottom: none;
     }
   }

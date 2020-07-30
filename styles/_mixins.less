@@ -1,13 +1,12 @@
 .invalid() {
-  border-color: @dpp-color-error;
+  border-color: @dpp-error-color;
 }
 
 .focus() {
   outline: none;
-  border-color: @dpp-color-primary;
-  box-shadow: 0 0 0 2px @dpp-color-primary-shadow, 0 0 0 1px @dpp-color-primary-shadow-inset inset;
+  border-color: @dpp-primary-color;
+  box-shadow: 0 0 0 2px @dpp-primary-shadow-color, 0 0 0 1px @dpp-primary-shadow-inset-color inset;
 }
-
 
 .icon-font() {
   font-family: "dmn-js-pp";
@@ -26,7 +25,7 @@
 }
 
 .overlay() {
-  background-color: @dpp-color-gray-lighter;
+  background-color: @dpp-overlay-background-color;
 }
 
 .action-button() {
@@ -35,9 +34,8 @@
   height: 23px;
   width: 24px;
   overflow: hidden;
-  cursor: pointer;
-  background-color: @dpp-color-gray-lighter;
-  border: 1px solid @dpp-color-gray-light;
+  background-color: @dpp-button-background-color;
+  border: 1px solid @dpp-button-border-color;
 
   > span {
     display: none;
@@ -57,7 +55,7 @@
   }
 
   &:hover {
-    color: @dpp-color-primary-action-hover;
+    color: @dpp-primary-action-hover-color;
   }
 }
 
@@ -65,9 +63,6 @@
   font-weight: bolder;
   display: inline-block;
   vertical-align: middle;
-  color: @dpp-color-gray;
-  &[for] {
-    cursor: pointer;
-  }
+  color: @dpp-label-color;
   &.dpp-hidden { display: none; }
 }

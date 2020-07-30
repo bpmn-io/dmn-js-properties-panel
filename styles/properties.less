@@ -26,12 +26,14 @@
     vertical-align: middle;
   }
 
-  input,
   button,
+  input,
+  select,
   textarea,
   [contenteditable] {
+    font-size: 14px;
     padding: 3px 6px;
-    border: 1px solid @dpp-color-gray-light;
+    border: 1px solid @dpp-input-border-color;
 
     &:focus {
       .focus();
@@ -40,7 +42,7 @@
     &.invalid {
       .invalid();
       &:focus {
-        box-shadow: 0 0 0 2px @dpp-color-error-shadow, 0 0 0 1px @dpp-color-error-shadow-inset inset;
+        box-shadow: 0 0 0 2px @dpp-error-shadow-color, 0 0 0 1px @dpp-error-shadow-inset-color inset;
       }
     }
   }
@@ -59,7 +61,7 @@
 
   [contenteditable] {
     outline: 0px solid transparent;
-    background-color: white;
+    background-color: @dpp-input-background-color;
 
     overflow-y: auto;
 
@@ -75,7 +77,7 @@
   }
 
   [disabled] {
-    color: #808080;
+    color: @dpp-input-disabled-color;
   }
 
   label {
@@ -86,14 +88,12 @@
 
   .entry-label {
     .label();
-    font-size: 120%;
+    font-size: 16px;
     margin-top: 5px;
     margin-bottom: 10px;
-    transition: margin 0.218s linear;
-    font-style: italic;
 
     &.divider {
-      border-top: 1px dotted #ccc;
+      border-top: 1px dotted @dpp-divider-color;
       padding-top: 8px;
       margin-top: 16px;
       width: 100%;
@@ -109,7 +109,7 @@
 .dpp-error-message,
 .dpp-error-message.dpp-entry-link {
   margin-top: 5px;
-  color: @dpp-color-error;
+  color: @dpp-error-color;
 }
 
 .dpp-row {
@@ -287,16 +287,15 @@ label.dpp-hidden {
 .dpp-properties-static {
   margin-bottom: 0;
   margin-top: 0;
-  border: 1px solid @dpp-color-gray-light;
-  background-color: white;
+  border: 1px solid @dpp-properties-static-border-color;
+  background-color: @dpp-properties-static-background-color;
   padding: 3px 6px;
   font: 13.3333px Arial;
   width: 100%;
 }
 
 .dpp-entry-link {
-  cursor: pointer;
-  color: @dpp-color-primary;
+  color: @dpp-primary-color;
 }
 
 .dpp-icon-warning:before {
@@ -306,14 +305,14 @@ label.dpp-hidden {
 
 .dpp-field-description {
   margin-top: 5px;
-  color: #999;
+  color: @dpp-input-description-color;
 
   a {
-    color: darken(@dpp-color-primary, 10%);
+    color: darken(@dpp-primary-color, 10%);
     text-decoration: none;
 
     &:hover {
-      color: @dpp-color-primary;
+      color: @dpp-primary-color;
     }
   }
 }
