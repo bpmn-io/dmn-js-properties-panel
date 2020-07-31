@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.5.0
+
+* `FEAT`: align with Camunda Modeler colors ([#18](https://github.com/bpmn-io/dmn-js-properties-panel/pull/18))
+
 ## 0.4.0
 
 * `FEAT`: show ID props for any element ([#14](https://github.com/bpmn-io/dmn-js-properties-panel/pull/14))
