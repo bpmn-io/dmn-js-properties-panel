@@ -2,8 +2,6 @@ var path = require('path');
 
 var absoluteBasePath = path.resolve(__dirname);
 
-/* global process */
-
 // use puppeteer provided Chrome for testing
 process.env.CHROME_BIN = require('puppeteer').executablePath();
 
