@@ -26,6 +26,7 @@ export function bootstrapDmnJS(diagram, options) {
   return function(done) {
 
     var testContainer;
+
     // Make sure the test container is an optional dependency and we fall back
     // to an empty <div> if it does not exist.
     //

@@ -82,12 +82,14 @@ describe('name-properties', function() {
     describe('in the DOM', function() {
 
       it('should execute', function() {
+
         // then
         expect(nameField.textContent).to.equal('foo');
       });
 
 
       it('should undo', inject(function(commandStack) {
+
         // when
         commandStack.undo();
 
@@ -97,6 +99,7 @@ describe('name-properties', function() {
 
 
       it('should redo', inject(function(commandStack) {
+
         // when
         commandStack.undo();
         commandStack.redo();
@@ -111,12 +114,14 @@ describe('name-properties', function() {
     describe('on the business object', function() {
 
       it('should execute', function() {
+
         // then
         expect(element.name).to.equal('foo');
       });
 
 
       it('should undo', inject(function(commandStack) {
+
         // when
         commandStack.undo();
 
@@ -126,6 +131,7 @@ describe('name-properties', function() {
 
 
       it('should redo', inject(function(commandStack) {
+
         // when
         commandStack.undo();
         commandStack.redo();
