@@ -26,8 +26,6 @@ module.exports = function(karma) {
       'test/suite.js': [ 'webpack', 'env' ]
     },
 
-    reporters: [ 'spec' ],
-
     browsers: browsers,
 
     browserNoActivityTimeout: 30000,
