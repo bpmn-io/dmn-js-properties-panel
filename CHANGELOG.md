@@ -6,6 +6,17 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.6.0
+
+* `CHORE`: bump to `eslint-plugin-bpmn-io@0.12.0`
+* `CHORE`: bump to `dmn-js@10.1.0-alpha.2`
+* `CHORE`: bump to `diagram-js@7.2.0`
+* `CHORE`: bump to `camunda-dmn-moddle@1.1.0`
+
+### Breaking Changes
+
+* Dropped IE 11 support with `dmn-js@9.0.0`. Migrate to modern browsers or use <=0.5 version.
+
 ## 0.5.0
 
 * `FEAT`: align with Camunda Modeler colors ([#18](https://github.com/bpmn-io/dmn-js-properties-panel/pull/18))
