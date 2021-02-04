@@ -4,6 +4,9 @@ var absoluteBasePath = path.resolve(__dirname);
 
 /* global process */
 
+// use puppeteer provided Chrome for testing
+process.env.CHROME_BIN = require('puppeteer').executablePath();
+
 // configures browsers to run test against
 // any of [ 'ChromeHeadless', 'Chrome', 'Firefox', 'IE']
 var browsers =
