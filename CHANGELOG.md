@@ -6,6 +6,12 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+
+## 0.6.1
+
+* `FIX`: preserve Windows newline characters ([#21](https://github.com/bpmn-io/dmn-js-properties-panel/pull/21))
+* `DEPS`: update dev dependencies
+
 ## 0.6.0
 
 * `CHORE`: bump to `eslint-plugin-bpmn-io@0.12.0`
