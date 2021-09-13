@@ -125,7 +125,10 @@ describe('DrdAdapter', function() {
         // given
         var spy = sinon.spy(propertiesPanel, 'update');
 
-        canvas.setRootElement(null, true);
+        canvas.setRootElement({
+          id: '__implicitroot',
+          isImplicit: true
+        }, true);
 
         // when
         selection.select(null);
