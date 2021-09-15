@@ -93,7 +93,8 @@ describe('DrdAdapter', function() {
       // when
       eventBus.fire('root.added', {
         element: {
-          id: '__implicitroot'
+          id: '__implicitroot',
+          isImplicit: true
         }
       });
 
