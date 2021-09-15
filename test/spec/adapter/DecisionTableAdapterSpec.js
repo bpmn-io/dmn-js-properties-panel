@@ -93,7 +93,8 @@ describe('DecisionTableAdapter', function() {
       // when
       eventBus.fire('root.added', {
         root: {
-          id: '__implicitroot'
+          id: '__implicitroot',
+          isImplicit: true
         }
       });
 
