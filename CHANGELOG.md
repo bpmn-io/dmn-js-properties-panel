@@ -6,6 +6,9 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.6.2
+
+* `DEPS`: update to `diagram-js@7.4.0` ([#22](https://github.com/bpmn-io/dmn-js-properties-panel/pull/22))
 
 ## 0.6.1
 
