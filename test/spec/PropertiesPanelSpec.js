@@ -22,6 +22,7 @@ import {
 } from 'min-dom';
 
 import diagramXML from './test.dmn';
+import sinon from 'sinon';
 
 
 describe('PropertiesPanel', function() {
@@ -253,4 +254,38 @@ describe('PropertiesPanel', function() {
     // Cf. https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event
     it('should paste to [contenteditable] as plain text');
   });
+
+
+  describe('input handling', function() {
+
+    it('should emit keyboard events for undo/redo when editing', inject(
+      function(eventBus, propertiesPanel, keyboard) {
+
+        // given
+        var spy = sinon.spy();
+
+        var inputField = propertiesPanel._container.querySelector('input');
+
+        eventBus.on('keyboard.keydown', 10000, spy);
+
+        // when
+        // select all
+        keyboard._keyHandler({ key: 'a', ctrlKey: true, target: inputField, preventDefault: function() {} });
+
+        // then
+        // use browser default
+        expect(spy).to.not.be.called;
+
+        // when
+        // undo/redo
+        keyboard._keyHandler({ key: 'z', metaKey: true, target: inputField, preventDefault: function() {} });
+        keyboard._keyHandler({ key: 'y', ctrlKey: true, target: inputField, preventDefault: function() {} });
+
+        // then
+        // fire events
+        expect(spy).to.have.been.calledTwice;
+      }));
+
+  });
+
 });
