@@ -10,6 +10,7 @@
     "build:less": "lessc --include-path=node_modules styles/properties.less dist/assets/dmn-js-properties-panel.css",
     "test": "karma start",
     "pretest": "run-s build:less",
+    "prepare": "run-s build",
     "prepublishOnly": "run-s build"
   },
   "repository": {
