@@ -6,6 +6,14 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.7.0
+
+* `FEAT`: incorporate reduced color palette ([#27](https://github.com/bpmn-io/dmn-js-properties-panel/issues/27))
+* `FEAT`: inherit font family in inputs ([#25](https://github.com/bpmn-io/dmn-js-properties-panel/pull/25))
+* `FIX`: don't use browser defaults for undo+redo ([#24](https://github.com/bpmn-io/dmn-js-properties-panel/pull/24))
+* `DEPS`: update to `diagram-js@7.8.2`
+* `DEPS`: update to `dmn-js@11.1.2`
+
 ## 0.6.2
 
 * `DEPS`: update to `diagram-js@7.4.0` ([#22](https://github.com/bpmn-io/dmn-js-properties-panel/pull/22))
