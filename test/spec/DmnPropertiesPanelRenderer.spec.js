@@ -23,6 +23,9 @@ import DmnPropertiesProvider from 'src/provider/dmn';
 import DmnModeler from 'dmn-js/lib/Modeler';
 import CamundaModdle from 'camunda-dmn-moddle/resources/camunda';
 
+import CamundaPropertiesProvider from 'src/provider/camunda';
+
+
 const singleStart = window.__env__ && window.__env__.SINGLE_START;
 
 insertCoreStyles();
@@ -92,9 +95,7 @@ describe('<DmnPropertiesPanelRenderer>', function() {
   (singleStart === 'dmn' ? it.only : it)('should import simple process (dmn)', async function() {
 
     // when
-    const result = await createModeler(
-      diagramXml, {}
-    );
+    const result = await createModeler(diagramXml);
 
     // then
     expect(result.error).not.to.exist;
