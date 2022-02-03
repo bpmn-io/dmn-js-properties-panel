@@ -32,10 +32,10 @@ Bootstrap [dmn-js](https://github.com/bpmn-io/dmn-js) with the properties panel,
 ```javascript
 import DmnModeler from 'dmn-js/lib/Modeler';
 
-import propertiesPanelModule from 'dmn-js-properties-panel';
-import drdAdapterModule from 'dmn-js-properties-panel/lib/adapter/drd';
-
-import propertiesProviderModule from 'dmn-js-properties-panel/lib/provider/dmn';
+import {
+  DmnPropertiesPanelModule,
+  DmnPropertiesProviderModule,
+} from 'dmn-js-properties-panel';
 
 var dmnModeler = new DmnModeler({
   drd: {
@@ -43,9 +43,8 @@ var dmnModeler = new DmnModeler({
       parent: '#properties'
     },
     additionalModules: [
-      propertiesPanelModule,
-      propertiesProviderModule,
-      drdAdapterModule
+      DmnPropertiesPanelModule,
+      DmnPropertiesProviderModule
     ]
   },
   container: '#canvas'
@@ -75,11 +74,15 @@ In addition, you need to define the `camunda` namespace via [camunda-dmn-moddle]
 
 ```javascript
 import DmnModeler from 'dmn-js/lib/Modeler';
-import propertiesPanelModule from 'dmn-js-properties-panel';
-import drdAdapterModule from 'dmn-js-properties-panel/lib/adapter/drd';
+import {
+  DmnPropertiesPanelModule,
+  DmnPropertiesProviderModule,
+  CamundaPropertiesProvider
+} from 'dmn-js-properties-panel';
+
 
 // use Camunda properties provider
-import propertiesProviderModule from 'dmn-js-properties-panel/lib/provider/camunda';
+import CamundaPropertiesProvider from 'src/provider/camunda';
 
 // a descriptor that defines Camunda related DMN 1.1 XML extensions
 import camundaModdleDescriptor from 'camunda-dmn-moddle/resources/camunda';
@@ -90,9 +93,9 @@ var dmnModeler = new DmnModeler({
       parent: '#properties'
     },
     additionalModules: [
-      propertiesPanelModule,
-      propertiesProviderModule,
-      drdAdapterModule
+      DmnPropertiesPanelModule,
+      DmnPropertiesProviderModule,
+      CamundaPropertiesProviderModule
     ]
   },
   container: '#canvas'

@@ -16,7 +16,7 @@ Great to see you! Help us out by [filing bugs or feature requests](#working-with
 
 ## Working with Issues
 
-We use our [issue tracker](https://github.com/bpmn-io/bpmn-js-properties-panel/issues) for project communication, discussion and planning.
+We use our [issue tracker](https://github.com/bpmn-io/dmn-js-properties-panel/issues) for project communication, discussion and planning.
 
 
 ### Creating an Issue
@@ -31,7 +31,7 @@ Help others to understand your request:
 
 Help us to understand and reproduce your issue:
 
-* Attach your environment (browser, bpmn-js version)
+* Attach your environment (browser, dmn-js version)
 * Attach steps to reproduce
 * Attach code samples, configuration options or stack traces that provide the necessary context
 
@@ -59,8 +59,8 @@ Checkout the following code snippet for how to setup the
 project for development on your machine:
 
 ```plain
-git clone git@github.com:bpmn-io/bpmn-js-properties-panel.git
-cd bpmn-js-properties-panel
+git clone git@github.com:bpmn-io/dmn-js-properties-panel.git
+cd dmn-js-properties-panel
 
 npm install
 
@@ -91,7 +91,7 @@ Some things that make it easier for us to accept your pull requests
 * The code is tested
 * The `npm run all` build passes (executes tests + linting)
 * The work is combined into a single commit
-* The commit messages adhere to our [guideline](https://github.com/bpmn-io/bpmn-js/blob/master/docs/project/COMMIT_MESSAGES.md)
+* The commit messages adhere to the [conventional commits guideline](https://www.conventionalcommits.org)
 
 
 We'd be glad to assist you if you do not get these things right in the first place.
