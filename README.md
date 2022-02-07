@@ -1,9 +1,10 @@
-# dmn-js-properties-panel
+# dmn-js-properties-pane
+
+[![CI](https://github.com/bpmn-io/dmn-js-properties-panel/workflows/CI/badge.svg)](https://github.com/bpmn-io/dmn-js-properties-panel/actions?query=workflow%3ACI)
 
 This is properties panel extension for [dmn-js](https://github.com/bpmn-io/dmn-js).
 
 ![dmn-js-properties-panel screenshot](./docs/screenshot.png "Screenshot of the dmn-js editor + the properties panel")
-
 
 ## Features
 
