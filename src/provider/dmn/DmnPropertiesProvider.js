@@ -39,8 +39,10 @@ export default class DmnPropertiesProvider {
 
   getGroups(element) {
     return (groups) => {
-      groups = groups.concat(getGroups(element));
-      return groups;
+      return [
+        ...groups,
+        ...getGroups(element)
+      ];
     };
   }
 

@@ -5,7 +5,7 @@ import {
 const DmnPropertiesPanelContext = createContext({
   selectedElement: null,
   injector: null,
-  getService() { return null;}
+  getService: () => null
 });
 
 export default DmnPropertiesPanelContext;
