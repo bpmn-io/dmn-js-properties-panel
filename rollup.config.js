@@ -23,14 +23,7 @@ export default [
         file: pkg.module
       }
     ],
-    external: [
-      'min-dash',
-      'preact',
-      'preact/jsx-runtime',
-      'preact/hooks',
-      'preact/compat',
-      '@bpmn-io/properties-panel'
-    ],
+    external: externalDependencies(),
     plugins: [
       alias({
         entries: [
@@ -60,3 +53,12 @@ export default [
     ]
   }
 ];
+
+function externalDependencies() {
+  return id => {
+    return Object.keys({
+      ...pkg.dependencies,
+      ...pkg.peerDependencies
+    }).find(dep => id.startsWith(dep));
+  };
+}

@@ -70,7 +70,7 @@ module.exports = function(karma) {
               options: {
                 plugins: [
                   [ '@babel/plugin-transform-react-jsx', {
-                    'importSource': 'preact',
+                    'importSource': '@bpmn-io/properties-panel/preact',
                     'runtime': 'automatic'
                   } ]
                 ]
