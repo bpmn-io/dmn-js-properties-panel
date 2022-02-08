@@ -35,10 +35,8 @@ function VersionTag(props) {
   const translate = useService('translate');
   const debounce = useService('debounceInput');
 
-  const businessObject = getBusinessObject(element);
-
   const getValue = () => {
-    return businessObject.versionTag;
+    return getBusinessObject(element).get('camunda:versionTag');
   };
 
   const setValue = (value) => {

@@ -3,6 +3,8 @@ import {
   isTextFieldEntryEdited
 } from '@bpmn-io/properties-panel';
 
+import { getBusinessObject } from 'dmn-js-shared/lib/util/ModelUtil';
+
 import {
   useService
 } from '../../../hooks';
@@ -52,13 +54,13 @@ function Name(props) {
     id: 'name',
     label: translate('Name'),
     debounce,
+    getValue: (element) => {
+      return getBusinessObject(element).get('name');
+    },
     setValue: (value) => {
       modeling.updateProperties(element, {
         name: value
       });
-    },
-    getValue: (element) => {
-      return element.businessObject.name;
     }
   };
 
@@ -66,13 +68,13 @@ function Name(props) {
   if (is(element, 'dmn:TextAnnotation')) {
     options = {
       ...options,
+      getValue: (element) => {
+        return getBusinessObject(element).get('text');
+      },
       setValue: (value) => {
         modeling.updateProperties(element, {
           text: value
         });
-      },
-      getValue: (element) => {
-        return element.businessObject.text;
       }
     };
   }

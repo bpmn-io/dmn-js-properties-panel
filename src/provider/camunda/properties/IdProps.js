@@ -44,14 +44,14 @@ function Id(props) {
   const debounce = useService('debounceInput');
   const translate = useService('translate');
 
+  const getValue = (element) => {
+    return getBusinessObject(element).get('id');
+  };
+
   const setValue = (value) => {
     modeling.updateProperties(element, {
       id: value
     });
-  };
-
-  const getValue = (element) => {
-    return element.businessObject.id;
   };
 
   const validate = (value) => {
