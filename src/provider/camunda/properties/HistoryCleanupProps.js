@@ -34,10 +34,8 @@ function HistoryTimeToLive(props) {
   const translate = useService('translate');
   const debounce = useService('debounceInput');
 
-  const businessObject = getBusinessObject(element);
-
   const getValue = () => {
-    return businessObject.historyTimeToLive;
+    return getBusinessObject(element).get('camunda:historyTimeToLive');
   };
 
   const setValue = (value) => {
