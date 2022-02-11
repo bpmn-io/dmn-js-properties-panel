@@ -1,4 +1,4 @@
-# dmn-js-properties-pane
+# dmn-js-properties-panel
 
 [![CI](https://github.com/bpmn-io/dmn-js-properties-panel/workflows/CI/badge.svg)](https://github.com/bpmn-io/dmn-js-properties-panel/actions?query=workflow%3ACI)
 
