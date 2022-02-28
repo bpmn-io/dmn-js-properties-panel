@@ -28,7 +28,7 @@ Provide two HTML elements, one for the properties panel and one for the DMN diag
 </div>
 ```
 
-Bootstrap [dmn-js](https://github.com/bpmn-io/dmn-js) with the properties panel, a [properties provider](./lib/provider) and an [adapter](./lib/adapter) for each editor:
+Bootstrap [dmn-js](https://github.com/bpmn-io/dmn-js) with the properties panel, and a [properties provider](./lib/provider):
 
 ```javascript
 import DmnModeler from 'dmn-js/lib/Modeler';
