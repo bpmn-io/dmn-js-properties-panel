@@ -33,7 +33,8 @@ export function NameProps(props) {
   return [
     {
       id: 'name',
-      component: <Name element={ element } />,
+      component: Name,
+      element,
       isEdited: isTextFieldEntryEdited
     }
   ];
@@ -41,7 +42,8 @@ export function NameProps(props) {
 
 function Name(props) {
   const {
-    element
+    element,
+    id
   } = props;
 
   const modeling = useService('modeling');
@@ -51,7 +53,7 @@ function Name(props) {
   // (1) default: name
   let options = {
     element,
-    id: 'name',
+    id,
     label: translate('Name'),
     debounce,
     getValue: (element) => {
