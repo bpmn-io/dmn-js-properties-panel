@@ -7,6 +7,9 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         node-version: [ 14 ]
+        integration-deps:
+        - dmn-js@11.x
+        - "" # as defined in package.json
 
     runs-on: ${{ matrix.os }}
 
@@ -28,9 +31,17 @@ jobs:
           ${{ runner.OS }}-
     - name: Install dependencies
       run: npm ci
+    - name: Install dependencies for integration test
+      if: ${{ matrix.integration-deps != '' }}
+      run: npm install ${{ matrix.integration-deps }}
     - name: Build
+      if: ${{ matrix.integration-deps != '' }}
+      run: npm run all
+    - name: Build with coverage
+      if: ${{ matrix.integration-deps == '' }}
       env:
         COVERAGE: 1
       run: npm run all
     - name: Upload coverage
+      if: ${{ matrix.integration-deps == '' }}
       run: npx codecov
