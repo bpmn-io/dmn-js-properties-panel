@@ -21,14 +21,18 @@ export function HistoryCleanupProps(props) {
   return [
     {
       id: 'historyTimeToLive',
-      component: <HistoryTimeToLive element={ element } />,
+      component: HistoryTimeToLive,
+      element,
       isEdited: isTextFieldEntryEdited
     },
   ];
 }
 
 function HistoryTimeToLive(props) {
-  const { element } = props;
+  const {
+    element,
+    id
+  } = props;
 
   const modeling = useService('modeling');
   const translate = useService('translate');
@@ -46,7 +50,7 @@ function HistoryTimeToLive(props) {
 
   return TextFieldEntry({
     element,
-    id: 'historyTimeToLive',
+    id,
     label: translate('Time to live'),
     getValue,
     setValue,

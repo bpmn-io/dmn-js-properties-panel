@@ -28,7 +28,8 @@ export function IdProps(props) {
   return [
     {
       id: 'id',
-      component: <Id element={ element } />,
+      component: Id,
+      element,
       isEdited: isTextFieldEntryEdited
     }
   ];
@@ -36,7 +37,8 @@ export function IdProps(props) {
 
 function Id(props) {
   const {
-    element
+    element,
+    id
   } = props;
 
   const modeling = useService('modeling');
@@ -61,7 +63,7 @@ function Id(props) {
 
   return TextFieldEntry({
     element,
-    id: 'id',
+    id,
     label: translate('ID'),
     getValue,
     setValue,

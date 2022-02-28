@@ -22,14 +22,15 @@ export function VersionTagProps(props) {
   return [
     {
       id: 'versionTag',
-      component: <VersionTag element={ element } />,
+      component: VersionTag,
+      element,
       isEdited: isTextFieldEntryEdited
     },
   ];
 }
 
 function VersionTag(props) {
-  const { element } = props;
+  const { element, id } = props;
 
   const modeling = useService('modeling');
   const translate = useService('translate');
@@ -47,7 +48,7 @@ function VersionTag(props) {
 
   return TextFieldEntry({
     element,
-    id: 'versionTag',
+    id,
     label: translate('Version tag'),
     getValue,
     setValue,
