@@ -8,6 +8,9 @@ import resolve from '@rollup/plugin-node-resolve';
 
 import pkg from './package.json';
 
+const nonbundledDependencies = Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies });
+const nonExternalDependencies = [ 'dmn-js-shared', 'dmn-js-drd' ];
+
 export default [
   {
     input: 'src/index.js',
@@ -56,9 +59,11 @@ export default [
 
 function externalDependencies() {
   return id => {
-    return Object.keys({
-      ...pkg.dependencies,
-      ...pkg.peerDependencies
-    }).find(dep => id.startsWith(dep));
+    return nonbundledDependencies.find(dep => dependencyMatches(id, dep)) &&
+      !nonExternalDependencies.find(dep => dependencyMatches(id, dep));
   };
+}
+
+function dependencyMatches(id, dependency) {
+  return id === dependency || id.startsWith(dependency + '/');
 }
