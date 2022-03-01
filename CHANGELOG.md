@@ -6,6 +6,11 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.0.0-alpha.1
+
+* `DEPS`: explicitly depend on `dmn-js` subpackages
+* `CHORE`: bundle `dmn-js` subpackages helpers
+
 ## 1.0.0-alpha.0
 
 * `FEAT`: rewrite project to new, [@bpmn-io/properties-panel](https://github.com/bpmn-io/properties-panel)-based architecture
