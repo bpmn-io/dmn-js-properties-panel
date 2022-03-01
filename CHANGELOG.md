@@ -6,6 +6,21 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.0.0-alpha.0
+
+* `FEAT`: rewrite project to new, [@bpmn-io/properties-panel](https://github.com/bpmn-io/properties-panel)-based architecture
+* `FEAT`: replace tabs with flat structure where groups are basic building blocks
+* `FEAT`: add "dirty" markers to notify non-default value of entry/entries in group
+* `FEAT`: keep open/closed state of the groups between elements
+
+### Breaking Changes
+
+* `PropertiesProvider#getTabs` is no longer used. Migrate to the new `PropertiesProvider#getGroups` API instead.
+  Check out [the example migration](https://github.com/bpmn-io/bpmn-js-examples/pull/142) for guidance.
+* Previously exported entry factory functions are no longer available. Use components exported from
+  [`@bpmn-io/properties-panel`](https://github.com/bpmn-io/properties-panel) instead.
+* Adapters have been removed. The properties panel is now available only for DRD viewer.
+
 ## 0.7.0
 
 * `FEAT`: incorporate reduced color palette ([#27](https://github.com/bpmn-io/dmn-js-properties-panel/issues/27))
