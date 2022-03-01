@@ -2,6 +2,9 @@
   "name": "dmn-js-properties-panel",
   "version": "0.7.0",
   "description": "A properties panel for dmn-js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "all": "run-s lint test distro",
     "distro": "run-s build test:build",
