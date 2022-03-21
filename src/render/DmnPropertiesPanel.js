@@ -113,6 +113,11 @@ export default function DmnPropertiesPanel(props) {
   useEffect(() => {
     const onRootAdded = (e) => {
       const element = e.element;
+
+      if (isImplicitRoot(element)) {
+        return;
+      }
+
       _update(element);
     };
 
