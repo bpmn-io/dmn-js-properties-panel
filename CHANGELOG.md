@@ -6,6 +6,11 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.0.0-alpha.2
+
+* `FIX`: detach when modeler is detached via API ([#38](https://github.com/bpmn-io/dmn-js-properties-panel/issues/38))
+* `FIX`: fix crash when XML was saved in decision table view ([#37](https://github.com/bpmn-io/dmn-js-properties-panel/issues/37))
+
 ## 1.0.0-alpha.1
 
 * `DEPS`: explicitly depend on `dmn-js` subpackages
