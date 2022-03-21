@@ -178,9 +178,11 @@ describe('<DmnPropertiesPanel>', function() {
     it('should not update on implicit root added',function() {
 
       // given
-      var updateSpy = sinon.spy();
+      const updateSpy = sinon.spy();
 
       const eventBus = new eventBusMock();
+
+      eventBus.on('propertiesPanel.updated', updateSpy);
 
       createDmnPropertiesPanel({ container, eventBus });
 
