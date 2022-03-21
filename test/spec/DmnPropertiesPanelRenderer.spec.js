@@ -135,17 +135,47 @@ describe('<DmnPropertiesPanelRenderer>', function() {
   });
 
 
-  it('should detach on diagram.destroy', async function() {
+  describe('detachment', function() {
 
-    // given
-    const { modeler } = await createModeler(diagramXml);
-    const eventBus = get(modeler, 'eventBus');
+    it('should detach on diagram.destroy', async function() {
 
-    // when
-    eventBus.fire('diagram.destroy');
+      // given
+      const { modeler } = await createModeler(diagramXml);
+      const eventBus = get(modeler, 'eventBus');
 
-    // then
-    expect(domQuery('.bio-properties-panel-container', propertiesContainer)).to.not.exist;
+      // when
+      eventBus.fire('diagram.destroy');
+
+      // then
+      expect(domQuery('.bio-properties-panel-container', propertiesContainer)).to.not.exist;
+    });
+
+
+    it('should detach when view switched to decision table via modeler.open', async function() {
+
+      // given
+      const { modeler } = await createModeler(diagramXml);
+      const decisionTableView = modeler.getViews().find(view => view.type === 'decisionTable');
+
+      // when
+      await modeler.open(decisionTableView);
+
+      // then
+      expect(domQuery('.bio-properties-panel-container', propertiesContainer)).to.not.exist;
+    });
+
+
+    it('should detach when modeler is detached', async function() {
+
+      // given
+      const { modeler } = await createModeler(diagramXml);
+
+      // when
+      modeler.detach();
+
+      // then
+      expect(domQuery('.bio-properties-panel-container', propertiesContainer)).to.not.exist;
+    });
   });
 
 
