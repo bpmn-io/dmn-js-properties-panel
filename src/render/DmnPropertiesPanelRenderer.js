@@ -19,7 +19,7 @@ const DEFAULT_PRIORITY = 1000;
 
 export default class DmnPropertiesPanelRenderer {
 
-  constructor(config, injector, eventBus) {
+  constructor(config, injector, eventBus, dmnjs) {
     const {
       parent,
       layout: layoutConfig,
@@ -46,7 +46,11 @@ export default class DmnPropertiesPanelRenderer {
       this._render(element);
     });
 
-    eventBus.on('drillDown.click', (event) => {
+    eventBus.on('detach', (event) => {
+      this.detach();
+    });
+
+    dmnjs.on('detach', () => {
       this.detach();
     });
   }
@@ -162,7 +166,7 @@ export default class DmnPropertiesPanelRenderer {
   }
 }
 
-DmnPropertiesPanelRenderer.$inject = ['config.propertiesPanel', 'injector', 'eventBus'];
+DmnPropertiesPanelRenderer.$inject = ['config.propertiesPanel', 'injector', 'eventBus', '_parent'];
 
 
 // helpers ///////////////////////
