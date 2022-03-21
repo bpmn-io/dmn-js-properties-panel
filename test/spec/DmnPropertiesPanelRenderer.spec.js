@@ -143,6 +143,9 @@ describe('<DmnPropertiesPanelRenderer>', function() {
       const { modeler } = await createModeler(diagramXml);
       const eventBus = get(modeler, 'eventBus');
 
+      // assume
+      expect(domQuery('.bio-properties-panel-container', propertiesContainer)).to.exist;
+
       // when
       eventBus.fire('diagram.destroy');
 
@@ -157,6 +160,9 @@ describe('<DmnPropertiesPanelRenderer>', function() {
       const { modeler } = await createModeler(diagramXml);
       const decisionTableView = modeler.getViews().find(view => view.type === 'decisionTable');
 
+      // assume
+      expect(domQuery('.bio-properties-panel-container', propertiesContainer)).to.exist;
+
       // when
       await modeler.open(decisionTableView);
 
@@ -169,6 +175,9 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
       // given
       const { modeler } = await createModeler(diagramXml);
+
+      // assume
+      expect(domQuery('.bio-properties-panel-container', propertiesContainer)).to.exist;
 
       // when
       modeler.detach();
