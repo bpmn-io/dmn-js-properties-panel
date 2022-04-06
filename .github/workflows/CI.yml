@@ -8,6 +8,8 @@ jobs:
         os: [ ubuntu-latest ]
         node-version: [ 14 ]
         integration-deps:
+        - "@bpmn-io/properties-panel@0.11.x"
+        - "@bpmn-io/properties-panel@0.12.x"
         - dmn-js@11.x
         - "" # as defined in package.json
 
