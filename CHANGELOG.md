@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.0.0-alpha.3
+
+* `DEPS`: update to `@bpmn-io/properties-panel@0.13.2`
+
 ## 1.0.0-alpha.2
 
 * `FIX`: detach when modeler is detached via API ([#38](https://github.com/bpmn-io/dmn-js-properties-panel/issues/38))
