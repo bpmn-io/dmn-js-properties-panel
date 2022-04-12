@@ -6,21 +6,7 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
-## 1.0.0-alpha.3
-
-* `DEPS`: update to `@bpmn-io/properties-panel@0.13.2`
-
-## 1.0.0-alpha.2
-
-* `FIX`: detach when modeler is detached via API ([#38](https://github.com/bpmn-io/dmn-js-properties-panel/issues/38))
-* `FIX`: fix crash when XML was saved in decision table view ([#37](https://github.com/bpmn-io/dmn-js-properties-panel/issues/37))
-
-## 1.0.0-alpha.1
-
-* `DEPS`: explicitly depend on `dmn-js` subpackages
-* `CHORE`: bundle `dmn-js` subpackages helpers
-
-## 1.0.0-alpha.0
+## 1.0.0
 
 * `FEAT`: rewrite project to new, [@bpmn-io/properties-panel](https://github.com/bpmn-io/properties-panel)-based architecture
 * `FEAT`: replace tabs with flat structure where groups are basic building blocks
