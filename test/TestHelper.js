@@ -7,6 +7,8 @@ import {
 
 import TestContainer from 'mocha-test-container-support';
 
+import semver from 'semver';
+
 import {
   bootstrapModeler,
   inject,
@@ -89,6 +91,26 @@ export function insertCoreStyles() {
     'test.css',
     require('./test.css').default
   );
+}
+
+/**
+ * Execute test only if currently installed @bpmn-io/properties-panel is of given version.
+ *
+ * @param {string} versionRange
+ * @param {boolean} only
+ */
+export function withPropertiesPanel(versionRange, only = false) {
+  if (propertiesPanelSatisfies(versionRange)) {
+    return only ? it.only : it;
+  } else {
+    return it.skip;
+  }
+}
+
+function propertiesPanelSatisfies(versionRange) {
+  const version = require('@bpmn-io/properties-panel/package.json').version;
+
+  return semver.satisfies(version, versionRange, { includePrerelease: true });
 }
 
 export function insertDmnStyles() {

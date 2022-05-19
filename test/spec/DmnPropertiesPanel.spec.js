@@ -1,4 +1,5 @@
 import {
+  act,
   render
 } from '@testing-library/preact/pure';
 
@@ -17,7 +18,8 @@ import {
 } from './mocks';
 
 import {
-  insertCoreStyles
+  insertCoreStyles,
+  withPropertiesPanel
 } from 'test/TestHelper';
 
 import DmnPropertiesPanel from 'src/render/DmnPropertiesPanel';
@@ -112,6 +114,47 @@ describe('<DmnPropertiesPanel>', function() {
   });
 
 
+  withPropertiesPanel('>=0.14')('should render - empty', async function() {
+
+    // given
+    const element = null;
+
+    const eventBus = new eventBusMock();
+
+    // when
+    const result = createDmnPropertiesPanel({ container, eventBus, element });
+
+    // then
+    expect(domQuery('.bio-properties-panel-placeholder', result.container)).to.exist;
+    expect(domQuery('.bio-properties-panel-placeholder-text', result.container)).to.exist;
+    expect(domQuery('.bio-properties-panel-placeholder-icon', result.container)).to.not.exist;
+  });
+
+
+  withPropertiesPanel('>=0.14')('should render - multiple', async function() {
+
+    // given
+    const newElements = [
+      noopElement,
+      noopElement
+    ];
+
+    const eventBus = new eventBusMock();
+
+    const result = createDmnPropertiesPanel({ container, eventBus });
+
+    // when
+    await act(() => {
+      eventBus.fire('selection.changed', { newSelection:  newElements });
+    });
+
+    // then
+    expect(domQuery('.bio-properties-panel-placeholder', result.container)).to.exist;
+    expect(domQuery('.bio-properties-panel-placeholder-text', result.container)).to.exist;
+    expect(domQuery('.bio-properties-panel-placeholder-icon', result.container)).to.not.exist;
+  });
+
+
   describe('event emitting', function() {
 
     it('should update on selection changed', function() {
@@ -131,6 +174,32 @@ describe('<DmnPropertiesPanel>', function() {
       // then
       expect(updateSpy).to.have.been.calledWith({
         element: noopElement
+      });
+    });
+
+
+    it('should update on selection changed - multiple', async function() {
+
+      // given
+      const updateSpy = sinon.spy();
+
+      const eventBus = new eventBusMock();
+
+      const elements = [
+        noopElement,
+        noopElement
+      ];
+
+      eventBus.on('propertiesPanel.updated', updateSpy);
+
+      createDmnPropertiesPanel({ container, eventBus });
+
+      // when
+      eventBus.fire('selection.changed', { newSelection: elements });
+
+      // then
+      expect(updateSpy).to.have.been.calledWith({
+        element: elements
       });
     });
 
