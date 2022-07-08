@@ -1,6 +1,6 @@
 {
   "name": "dmn-js-properties-panel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A properties panel for dmn-js",
   "files": [
     "dist"
