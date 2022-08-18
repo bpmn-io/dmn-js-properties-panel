@@ -1,5 +1,3 @@
-
-
 import {
   act,
   fireEvent

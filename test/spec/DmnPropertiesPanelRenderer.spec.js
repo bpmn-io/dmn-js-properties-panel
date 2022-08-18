@@ -14,6 +14,10 @@ import {
 } from 'test/TestHelper';
 
 import {
+  createKeyEvent
+} from 'test/util/KeyEvents';
+
+import {
   query as domQuery,
   domify
 } from 'min-dom';
@@ -59,7 +63,11 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
     clearDmnJS();
 
-    const { shouldImport = true } = options;
+    const {
+      shouldImport = true,
+      common,
+      ...restOptions
+    } = options;
 
     const modeler = new DmnModeler({
       container: modelerContainer,
@@ -72,9 +80,10 @@ describe('<DmnPropertiesPanelRenderer>', function() {
       common:{
         propertiesPanel: {
           parent: propertiesContainer
-        }
+        },
+        ...common
       },
-      ...options
+      ...restOptions
     });
 
     setDmnJS(modeler);
@@ -185,6 +194,105 @@ describe('<DmnPropertiesPanelRenderer>', function() {
       // then
       expect(domQuery('.bio-properties-panel-container', propertiesContainer)).to.not.exist;
     });
+
+  });
+
+
+  describe('keyboard bindings (undo/redo)', function() {
+
+    it('should bind', async function() {
+      const diagramXml = require('test/fixtures/simple.dmn').default;
+
+      const keyboardTarget = document.createElement('div');
+
+      const { modeler } = await createModeler(diagramXml, {
+        common: {
+          keyboard: {
+            bindTo: keyboardTarget
+          }
+        }
+      });
+
+      modeler.getActiveViewer().invoke(function(eventBus, elementRegistry, modeling) {
+
+        // given
+        modeling.updateLabel(elementRegistry.get('dish-decision'), 'FOOBAR');
+
+        const executeSpy = sinon.spy();
+        const undoSpy = sinon.spy();
+
+        eventBus.on('commandStack.execute', executeSpy);
+        eventBus.on('commandStack.reverted', undoSpy);
+
+        const panelParent = domQuery('.bio-properties-panel-container', propertiesContainer);
+
+        // when
+        panelParent.dispatchEvent(createKeyEvent('z', {
+          ctrlKey: true
+        }));
+
+        // then
+        // undo got executed
+        expect(undoSpy).to.have.been.called;
+
+        // but when
+        panelParent.dispatchEvent(createKeyEvent('y', {
+          ctrlKey: true
+        }));
+
+        // then
+        // redo got executed
+        expect(executeSpy).to.have.been.called;
+      });
+
+    });
+
+
+    it('should NOT bind with keyboard binding deactivated', async function() {
+      const diagramXml = require('test/fixtures/simple.dmn').default;
+
+      const { modeler } = await createModeler(diagramXml, {
+        common: {
+          keyboard: {
+            bind: false
+          }
+        }
+      });
+
+      modeler.getActiveViewer().invoke(function(eventBus, elementRegistry, modeling) {
+
+        // given
+        modeling.updateLabel(elementRegistry.get('dish-decision'), 'FOOBAR');
+
+        const executeSpy = sinon.spy();
+        const undoSpy = sinon.spy();
+
+        eventBus.on('commandStack.execute', executeSpy);
+        eventBus.on('commandStack.reverted', undoSpy);
+
+        const panelParent = domQuery('.bio-properties-panel-container', propertiesContainer);
+
+        // when
+        panelParent.dispatchEvent(createKeyEvent('z', {
+          ctrlKey: true
+        }));
+
+        // then
+        // undo got executed
+        expect(undoSpy).not.to.have.been.called;
+
+        // but when
+        panelParent.dispatchEvent(createKeyEvent('y', {
+          ctrlKey: true
+        }));
+
+        // then
+        // redo got executed
+        expect(executeSpy).not.to.have.been.called;
+      });
+
+    });
+
   });
 
 
@@ -475,40 +583,8 @@ describe('<DmnPropertiesPanelRenderer>', function() {
       expect(spy).to.have.been.calledOnce;
     });
 
-
-    it('should emit keyboard events for undo/redo when editing', async function() {
-
-      // given
-      const spy = sinon.spy();
-
-      const { modeler } = await createModeler(diagramXml);
-
-      const eventBus = get(modeler, 'eventBus');
-      const propertiesPanel = get(modeler, 'propertiesPanel');
-      const keyboard = get(modeler, 'keyboard');
-      const inputField = propertiesPanel._container.querySelector('input');
-
-      eventBus.on('keyboard.keydown', 10000, spy);
-
-      // when
-      // select all
-      keyboard._keyHandler({ key: 'a', ctrlKey: true, target: inputField, preventDefault: () => {} });
-
-      // then
-      // use browser default
-      expect(spy).to.not.be.called;
-
-      // when
-      // undo/redo
-      keyboard._keyHandler({ key: 'z', metaKey: true, target: inputField, preventDefault: () => {} });
-      keyboard._keyHandler({ key: 'y', ctrlKey: true, target: inputField, preventDefault: () => {} });
-
-      // then
-      // fire events
-      expect(spy).to.have.been.calledTwice;
-    });
-
   });
+
 });
 
 
