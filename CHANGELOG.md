@@ -6,6 +6,8 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+* `DEPS`: update to `@bpmn-io/properties-panel@0.19.0` ([changelog](https://github.com/bpmn-io/properties-panel/blob/main/CHANGELOG.md#0190))
+
 ## 1.1.0
 
 * `FEAT`: add multi state + empty placeholders ([#42](https://github.com/bpmn-io/dmn-js-properties-panel/pull/42))
