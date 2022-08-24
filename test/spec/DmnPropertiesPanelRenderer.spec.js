@@ -399,16 +399,6 @@ describe('<DmnPropertiesPanelRenderer>', function() {
       await createModeler(diagramXml);
     });
 
-    beforeEach(async function() {
-
-      // temporary workaround because selection is not available right after modeler is created
-      await new Promise(resolve => {
-        setTimeout(() => {
-          resolve();
-        }, 10);
-      });
-    });
-
 
     it('should keep state during detach and attach', inject(async function(elementRegistry, selection, propertiesPanel) {
 

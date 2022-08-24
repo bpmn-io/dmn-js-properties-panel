@@ -23,7 +23,7 @@ let DMN_JS;
  */
 export function bootstrapDmnJS(diagram, options) {
 
-  return function(done) {
+  return function() {
 
     let testContainer;
 
@@ -74,9 +74,7 @@ export function bootstrapDmnJS(diagram, options) {
       ..._options
     });
 
-    DMN_JS.importXML(diagram, done);
-
-    return DMN_JS;
+    return DMN_JS.importXML(diagram);
   };
 }
 
