@@ -54,16 +54,6 @@ describe('provider/camunda - HistoryCleanupProps', function() {
     container = TestContainer.get(this);
   });
 
-  beforeEach(async function() {
-
-    // temporary workaround because selection is not available right after modeler is created
-    await new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-      }, 10);
-    });
-  });
-
 
   it('should NOT display', inject(async function(elementRegistry, selection) {
 
