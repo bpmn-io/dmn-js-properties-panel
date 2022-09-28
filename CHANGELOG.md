@@ -6,6 +6,11 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.2.0
+
+* `DEPS`: support `dmn-js@13`
+* `DEPS`: support `@bpmn-io/properties-panel@0.22.0`
+
 ## 1.1.2
 
 * `DEPS`: update to `@bpmn-io/properties-panel@0.20.1` ([changelog](https://github.com/bpmn-io/properties-panel/blob/main/CHANGELOG.md#0201))
