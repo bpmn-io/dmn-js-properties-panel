@@ -58,7 +58,7 @@
     "chai": "^4.3.4",
     "copy-webpack-plugin": "^9.0.0",
     "cross-env": "^7.0.3",
-    "dmn-js": "^12.3.0",
+    "dmn-js": "^13.0.0",
     "dmn-js-drd": "^12.3.0",
     "dmn-js-shared": "^12.3.0",
     "eslint": "^7.28.0",
@@ -88,7 +88,7 @@
     "webpack": "^5.38.1"
   },
   "peerDependencies": {
-    "dmn-js": "11.x || 12.x"
     "@bpmn-io/properties-panel": ">=0.11.0 <=0.22.x",
+    "dmn-js": "11.x || 12.x || 13.x"
   }
 }
