@@ -6,6 +6,11 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.2.2
+
+* `DEPS`: support `@bpmn-io/properties-panel@0.24.0`
+* `CHORE`: relax peer dependency requirements
+
 ## 1.2.1
 
 * `DEPS`: support `@bpmn-io/properties-panel@0.23.0`
