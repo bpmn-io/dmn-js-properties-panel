@@ -78,6 +78,11 @@ export default class DmnPropertiesPanelRenderer {
       throw new Error('container required');
     }
 
+    // unwrap jQuery if provided
+    if (container.get && container.constructor.prototype.jquery) {
+      container = container.get(0);
+    }
+
     if (typeof container === 'string') {
       container = domQuery(container);
     }
