@@ -281,10 +281,10 @@ describe('<DmnPropertiesPanel>', function() {
       // when
       eventBus.fire('selection.changed', {
         oldSelectiom: {},
-        newSelection: [{
+        newSelection: [ {
           id: '__implicitroot',
           isImplicit: true
-        }]
+        } ]
       });
 
       // expect

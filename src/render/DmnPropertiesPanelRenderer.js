@@ -183,7 +183,7 @@ export default class DmnPropertiesPanelRenderer {
   }
 }
 
-DmnPropertiesPanelRenderer.$inject = ['config.propertiesPanel', 'injector', 'eventBus', '_parent'];
+DmnPropertiesPanelRenderer.$inject = [ 'config.propertiesPanel', 'injector', 'eventBus', '_parent' ];
 
 
 // helpers ///////////////////////
