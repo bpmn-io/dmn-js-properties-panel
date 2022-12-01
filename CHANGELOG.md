@@ -6,6 +6,12 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.3.0
+
+* `FEAT`: support JQuery wrapper as parent element
+* `DEPS`: update to `diagram-js@11`
+* `DEPS`: require `@bpmn-io/properties-panel@1`
+
 ## 1.2.2
 
 * `DEPS`: support `@bpmn-io/properties-panel@0.24.0`
