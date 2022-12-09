@@ -8,7 +8,8 @@ jobs:
         os: [ ubuntu-latest ]
         node-version: [ 16 ]
         integration-deps:
-        - dmn-js@12.x
+        - dmn-js@12
+        - dmn-js@13
         - "" # as defined in package.json
 
     runs-on: ${{ matrix.os }}

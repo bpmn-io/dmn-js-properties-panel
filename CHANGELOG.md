@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.3.1
+
+* `DEPS`: support `dmn-js@14`
+
 ## 1.3.0
 
 * `FEAT`: support JQuery wrapper as parent element
