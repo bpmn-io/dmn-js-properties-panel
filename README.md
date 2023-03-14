@@ -78,7 +78,7 @@ import DmnModeler from 'dmn-js/lib/Modeler';
 import {
   DmnPropertiesPanelModule,
   DmnPropertiesProviderModule,
-  CamundaPropertiesProvider
+  CamundaPropertiesProviderModule
 } from 'dmn-js-properties-panel';
 
 
