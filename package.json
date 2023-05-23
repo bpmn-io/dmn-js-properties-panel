@@ -38,8 +38,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "diagram-js": "^11.11.0",
-    "min-dash": "^4.0.0",
+    "diagram-js": "^12.1.0",
+    "min-dash": "^4.1.1",
     "min-dom": "^4.1.0"
   },
   "devDependencies": {
@@ -58,9 +58,9 @@
     "chai": "^4.3.4",
     "copy-webpack-plugin": "^9.0.0",
     "cross-env": "^7.0.3",
-    "dmn-js": "^14.0.0",
-    "dmn-js-drd": "^12.3.0",
-    "dmn-js-shared": "^12.3.0",
+    "dmn-js": "^14.1.5",
+    "dmn-js-drd": "^14.1.5",
+    "dmn-js-shared": "^14.1.5",
     "eslint": "^8.28.0",
     "eslint-plugin-bpmn-io": "^0.16.0",
     "eslint-plugin-import": "^2.26.0",
