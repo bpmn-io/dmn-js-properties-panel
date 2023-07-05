@@ -49,7 +49,11 @@ function Id(props) {
     return getBusinessObject(element).get('id');
   };
 
-  const setValue = (value) => {
+  const setValue = (value, error) => {
+    if (error) {
+      return;
+    }
+
     modeling.updateProperties(element, {
       id: value
     });
