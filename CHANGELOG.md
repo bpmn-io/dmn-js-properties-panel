@@ -6,6 +6,8 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+* `DEPS`: update to `@bpmn-io/properties-panel@3`
+
 ## 2.0.0
 
 * `FEAT`: do not handle properties panel open state
