@@ -37,6 +37,9 @@
     "url": "https://github.com/nikku"
   },
   "license": "MIT",
+  "engines": {
+    "node": "*"
+  },
   "dependencies": {
     "diagram-js": "^12.3.0",
     "min-dash": "^4.1.1",
