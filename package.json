@@ -89,6 +89,6 @@
   },
   "peerDependencies": {
     "@bpmn-io/properties-panel": ">=3.7",
-    "dmn-js": ">=11"
+    "dmn-js": ">=13"
   }
 }
