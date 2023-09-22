@@ -1,10 +1,11 @@
 import DmnPropertiesPanelRenderer from './DmnPropertiesPanelRenderer';
 
-import { DebounceInputModule } from '@bpmn-io/properties-panel';
+import { DebounceInputModule, FeelPopupModule } from '@bpmn-io/properties-panel';
 
 export default {
   __depends__: [
-    DebounceInputModule
+    DebounceInputModule,
+    FeelPopupModule
   ],
   __init__: [
     'propertiesPanel'
