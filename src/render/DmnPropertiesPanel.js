@@ -200,7 +200,9 @@ export default function DmnPropertiesPanel(props) {
       layoutConfig={ layoutConfig }
       layoutChanged={ onLayoutChanged }
       descriptionConfig={ descriptionConfig }
-      descriptionLoaded={ onDescriptionLoaded } />
+      descriptionLoaded={ onDescriptionLoaded }
+      eventBus={ eventBus }
+    />
   </DmnPropertiesPanelContext.Provider>;
 }
 

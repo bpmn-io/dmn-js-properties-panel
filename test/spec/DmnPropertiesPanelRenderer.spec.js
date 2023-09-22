@@ -42,18 +42,20 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
   let propertiesContainer;
 
+  let container;
+
   const diagramXml = require('test/fixtures/simple.dmn').default;
 
   afterEach(() => cleanup());
 
   beforeEach(function() {
+    container = TestContainer.get(this);
+
     modelerContainer = document.createElement('div');
     modelerContainer.classList.add('modeler-container');
 
     propertiesContainer = document.createElement('div');
     propertiesContainer.classList.add('properties-container');
-
-    const container = TestContainer.get(this);
 
     container.appendChild(modelerContainer);
     container.appendChild(propertiesContainer);
@@ -571,6 +573,51 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
       // then
       expect(spy).to.have.been.calledOnce;
+    });
+
+  });
+
+
+  describe('<feelPopup> support', function() {
+
+    let modeler;
+
+    beforeEach(async function() {
+
+      await act(async () => {
+
+        const result = await createModeler(diagramXml, {
+          propertiesPanel: {
+            parent: propertiesContainer,
+            feelPopupContainer: container
+          }
+        });
+
+        modeler = result.modeler;
+      });
+
+      await act(() => {
+        const elementRegistry = get(modeler, 'elementRegistry');
+        const selection = get(modeler, 'selection');
+
+        selection.select(elementRegistry.get('guestCount'));
+      });
+    });
+
+
+    it('should ship <feelPopup>', async function() {
+
+      // when
+      const feelPopup = get(modeler, 'feelPopup');
+
+      // then
+      expect(feelPopup).to.exist;
+
+      expect(feelPopup.isOpen()).to.be.false;
+
+      expect(() => {
+        feelPopup.close();
+      }).not.to.throw;
     });
 
   });
