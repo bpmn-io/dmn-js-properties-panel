@@ -88,7 +88,7 @@
     "webpack": "^5.88.1"
   },
   "peerDependencies": {
-    "@bpmn-io/properties-panel": ">=2.1.0",
+    "@bpmn-io/properties-panel": ">=3.7",
     "dmn-js": ">=11"
   }
 }
