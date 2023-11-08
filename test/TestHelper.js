@@ -82,12 +82,12 @@ export function clickInput(input) {
 export function insertCoreStyles() {
   insertCSS(
     'properties-panel.css',
-    require('@bpmn-io/properties-panel/dist/assets/properties-panel.css').default
+    require('@bpmn-io/properties-panel/dist/assets/properties-panel.css')
   );
 
   insertCSS(
     'test.css',
-    require('./test.css').default
+    require('./test.css')
   );
 }
 
@@ -115,34 +115,34 @@ export function insertDmnStyles() {
 
   insertCSS(
     'diagram.css',
-    require('dmn-js/dist/assets/diagram-js.css').default
+    require('dmn-js/dist/assets/diagram-js.css')
   );
 
   insertCSS('dmn.css',
-    require('dmn-js/dist/assets/dmn-font/css/dmn.css').default
+    require('dmn-js/dist/assets/dmn-font/css/dmn.css')
   );
 
   insertCSS('dmn-font.css',
-    require('dmn-js/dist/assets/dmn-font/css/dmn-embedded.css').default
+    require('dmn-js/dist/assets/dmn-font/css/dmn-embedded.css')
   );
 
   insertCSS('dmn-js-shared.css',
-    require('dmn-js/dist/assets/dmn-js-shared.css').default
+    require('dmn-js/dist/assets/dmn-js-shared.css')
   );
 
   insertCSS('dmn-js-drd.css',
-    require('dmn-js/dist/assets/dmn-js-drd.css').default
+    require('dmn-js/dist/assets/dmn-js-drd.css')
   );
 
   insertCSS('dmn-js-decision-table.css',
-    require('dmn-js/dist/assets/dmn-js-decision-table.css').default
+    require('dmn-js/dist/assets/dmn-js-decision-table.css')
   );
 
   insertCSS('dmn-decision-table-controls.css',
-    require('dmn-js/dist/assets/dmn-js-decision-table-controls.css').default
+    require('dmn-js/dist/assets/dmn-js-decision-table-controls.css')
   );
 
   insertCSS('dmn-js-literal-expression.css',
-    require('dmn-js/dist/assets/dmn-js-literal-expression.css').default
+    require('dmn-js/dist/assets/dmn-js-literal-expression.css')
   );
 }

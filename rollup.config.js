@@ -3,7 +3,7 @@ import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import copy from 'rollup-plugin-copy';
 import json from '@rollup/plugin-json';
-import reactSvg from 'rollup-plugin-react-svg';
+import reactSvg from '@svgr/rollup';
 import resolve from '@rollup/plugin-node-resolve';
 
 import pkg from './package.json';

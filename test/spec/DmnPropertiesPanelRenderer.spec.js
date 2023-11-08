@@ -44,7 +44,7 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
   let container;
 
-  const diagramXml = require('test/fixtures/simple.dmn').default;
+  const diagramXml = require('test/fixtures/simple.dmn');
 
   afterEach(() => cleanup());
 
@@ -203,7 +203,7 @@ describe('<DmnPropertiesPanelRenderer>', function() {
   describe('keyboard bindings (undo/redo)', function() {
 
     it('should bind', async function() {
-      const diagramXml = require('test/fixtures/simple.dmn').default;
+      const diagramXml = require('test/fixtures/simple.dmn');
 
       const keyboardTarget = document.createElement('div');
 
@@ -251,7 +251,7 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
 
     it('should NOT bind with keyboard binding deactivated', async function() {
-      const diagramXml = require('test/fixtures/simple.dmn').default;
+      const diagramXml = require('test/fixtures/simple.dmn');
 
       const { modeler } = await createModeler(diagramXml, {
         common: {
