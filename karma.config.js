@@ -62,7 +62,7 @@ module.exports = function(karma) {
         rules: [
           {
             test: /\.(css|dmn)$/,
-            use: 'raw-loader'
+            type: 'asset/source'
           },
           {
             test: /\.m?js$/,
@@ -84,7 +84,7 @@ module.exports = function(karma) {
           },
           {
             test: /\.svg$/,
-            use: [ 'react-svg-loader' ]
+            use: [ '@svgr/webpack' ]
           }
         ]
       },
