@@ -90,6 +90,12 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
     setDmnJS(modeler);
 
+    modeler.on('commandStack.changed', function() {
+      modeler.saveXML({ format: true }).then(function(result) {
+        console.log(result.xml);
+      });
+    });
+
     if (!shouldImport) {
       return { modeler };
     }
