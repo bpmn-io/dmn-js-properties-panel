@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="definitions_dish" name="Dish" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.16.0">
+  <decision id="Decision" name="Decision">
+    <informationRequirement id="InformationRequirement">
+      <requiredInput href="#Input" />
+    </informationRequirement>
+  </decision>
+  <inputData id="Input" name="Input" />
+  <textAnnotation id="TextAnnotation">
+    <text>TextAnnotation</text>
+  </textAnnotation>
+  <association id="Association">
+    <description>Description</description>
+    <sourceRef href="#TextAnnotation" />
+    <targetRef href="#Decision" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_08e4fzy">
+      <dmndi:DMNShape id="DMNShape_0wnm4pf" dmnElementRef="Decision">
+        <dc:Bounds height="80" width="180" x="160" y="210" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0tz582b" dmnElementRef="TextAnnotation">
+        <dc:Bounds height="80" width="100" x="340" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_02kha2e" dmnElementRef="Association">
+        <di:waypoint x="347" y="160" />
+        <di:waypoint x="293" y="210" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1ni37o2" dmnElementRef="Input">
+        <dc:Bounds height="45" width="125" x="187" y="367" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1w1fx57" dmnElementRef="InformationRequirement">
+        <di:waypoint x="250" y="367" />
+        <di:waypoint x="250" y="310" />
+        <di:waypoint x="250" y="290" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
