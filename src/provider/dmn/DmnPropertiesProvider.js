@@ -5,6 +5,7 @@ import {
   IdProps,
   NameProps
 } from './properties';
+
 export default class DmnPropertiesProvider {
 
   constructor(propertiesPanel) {
