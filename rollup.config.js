@@ -46,7 +46,7 @@ export default [
       }),
       copy({
         targets: [
-          { src: 'node_modules/@bpmn-io/properties-panel/assets/**/*.css', dest: 'dist/assets' },
+          { src: 'node_modules/@bpmn-io/properties-panel/dist/assets/**/*.css', dest: 'dist/assets' },
           { src: 'assets/*.css', dest: 'dist/assets' }
         ]
       }),

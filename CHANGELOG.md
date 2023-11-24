@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.2.1
+
+* `FIX`: provide correct styles file ([#65](https://github.com/bpmn-io/dmn-js-properties-panel/issues/65))
+
 ## 3.2.0
 
 * `FEAT`: support documentation fields ([#62](https://github.com/bpmn-io/dmn-js-properties-panel/issues/62))
