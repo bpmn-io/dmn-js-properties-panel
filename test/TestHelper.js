@@ -82,7 +82,7 @@ export function clickInput(input) {
 export function insertCoreStyles() {
   insertCSS(
     'properties-panel.css',
-    require('@bpmn-io/properties-panel/dist/assets/properties-panel.css')
+    require('../dist/assets/properties-panel.css')
   );
 
   insertCSS(
