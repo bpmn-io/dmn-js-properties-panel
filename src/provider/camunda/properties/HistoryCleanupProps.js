@@ -55,7 +55,7 @@ function HistoryTimeToLive(props) {
     tooltip: <div>
       <p>
         { translate('Number of days before this resource is being cleaned up. If specified, takes precedence over the engine configuration.') }{' '}
-        <a href="https://docs.camunda.org/manual/7.20/update/minor/719-to-720/#enforce-history-time-to-live" target="_blank" rel="noopener">{ translate('Learn more') }</a>
+        <a href="https://docs.camunda.org/manual/latest/user-guide/process-engine/history/" target="_blank" rel="noopener">{ translate('Learn more') }</a>
       </p>
     </div>,
     getValue,
