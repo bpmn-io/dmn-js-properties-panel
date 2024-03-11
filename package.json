@@ -43,7 +43,7 @@
   "dependencies": {
     "diagram-js": "^14.0.0",
     "min-dash": "^4.1.1",
-    "min-dom": "^4.1.0"
+    "min-dom": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.6",
