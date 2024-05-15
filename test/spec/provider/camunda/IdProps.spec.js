@@ -20,14 +20,19 @@ import DmnPropertiesPanel from 'src/render';
 
 import DmnPropertiesProvider from 'src/provider/dmn';
 
+import CamundaPropertiesProvider from 'src/provider/camunda';
+
 import diagramXML from './IdProps.dmn';
+
+import CamundaModdle from 'camunda-dmn-moddle/resources/camunda';
 
 
 describe('provider/dmn - IdProps', function() {
 
   const testModules = [
     DmnPropertiesPanel,
-    DmnPropertiesProvider
+    DmnPropertiesProvider,
+    CamundaPropertiesProvider
   ];
 
   let container;
@@ -36,6 +41,9 @@ describe('provider/dmn - IdProps', function() {
     drd: {
       additionalModules: testModules,
       debounceInput: false
+    },
+    moddleExtensions: {
+      camunda: CamundaModdle
     }
   }));
 
