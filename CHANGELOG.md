@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.3.1
+
+* `FIX`: keep missing ID error ([#85](https://github.com/bpmn-io/dmn-js-properties-panel/issues/85))
+
 ## 3.3.0
 
 * `FEAT`: add `HTTL` hint ([#82](https://github.com/bpmn-io/dmn-js-properties-panel/pull/82))
