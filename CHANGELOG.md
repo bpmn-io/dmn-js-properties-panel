@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.4.0
+
+* `DEPS`: update to `@bpmn-io/properties-panel@3.22.0`
+
 ## 3.3.2
 
 * `FIX`: keep missing ID error in plain DMN ([#85](https://github.com/bpmn-io/dmn-js-properties-panel/issues/85))
