@@ -60,7 +60,8 @@ function Name(props) {
       modeling.updateProperties(element, {
         name: value
       });
-    }
+    },
+    autoResize: true
   };
 
   // (2) text annotation
