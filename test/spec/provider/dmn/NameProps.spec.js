@@ -57,7 +57,7 @@ describe('provider/dmn - NameProps', function() {
     });
 
     // when
-    const idInput = domQuery('input[name=name]', container);
+    const idInput = domQuery('textarea[name=name]', container);
 
     // then
     expect(idInput.value).to.eql(getBusinessObject(shape).get('name'));
@@ -74,7 +74,7 @@ describe('provider/dmn - NameProps', function() {
     });
 
     // when
-    const nameInput = domQuery('input[name=name]', container);
+    const nameInput = domQuery('textarea[name=name]', container);
     changeInput(nameInput, 'newValue');
 
     // then
@@ -92,7 +92,7 @@ describe('provider/dmn - NameProps', function() {
       await act(() => {
         selection.select(shape);
       });
-      const nameInput = domQuery('input[name=name]', container);
+      const nameInput = domQuery('textarea[name=name]', container);
       changeInput(nameInput, 'newValue');
 
       // when

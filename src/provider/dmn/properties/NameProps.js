@@ -1,7 +1,4 @@
-import {
-  TextFieldEntry,
-  isTextFieldEntryEdited
-} from '@bpmn-io/properties-panel';
+import { TextAreaEntry, isTextAreaEntryEdited } from '@bpmn-io/properties-panel';
 
 import { getBusinessObject } from 'dmn-js-shared/lib/util/ModelUtil';
 
@@ -35,7 +32,7 @@ export function NameProps(props) {
       id: 'name',
       component: Name,
       element,
-      isEdited: isTextFieldEntryEdited
+      isEdited: isTextAreaEntryEdited
     }
   ];
 }
@@ -81,5 +78,5 @@ function Name(props) {
     };
   }
 
-  return TextFieldEntry(options);
+  return TextAreaEntry(options);
 }
