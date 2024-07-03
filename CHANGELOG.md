@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.4.1
+
+* `FIX`: make name field a text area ([#94](https://github.com/bpmn-io/dmn-js-properties-panel/issues/94))
+
 ## 3.4.0
 
 * `DEPS`: update to `@bpmn-io/properties-panel@3.22.0`
