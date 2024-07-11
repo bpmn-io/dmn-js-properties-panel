@@ -26,9 +26,12 @@ import DmnPropertiesPanel from 'src/render';
 import DmnPropertiesProvider from 'src/provider/dmn';
 import DmnModeler from 'dmn-js/lib/Modeler';
 import CamundaModdle from 'camunda-dmn-moddle/resources/camunda';
+import ZeebeModdle from 'zeebe-dmn-moddle/resources/zeebe';
 
 import CamundaPropertiesProvider from 'src/provider/camunda';
+import ZeebePropertiesProvider from 'src/provider/zeebe';
 
+import ZeebeTooltipProvider from 'src/contextProvider/zeebe/TooltipProvider';
 
 const singleStart = window.__env__ && window.__env__.SINGLE_START;
 
@@ -80,8 +83,12 @@ describe('<DmnPropertiesPanelRenderer>', function() {
         ]
       },
       common:{
+        keyboard: {
+          bindTo: document.body
+        },
         propertiesPanel: {
-          parent: propertiesContainer
+          parent: propertiesContainer,
+          tooltip: ZeebeTooltipProvider
         },
         ...common
       },
@@ -90,9 +97,11 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
     setDmnJS(modeler);
 
-    modeler.on('commandStack.changed', function() {
-      modeler.saveXML({ format: true }).then(function(result) {
-        console.log(result.xml);
+    modeler.on('viewer.created', ({ viewer }) => {
+      viewer.on('commandStack.changed', function() {
+        modeler.saveXML({ format: true }).then(function(result) {
+          console.log(result.xml);
+        });
       });
     });
 
@@ -116,7 +125,27 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
     // then
     expect(result.error).not.to.exist;
+  });
 
+
+  (singleStart === 'cloud' ? it.only : it)('should import simple process (cloud)', async function() {
+
+    // when
+    const result = await createModeler(diagramXml,{
+      drd:{
+        additionalModules: [
+          DmnPropertiesPanel,
+          DmnPropertiesProvider,
+          ZeebePropertiesProvider
+        ],
+      },
+      moddleExtensions: {
+        zeebe: ZeebeModdle
+      }
+    });
+
+    // then
+    expect(result.error).not.to.exist;
   });
 
 
@@ -129,16 +158,15 @@ describe('<DmnPropertiesPanelRenderer>', function() {
           DmnPropertiesPanel,
           DmnPropertiesProvider,
           CamundaPropertiesProvider
-        ],
-        moddleExtensions: {
-          camunda: CamundaModdle
-        },
+        ]
+      },
+      moddleExtensions: {
+        camunda: CamundaModdle
       }
     });
 
     // then
     expect(result.error).not.to.exist;
-
   });
 
 
