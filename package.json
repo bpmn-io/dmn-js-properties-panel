@@ -15,7 +15,8 @@
     "dev": "npm test -- --auto-watch --no-single-run",
     "test": "karma start karma.config.js",
     "test:build": "mocha --reporter=spec --recursive test/distro",
-    "start": "cross-env SINGLE_START=platform npm run dev",
+    "start": "npm run start:cloud",
+    "start:cloud": "cross-env SINGLE_START=cloud npm run dev",
     "start:platform": "cross-env SINGLE_START=platform npm run dev",
     "start:dmn": "cross-env SINGLE_START=dmn npm run dev",
     "prepare": "run-s bundle"
@@ -62,9 +63,9 @@
     "camunda-dmn-moddle": "^1.3.0",
     "chai": "^4.4.1",
     "cross-env": "^7.0.3",
-    "dmn-js": "^16.4.0",
-    "dmn-js-drd": "^16.4.0",
-    "dmn-js-shared": "^16.4.0",
+    "dmn-js": "^16.6.0",
+    "dmn-js-drd": "^16.6.0",
+    "dmn-js-shared": "^16.5.0",
     "eslint": "^8.57.0",
     "eslint-plugin-bpmn-io": "^1.0.0",
     "eslint-plugin-import": "^2.29.1",
@@ -85,7 +86,8 @@
     "rollup-plugin-copy": "^3.4.0",
     "sinon": "^17.0.1",
     "sinon-chai": "^3.7.0",
-    "webpack": "^5.92.1"
+    "webpack": "^5.92.1",
+    "zeebe-dmn-moddle": "^1.0.0"
   },
   "peerDependencies": {
     "@bpmn-io/properties-panel": ">=3.7",
