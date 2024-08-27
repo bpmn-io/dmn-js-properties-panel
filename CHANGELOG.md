@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.5.1
+
+* `CHORE`: export Zeebe provider ([`e53271bc`](https://github.com/bpmn-io/dmn-js-properties-panel/commit/e53271bc154b7dd79249a0fb0dffcebdbbe96765))
+
 ## 3.5.0
 
 * `FEAT`: add _Version tag_ field for decisions ([#97](https://github.com/bpmn-io/dmn-js-properties-panel/issues/97))
