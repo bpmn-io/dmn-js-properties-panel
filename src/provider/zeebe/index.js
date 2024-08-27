@@ -1,6 +1,6 @@
 import ZeebePropertiesProvider from './ZeebePropertiesProvider';
 
 export default {
-  __init__: [ 'ZeebePropertiesProvider' ],
-  ZeebePropertiesProvider: [ 'type', ZeebePropertiesProvider ]
+  __init__: [ 'zeebePropertiesProvider' ],
+  zeebePropertiesProvider: [ 'type', ZeebePropertiesProvider ]
 };
