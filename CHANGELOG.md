@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.5.2
+
+* `FIX`: fix name of Zeebe provider ([`7482ac8b`](https://github.com/bpmn-io/dmn-js-properties-panel/commit/7482ac8b6b5b6a02e1a7879cf52d85f944076424))
+
 ## 3.5.1
 
 * `CHORE`: export Zeebe provider ([`e53271bc`](https://github.com/bpmn-io/dmn-js-properties-panel/commit/e53271bc154b7dd79249a0fb0dffcebdbbe96765))
