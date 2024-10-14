@@ -38,7 +38,7 @@ describe('provider/camunda - VersionTagProps', function() {
 
   let container;
 
-  afterEach(() => cleanup());
+  afterEach(function() { return cleanup(); });
 
   beforeEach(bootstrapPropertiesPanel(diagramXML, {
     drd: {

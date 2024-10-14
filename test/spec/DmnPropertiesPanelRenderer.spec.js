@@ -49,7 +49,7 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
   const diagramXml = require('test/fixtures/simple.dmn');
 
-  afterEach(() => cleanup());
+  afterEach(function() { return cleanup(); });
 
   beforeEach(function() {
     container = TestContainer.get(this);
