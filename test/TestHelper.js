@@ -15,6 +15,8 @@ import {
 
 let PROPERTIES_PANEL_CONTAINER;
 
+/* global global */
+
 global.chai.use(function(chai, utils) {
 
   utils.addMethod(chai.Assertion.prototype, 'jsonEqual', function(comparison) {
