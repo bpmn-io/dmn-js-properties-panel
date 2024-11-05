@@ -42,7 +42,7 @@
     "node": "*"
   },
   "dependencies": {
-    "diagram-js": "^14.3.1",
+    "diagram-js": "^15.0.0",
     "min-dash": "^4.2.1",
     "min-dom": "^4.1.0"
   },
