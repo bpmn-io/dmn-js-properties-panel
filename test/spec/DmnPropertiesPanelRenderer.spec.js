@@ -83,9 +83,6 @@ describe('<DmnPropertiesPanelRenderer>', function() {
         ]
       },
       common:{
-        keyboard: {
-          bindTo: document.body
-        },
         propertiesPanel: {
           parent: propertiesContainer,
           tooltip: ZeebeTooltipProvider
@@ -239,15 +236,7 @@ describe('<DmnPropertiesPanelRenderer>', function() {
     it('should bind', async function() {
       const diagramXml = require('test/fixtures/simple.dmn');
 
-      const keyboardTarget = document.createElement('div');
-
-      const { modeler } = await createModeler(diagramXml, {
-        common: {
-          keyboard: {
-            bindTo: keyboardTarget
-          }
-        }
-      });
+      const { modeler } = await createModeler(diagramXml);
 
       modeler.getActiveViewer().invoke(function(eventBus, elementRegistry, modeling) {
 
