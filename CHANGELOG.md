@@ -6,6 +6,8 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.6.0
+
 * `CHORE`: turn `diagram-js` into peer dependency
 
 ## 3.5.2
