@@ -8,7 +8,7 @@ jobs:
         os: [ ubuntu-latest ]
         node-version: [ 20 ]
         integration-deps:
-        - dmn-js@13
+        - diagram-js@14 dmn-js@16 dmn-js-drd@16 dmn-js-shared@16
         - "" # as defined in package.json
 
     runs-on: ${{ matrix.os }}
