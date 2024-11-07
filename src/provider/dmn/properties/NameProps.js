@@ -23,7 +23,7 @@ export function NameProps(props) {
     element
   } = props;
 
-  if (!isAny(element, [ 'dmn:DRGElement', 'dmn:Definitions', 'dmn:TextAnnotation' ])) {
+  if (!isAny(element, [ 'dmn:DRGElement', 'dmn:Definitions', 'dmn:TextAnnotation', 'dmn:LiteralExpression' ])) {
     return [];
   }
 
@@ -47,13 +47,21 @@ function Name(props) {
   const debounce = useService('debounceInput');
   const translate = useService('translate');
 
-  // (1) default: name
+  // (1) default: name or text
+  let propertyName = 'name';
   let options = {
     element,
     id,
     label: translate('Name'),
     debounce,
     getValue: (element) => {
+      return getBusinessObject(element).get(propertyName);
+    },
+    setValue: (value) => {
+      const properties = {};
+      properties[propertyName] = value;
+      modeling.updateProperties(element, properties);
+    },
       return getBusinessObject(element).get('name');
     },
     setValue: (value) => {
@@ -64,9 +72,10 @@ function Name(props) {
     autoResize: true
   };
 
-  // (2) text annotation
+  // (2) text annotation or literal expression
+  if (is(element, 'dmn:TextAnnotation') || is(element, 'dmn:LiteralExpression')) {
+    propertyName = 'text';
   if (is(element, 'dmn:TextAnnotation')) {
-    options = {
       ...options,
       getValue: (element) => {
         return getBusinessObject(element).get('text');
