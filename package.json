@@ -62,7 +62,7 @@
     "camunda-dmn-moddle": "^1.3.0",
     "chai": "^4.4.1",
     "cross-env": "^7.0.3",
-    "diagram-js": "^14.3.1",
+    "diagram-js": "^15.2.0",
     "dmn-js": "^16.6.0",
     "dmn-js-drd": "^16.6.0",
     "dmn-js-shared": "^16.5.0",
@@ -91,7 +91,7 @@
   },
   "peerDependencies": {
     "@bpmn-io/properties-panel": ">=3.7",
-    "dmn-js": ">=13",
-    "diagram-js": ">= 14.3.1"
+    "diagram-js": ">= 14.3.1",
+    "dmn-js": ">=13"
   }
 }
