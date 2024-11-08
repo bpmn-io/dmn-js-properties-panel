@@ -192,9 +192,7 @@ DmnPropertiesPanelRenderer.$inject = [ 'config.propertiesPanel', 'injector', 'ev
 // helpers ///////////////////////
 
 function isImplicitRoot(element) {
-
-  // Backwards compatibility for diagram-js<7.4.0, see https://github.com/bpmn-io/bpmn-properties-panel/pull/102
-  return element && (element.isImplicit || element.id === '__implicitroot');
+  return element && element.isImplicit;
 }
 
 

@@ -258,7 +258,6 @@ describe('<DmnPropertiesPanel>', function() {
       // when
       eventBus.fire('root.added', {
         element: {
-          id: '__implicitroot',
           isImplicit: true
         }
       });
@@ -282,7 +281,6 @@ describe('<DmnPropertiesPanel>', function() {
       eventBus.fire('selection.changed', {
         oldSelectiom: {},
         newSelection: [ {
-          id: '__implicitroot',
           isImplicit: true
         } ]
       });
