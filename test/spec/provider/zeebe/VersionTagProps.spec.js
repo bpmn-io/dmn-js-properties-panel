@@ -1,7 +1,8 @@
 import TestContainer from 'mocha-test-container-support';
 
 import {
-  act
+  act,
+  waitFor
 } from '@testing-library/preact';
 
 import {
@@ -33,6 +34,7 @@ import {
 
 import diagramXML from './VersionTagProps.dmn';
 
+
 describe('provider/zeebe - VersionTagProps', function() {
 
   const testModules = [
@@ -41,24 +43,11 @@ describe('provider/zeebe - VersionTagProps', function() {
     ZeebePropertiesProvider
   ];
 
-  let container, clock;
+  let container;
 
   beforeEach(function() {
     container = TestContainer.get(this);
-    clock = sinon.useFakeTimers();
   });
-
-  afterEach(function() {
-    clock.restore();
-  });
-
-  function openTooltip() {
-    return act(() => {
-      const wrapper = domQuery('.bio-properties-panel-tooltip-wrapper', container);
-      mouseEnter(wrapper);
-      clock.tick(200);
-    });
-  }
 
   beforeEach(bootstrapPropertiesPanel(diagramXML, {
     drd: {
@@ -214,32 +203,54 @@ describe('provider/zeebe - VersionTagProps', function() {
   );
 
 
-  it('should display correct documentation', inject(async function(elementRegistry, selection) {
+  it('should display correct documentation', inject(
+    async function(elementRegistry, selection) {
 
-    // given
-    const element = elementRegistry.get('Decision_1');
+      // given
+      const element = elementRegistry.get('Decision_1');
 
-    await act(() => {
-      selection.select(element);
-    });
+      await act(() => {
+        selection.select(element);
+      });
 
-    // when
-    await openTooltip();
+      // when
+      await toggleGroup('general', container);
+      await openTooltip('versionTag', container);
 
-    const documentationLinkGroup = domQuery('.bio-properties-panel-tooltip-content p', container);
+      const tooltipEl = domQuery('.bio-properties-panel-tooltip-content p', container);
 
-    // then
-    expect(documentationLinkGroup).to.exist;
-    expect(documentationLinkGroup.textContent).to.equal('Specifying a version tag will allow you to reference this process in another process.');
-  }));
+      // then
+      expect(tooltipEl).to.exist;
+      expect(tooltipEl.textContent).to.match(/Version tag by which this decision can be referenced./);
+    }
+  ));
 
 });
 
 
-// helper //////////////////
+// helpers //////////////////
 
 function getVersionTag(element) {
   const businessObject = getBusinessObject(element);
 
   return getExtensionElementsList(businessObject, 'zeebe:VersionTag')[ 0 ];
+}
+
+function toggleGroup(id, container) {
+  const headerEl = domQuery(`[data-group-id="group-${id}"] > .bio-properties-panel-group-header`);
+
+  return act(() => headerEl.click());
+}
+
+async function openTooltip(id, container) {
+
+  const wrapperEl = domQuery(`[data-entry-id="${id}"] .bio-properties-panel-tooltip-wrapper`, container);
+
+  await act(() => {
+    mouseEnter(wrapperEl);
+  });
+
+  return waitFor(() => {
+    expect(domQuery('.bio-properties-panel-tooltip', wrapperEl)).to.exist;
+  });
 }
