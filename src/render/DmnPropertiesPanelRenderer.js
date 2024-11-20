@@ -40,7 +40,7 @@ export default class DmnPropertiesPanelRenderer {
     this._tooltipConfig = tooltipConfig;
 
     this._container = domify(
-      '<div style="height: 100%" class="bio-properties-panel-container"></div>'
+      '<div style="height: 100%" tabindex="-1" class="bio-properties-panel-container"></div>'
     );
 
     var commandStack = injector.get('commandStack', false);
