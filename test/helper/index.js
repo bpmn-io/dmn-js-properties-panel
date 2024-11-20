@@ -128,15 +128,7 @@ export function inject(fn) {
       throw new Error('no active view found');
     }
 
-    view.invoke(fn);
-  };
-}
-
-export function injectAsync(doneFn) {
-  return function(done) {
-    let testFn = doneFn(done);
-
-    inject(testFn)();
+    return view.invoke(fn);
   };
 }
 
