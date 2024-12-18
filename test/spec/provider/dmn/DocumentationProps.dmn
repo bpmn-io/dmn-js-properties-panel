@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="definitions_dish" name="Dish" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.16.0">
   <decision id="Decision" name="Decision">
+    <description>Decision description</description>
+    <question>Decision question</question>
+    <allowedAnswers>Decision allowed answers</allowedAnswers>
     <informationRequirement id="InformationRequirement">
+      <description>Information requirement description</description>
       <requiredInput href="#Input" />
     </informationRequirement>
   </decision>
-  <inputData id="Input" name="Input" />
+  <inputData id="Input" name="Input">
+    <description>Input description</description>
+  </inputData>
   <textAnnotation id="TextAnnotation">
+    <description>Text annotation description</description>
     <text>TextAnnotation</text>
   </textAnnotation>
   <association id="Association">
-    <description>Description</description>
+    <description>Association description</description>
     <sourceRef href="#TextAnnotation" />
     <targetRef href="#Decision" />
   </association>
