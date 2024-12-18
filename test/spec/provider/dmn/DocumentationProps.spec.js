@@ -69,7 +69,7 @@ describe('provider/dmn - DocumentationProps', function() {
         });
 
         // when
-        const input = domQuery(`input[name=${property}]`, container);
+        const input = domQuery(`textarea[name=${property}]`, container);
 
         // then
         expect(input.value).to.eql(getBusinessObject(element).get(property));
@@ -86,7 +86,7 @@ describe('provider/dmn - DocumentationProps', function() {
         });
 
         // when
-        const nameInput = domQuery(`input[name=${property}]`, container);
+        const nameInput = domQuery(`textarea[name=${property}]`, container);
         changeInput(nameInput, 'newValue');
 
         // then
@@ -104,7 +104,7 @@ describe('provider/dmn - DocumentationProps', function() {
           await act(() => {
             selection.select(element);
           });
-          const nameInput = domQuery(`input[name=${property}]`, container);
+          const nameInput = domQuery(`textarea[name=${property}]`, container);
           changeInput(nameInput, 'newValue');
 
           // when
@@ -135,7 +135,7 @@ describe('provider/dmn - DocumentationProps', function() {
       });
 
       // when
-      const input = domQuery(`input[name=${property}]`, container);
+      const input = domQuery(`textarea[name=${property}]`, container);
 
       // then
       expect(input.value).to.eql(getBusinessObject(element).get(property));
@@ -152,7 +152,7 @@ describe('provider/dmn - DocumentationProps', function() {
       });
 
       // when
-      const input = domQuery(`input[name=${property}]`, container);
+      const input = domQuery(`textarea[name=${property}]`, container);
 
       // then
       expect(input).to.not.exist;
@@ -169,7 +169,7 @@ describe('provider/dmn - DocumentationProps', function() {
       });
 
       // when
-      const nameInput = domQuery(`input[name=${property}]`, container);
+      const nameInput = domQuery(`textarea[name=${property}]`, container);
       changeInput(nameInput, 'newValue');
 
       // then
@@ -187,7 +187,7 @@ describe('provider/dmn - DocumentationProps', function() {
         await act(() => {
           selection.select(element);
         });
-        const nameInput = domQuery(`input[name=${property}]`, container);
+        const nameInput = domQuery(`textarea[name=${property}]`, container);
         changeInput(nameInput, 'newValue');
 
         // when
@@ -217,7 +217,7 @@ describe('provider/dmn - DocumentationProps', function() {
       });
 
       // when
-      const input = domQuery(`input[name=${property}]`, container);
+      const input = domQuery(`textarea[name=${property}]`, container);
 
       // then
       expect(input.value).to.eql(getBusinessObject(element).get(property));
@@ -234,7 +234,7 @@ describe('provider/dmn - DocumentationProps', function() {
       });
 
       // when
-      const input = domQuery(`input[name=${property}]`, container);
+      const input = domQuery(`textarea[name=${property}]`, container);
 
       // then
       expect(input).to.not.exist;
@@ -251,7 +251,7 @@ describe('provider/dmn - DocumentationProps', function() {
       });
 
       // when
-      const nameInput = domQuery(`input[name=${property}]`, container);
+      const nameInput = domQuery(`textarea[name=${property}]`, container);
       changeInput(nameInput, 'newValue');
 
       // then
@@ -269,7 +269,7 @@ describe('provider/dmn - DocumentationProps', function() {
         await act(() => {
           selection.select(element);
         });
-        const nameInput = domQuery(`input[name=${property}]`, container);
+        const nameInput = domQuery(`textarea[name=${property}]`, container);
         changeInput(nameInput, 'newValue');
 
         // when
