@@ -421,9 +421,10 @@ describe('<DmnPropertiesPanelRenderer>', function() {
   describe('header name', function() {
 
     beforeEach(async function() {
-      await createModeler(diagramXml);
+      await act(async () => {
+        await createModeler(diagramXml);
+      });
     });
-
 
     it('should keep state during detach and attach', inject(async function(elementRegistry, selection, propertiesPanel) {
 
