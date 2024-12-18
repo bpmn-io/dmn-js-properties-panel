@@ -94,7 +94,7 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
     setDmnJS(modeler);
 
-    modeler.on('viewer.created', ({ viewer }) => {
+    singleStart && modeler.on('viewer.created', ({ viewer }) => {
       viewer.on('commandStack.changed', function() {
         modeler.saveXML({ format: true }).then(function(result) {
           console.log(result.xml);
