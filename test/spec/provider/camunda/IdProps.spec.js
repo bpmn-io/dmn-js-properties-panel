@@ -116,10 +116,10 @@ describe('provider/dmn - IdProps', function() {
     it('should set invalid', inject(async function(elementRegistry, selection) {
 
       // given
-      const task = elementRegistry.get('Task_1');
+      const shape = elementRegistry.get('Decision_1');
 
       await act(() => {
-        selection.select(task);
+        selection.select(shape);
       });
 
       // when
@@ -129,7 +129,7 @@ describe('provider/dmn - IdProps', function() {
       });
 
       // then
-      const error = domQuery('.bio-properties-panel-input-error', container);
+      const error = domQuery('.bio-properties-panel-error', container);
       expect(error).to.exist;
     }));
 
@@ -143,8 +143,11 @@ describe('provider/dmn - IdProps', function() {
         selection.select(shape);
       });
 
-      // when
+      // expect
       const idInput = domQuery('input[name=id]', container);
+      expect(idInput.value).to.exist;
+
+      // when
       changeInput(idInput, '');
 
       // then
