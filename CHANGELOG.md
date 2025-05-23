@@ -6,9 +6,11 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
-## 3.7.1
+## 3.8.0
 
-* `FIX`: commit erased change ([bpmn-io/properties-panel#414](https://github.com/bpmn-io/properties-panel/pull/414))
+* `FEAT`: trim whitespace in text inputs ([bpmn-io/properties-panel#404](https://github.com/bpmn-io/properties-panel/issues/404), [bpmn-io/properties-panel#309](https://github.com/bpmn-io/properties-panel/issues/309))
+* `FIX`: make tooltip persist when trying to copy from it ([bpmn-io/properties-panel#399](https://github.com/bpmn-io/properties-panel/pull/399))
+* `FIX`: remove input border from popups ([bpmn-io/properties-panel#398](https://github.com/bpmn-io/properties-panel/pull/398))
 * `DEPS`: update to `@bpmn-io/properties-panel@3.23.2`
 
 ## 3.7.0
