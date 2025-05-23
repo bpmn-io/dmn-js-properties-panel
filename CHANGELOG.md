@@ -6,6 +6,11 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.7.1
+
+* `FIX`: commit erased change ([bpmn-io/properties-panel#414](https://github.com/bpmn-io/properties-panel/pull/414))
+* `DEPS`: update to `@bpmn-io/properties-panel@3.23.2`
+
 ## 3.7.0
 
 * `FEAT`: make properties panel focusable ([#108](https://github.com/bpmn-io/dmn-js-properties-panel/pull/108))
