@@ -35,9 +35,9 @@ const LOW_PRIORITY = 500;
 export default class ZeebePropertiesProvider {
 
   constructor(propertiesPanel, injector) {
-    propertiesPanel.registerProvider(LOW_PRIORITY, this);
-
     this._injector = injector;
+
+    propertiesPanel.registerProvider(LOW_PRIORITY, this);
   }
 
   getGroups(element) {
