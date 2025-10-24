@@ -15,6 +15,8 @@ import {
   event as domEvent
 } from 'min-dom';
 
+import { isArray, reduce } from 'min-dash';
+
 const DEFAULT_PRIORITY = 1000;
 
 /**
@@ -51,13 +53,32 @@ export default class DmnPropertiesPanelRenderer {
       this.detach();
     });
 
+    this._selectedElement = null;
+    this._groups = [];
+
+    eventBus.on('selection.changed', () => this._update());
+    eventBus.on('elements.changed', () => this._update());
+    eventBus.on('propertiesPanel.providersChanged', () => this._update());
+
+    // Handle root changes more carefully
+    eventBus.on('root.added', (event) => {
+      const element = event.element;
+
+      if (isImplicitRoot(element)) {
+        return;
+      }
+
+      this._update();
+    });
+
     eventBus.on('import.done', (event) => {
-      const { element } = event;
 
       if (parent) {
         this.attachTo(parent);
       }
-      this._render(element);
+      this._updateSelectedElement();
+      this._updateGroups();
+      this._render();
     });
 
     eventBus.on('detach', (event) => {
@@ -151,20 +172,15 @@ export default class DmnPropertiesPanelRenderer {
     return event.providers;
   }
 
-  _render(element) {
-    const canvas = this._injector.get('canvas');
-
-    if (!element) {
-      element = canvas.getRootElement();
-    }
-
-    if (isImplicitRoot(element)) {
+  _render() {
+    if (!this._selectedElement || isImplicitRoot(this._selectedElement)) {
       return;
     }
 
     render(
       <DmnPropertiesPanel
-        element={ element }
+        element={ this._selectedElement }
+        groups={ this._groups }
         injector={ this._injector }
         getProviders={ this._getProviders.bind(this) }
         layoutConfig={ this._layoutConfig }
@@ -183,6 +199,54 @@ export default class DmnPropertiesPanelRenderer {
 
       this._eventBus.fire('propertiesPanel.destroyed');
     }
+  }
+
+  _update() {
+    this._updateSelectedElement();
+    this._updateGroups();
+
+    this._render();
+
+    this._eventBus.fire('propertiesPanel.updated', {
+      element: this._selectedElement
+    });
+  }
+
+  _updateSelectedElement() {
+    const canvas = this._injector.get('canvas');
+    const rootElement = canvas.getRootElement();
+
+    if (isImplicitRoot(rootElement)) {
+      this._selectedElement = rootElement;
+      return;
+    }
+
+    const selection = this._injector.get('selection');
+    const selectedElements = selection.get();
+
+    if (selectedElements.length > 1) {
+      this._selectedElement = selectedElements;
+    } else if (selectedElements.length === 1) {
+      this._selectedElement = selectedElements[0];
+    } else {
+      this._selectedElement = rootElement;
+    }
+  }
+
+  _updateGroups() {
+    if (!this._selectedElement || isImplicitRoot(this._selectedElement) || isArray(this._selectedElement)) {
+      this._groups = [];
+
+      return;
+    }
+
+    const providers = this._getProviders(this._selectedElement);
+
+    this._groups = reduce(providers, (groups, provider) => {
+      const updater = provider.getGroups(this._selectedElement);
+
+      return updater(groups);
+    }, []);
   }
 }
 
