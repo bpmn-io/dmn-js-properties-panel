@@ -60,25 +60,10 @@ export default class DmnPropertiesPanelRenderer {
     eventBus.on('elements.changed', () => this._update());
     eventBus.on('propertiesPanel.providersChanged', () => this._update());
 
-    // Handle root changes more carefully
-    eventBus.on('root.added', (event) => {
-      const element = event.element;
-
-      if (isImplicitRoot(element)) {
-        return;
-      }
-
-      this._update();
-    });
-
-    eventBus.on('import.done', (event) => {
-
+    eventBus.on('import.done', () => {
       if (parent) {
         this.attachTo(parent);
       }
-      this._updateSelectedElement();
-      this._updateGroups();
-      this._render();
     });
 
     eventBus.on('detach', (event) => {
