@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.8.2
+
+* `FIX`: reverts keeping selected element in sync with canvas state ([#122](https://github.com/bpmn-io/dmn-js-properties-panel/pull/122))
+
 ## 3.8.1
 
 * `FIX`: manage state outside of preact to avoid updates with stale element
