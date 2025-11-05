@@ -6,7 +6,7 @@ import json from '@rollup/plugin-json';
 import reactSvg from '@svgr/rollup';
 import resolve from '@rollup/plugin-node-resolve';
 
-import pkg from './package.json';
+import pkg from './package.json' with { type: 'json' };
 
 const nonbundledDependencies = Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies });
 const nonExternalDependencies = [ 'dmn-js-shared', 'dmn-js-drd' ];
