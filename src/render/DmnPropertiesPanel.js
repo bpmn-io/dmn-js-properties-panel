@@ -19,6 +19,8 @@ import {
 import { PanelHeaderProvider } from './PanelHeaderProvider';
 import { PanelPlaceholderProvider } from './PanelPlaceholderProvider';
 
+{ /* Required to break up imports, see https://github.com/babel/babel/issues/15156 */ }
+
 /**
    * @param {Object} props
    * @param {djs.model.Base|Array<djs.model.Base>} [props.element]
