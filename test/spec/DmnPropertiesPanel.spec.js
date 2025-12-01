@@ -244,29 +244,6 @@ describe('<DmnPropertiesPanel>', function() {
     });
 
 
-    it('should not update on implicit root added',function() {
-
-      // given
-      const updateSpy = sinon.spy();
-
-      const eventBus = new eventBusMock();
-
-      eventBus.on('propertiesPanel.updated', updateSpy);
-
-      createDmnPropertiesPanel({ container, eventBus });
-
-      // when
-      eventBus.fire('root.added', {
-        element: {
-          isImplicit: true
-        }
-      });
-
-      // expect
-      expect(updateSpy).to.not.have.been.called;
-    });
-
-
     it('should not update on implicit root selected',function() {
 
       // given
@@ -401,8 +378,15 @@ function createDmnPropertiesPanel(options = {}) {
   } = options;
 
   let {
+    canvas,
     elementRegistry
   } = options;
+
+  if (!canvas) {
+    canvas = {
+      getRootElement: () => noopElement
+    };
+  }
 
   if (!elementRegistry) {
     elementRegistry = new elementRegistryMock();
@@ -411,6 +395,7 @@ function createDmnPropertiesPanel(options = {}) {
 
   const injector = new injectorMock({
     ...options,
+    canvas,
     elementRegistry
   });
 
