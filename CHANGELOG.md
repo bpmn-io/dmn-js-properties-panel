@@ -6,6 +6,12 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.9.0
+
+* `FEAT`: save values on blur
+* `DEPS`: update to `dmn-js*@17.5.0`
+* `DEPS`: update to `@bpmn-io/properties-panel@3.35.0`
+
 ## 3.8.3
 
 * `FIX`: update on `import.done` instead of `root.added` to prevent stale element ([#128](https://github.com/bpmn-io/dmn-js-properties-panel/pull/128))
