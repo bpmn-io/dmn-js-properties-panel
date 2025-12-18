@@ -42,7 +42,7 @@
     "node": "*"
   },
   "dependencies": {
-    "min-dash": "^4.2.1",
+    "min-dash": "^5.0.0",
     "min-dom": "^4.1.0"
   },
   "devDependencies": {
