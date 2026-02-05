@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   act,
   render
@@ -160,7 +163,7 @@ describe('<DmnPropertiesPanel>', function() {
     it('should update on selection changed', function() {
 
       // given
-      const updateSpy = sinon.spy();
+      const updateSpy = spy();
 
       const eventBus = new eventBusMock();
 
@@ -181,7 +184,7 @@ describe('<DmnPropertiesPanel>', function() {
     it('should update on selection changed - multiple', async function() {
 
       // given
-      const updateSpy = sinon.spy();
+      const updateSpy = spy();
 
       const eventBus = new eventBusMock();
 
@@ -207,7 +210,7 @@ describe('<DmnPropertiesPanel>', function() {
     it('should update on element changed', function() {
 
       // given
-      const updateSpy = sinon.spy();
+      const updateSpy = spy();
 
       const eventBus = new eventBusMock();
 
@@ -228,7 +231,7 @@ describe('<DmnPropertiesPanel>', function() {
     it('should update on providers changed', function() {
 
       // given
-      const updateSpy = sinon.spy();
+      const updateSpy = spy();
 
       const eventBus = new eventBusMock();
 
@@ -247,7 +250,7 @@ describe('<DmnPropertiesPanel>', function() {
     it('should not update on implicit root selected',function() {
 
       // given
-      var updateSpy = sinon.spy();
+      var updateSpy = spy();
 
       const eventBus = new eventBusMock();
       const injector = new injectorMock();
@@ -270,7 +273,7 @@ describe('<DmnPropertiesPanel>', function() {
     it('should notify on layout changed', function() {
 
       // given
-      const updateSpy = sinon.spy();
+      const updateSpy = spy();
 
       const eventBus = new eventBusMock();
 
@@ -287,7 +290,7 @@ describe('<DmnPropertiesPanel>', function() {
     it('should notify on description loaded', function() {
 
       // given
-      const loadedSpy = sinon.spy();
+      const loadedSpy = spy();
 
       const eventBus = new eventBusMock();
 
@@ -304,7 +307,7 @@ describe('<DmnPropertiesPanel>', function() {
     it('should notify on properties panel changed', function() {
 
       // given
-      const updateSpy = sinon.spy();
+      const updateSpy = spy();
 
       const eventBus = new eventBusMock();
 
@@ -338,7 +341,7 @@ describe('<DmnPropertiesPanel>', function() {
       const elementRegistry = new elementRegistryMock();
       elementRegistry.setElements(elements);
 
-      const updateSpy = sinon.spy();
+      const updateSpy = spy();
       const eventBus = new eventBusMock();
       eventBus.on('propertiesPanel.updated', updateSpy);
 

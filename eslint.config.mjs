@@ -67,7 +67,6 @@ export default [
   {
     languageOptions: {
       globals: {
-        sinon: true,
         require: true
       },
     },

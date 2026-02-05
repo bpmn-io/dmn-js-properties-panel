@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import TestContainer from 'mocha-test-container-support';
 
 import {
@@ -243,8 +246,8 @@ describe('<DmnPropertiesPanelRenderer>', function() {
         // given
         modeling.updateLabel(elementRegistry.get('dish-decision'), 'FOOBAR');
 
-        const executeSpy = sinon.spy();
-        const undoSpy = sinon.spy();
+        const executeSpy = spy();
+        const undoSpy = spy();
 
         eventBus.on('commandStack.execute', executeSpy);
         eventBus.on('commandStack.reverted', undoSpy);
@@ -289,8 +292,8 @@ describe('<DmnPropertiesPanelRenderer>', function() {
         // given
         modeling.updateLabel(elementRegistry.get('dish-decision'), 'FOOBAR');
 
-        const executeSpy = sinon.spy();
-        const undoSpy = sinon.spy();
+        const executeSpy = spy();
+        const undoSpy = spy();
 
         eventBus.on('commandStack.execute', executeSpy);
         eventBus.on('commandStack.reverted', undoSpy);
@@ -497,7 +500,7 @@ describe('<DmnPropertiesPanelRenderer>', function() {
     it('should emit <propertiesPanel.attach>', async function() {
 
       // given
-      const spy = sinon.spy();
+      const attachedSpy = spy();
 
       const container = domify('<div></div>');
       TestContainer.get(this).appendChild(container);
@@ -507,60 +510,60 @@ describe('<DmnPropertiesPanelRenderer>', function() {
       const eventBus = get(modeler, 'eventBus');
       const propertiesPanel = get(modeler, 'propertiesPanel');
 
-      eventBus.on('propertiesPanel.attach', spy);
+      eventBus.on('propertiesPanel.attach', attachedSpy);
 
       // when
       propertiesPanel.attachTo(container);
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(attachedSpy).to.have.been.calledOnce;
     });
 
 
     it('should emit <propertiesPanel.detach>', async function() {
 
       // given
-      const spy = sinon.spy();
+      const detachedSpy = spy();
 
       const { modeler } = await createModeler(diagramXml);
 
       const eventBus = get(modeler, 'eventBus');
       const propertiesPanel = get(modeler, 'propertiesPanel');
 
-      eventBus.on('propertiesPanel.detach', spy);
+      eventBus.on('propertiesPanel.detach', detachedSpy);
 
       // when
       propertiesPanel.detach();
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(detachedSpy).to.have.been.calledOnce;
     });
 
 
     it('should emit <propertiesPanel.rendered>', async function() {
 
       // given
-      const spy = sinon.spy();
+      const renderedSpy = spy();
 
       const { modeler } = await createModeler(diagramXml);
 
       const eventBus = get(modeler, 'eventBus');
       const propertiesPanel = get(modeler, 'propertiesPanel');
 
-      eventBus.on('propertiesPanel.rendered', spy);
+      eventBus.on('propertiesPanel.rendered', renderedSpy);
 
       // when
       propertiesPanel._render();
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(renderedSpy).to.have.been.calledOnce;
     });
 
 
     it('should NOT emit <propertiesPanel.rendered> on attach', async function() {
 
       // given
-      const spy = sinon.spy();
+      const renderedSpy = spy();
 
       const container = domify('<div></div>');
       TestContainer.get(this).appendChild(container);
@@ -570,33 +573,33 @@ describe('<DmnPropertiesPanelRenderer>', function() {
       const eventBus = get(modeler, 'eventBus');
       const propertiesPanel = get(modeler, 'propertiesPanel');
 
-      eventBus.on('propertiesPanel.rendered', spy);
+      eventBus.on('propertiesPanel.rendered', renderedSpy);
 
       // when
       propertiesPanel.attachTo(container);
 
       // then
-      expect(spy).to.not.have.been.called;
+      expect(renderedSpy).to.not.have.been.called;
     });
 
 
     it('should emit <propertiesPanel.destroyed>', async function() {
 
       // given
-      const spy = sinon.spy();
+      const destroyedSpy = spy();
 
       const { modeler } = await createModeler(diagramXml);
 
       const eventBus = get(modeler, 'eventBus');
       const propertiesPanel = get(modeler, 'propertiesPanel');
 
-      eventBus.on('propertiesPanel.destroyed', spy);
+      eventBus.on('propertiesPanel.destroyed', destroyedSpy);
 
       // when
       propertiesPanel._destroy();
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(destroyedSpy).to.have.been.calledOnce;
     });
 
   });
