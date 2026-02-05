@@ -48,7 +48,7 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/plugin-transform-react-jsx": "^7.25.9",
-    "@bpmn-io/properties-panel": "^3.35.0",
+    "@bpmn-io/properties-panel": "^3.38.0",
     "@rollup/plugin-alias": "^6.0.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^29.0.0",
