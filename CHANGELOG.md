@@ -6,6 +6,11 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.10.0
+
+* `DEPS`: update to `min-dom@5.2.0`
+* `DEPS`: update to `min-dash@5.0.0`
+
 ## 3.9.0
 
 * `FEAT`: save values on blur
