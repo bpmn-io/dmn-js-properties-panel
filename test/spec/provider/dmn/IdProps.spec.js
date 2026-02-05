@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import {
   act
 } from '@testing-library/preact';
