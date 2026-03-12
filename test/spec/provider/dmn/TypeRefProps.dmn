@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="definitions_dish" name="Dish" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.45.0">
+  <decision id="Decision" name="Decision">
+    <informationRequirement id="InformationRequirement_16zqi7b">
+      <requiredInput href="#NoVariable" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1xtdno6">
+      <requiredInput href="#WithVariable" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0j52lfm">
+      <requiredInput href="#NoType" />
+    </informationRequirement>
+    <knowledgeRequirement id="KnowledgeRequirement_10mz43p">
+      <requiredKnowledge href="#BusinessKnowledgeModel" />
+    </knowledgeRequirement>
+    <authorityRequirement id="AuthorityRequirement_094ndjb">
+      <requiredAuthority href="#KnowledgeSource" />
+    </authorityRequirement>
+  </decision>
+  <inputData id="NoVariable" name="No variable" />
+  <inputData id="WithVariable" name="With variable">
+    <variable name="With variable" typeRef="string" />
+  </inputData>
+  <inputData id="NoType" name="No type">
+    <variable name="No type" />
+  </inputData>
+  <knowledgeSource id="KnowledgeSource" name="Knowledge Source" />
+  <businessKnowledgeModel id="BusinessKnowledgeModel" name="BKM" />
+  <textAnnotation id="TextAnnotation">
+    <text>Annotation</text>
+  </textAnnotation>
+  <association id="Association">
+    <sourceRef href="#TextAnnotation" />
+    <targetRef href="#Decision" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_08e4fzy">
+      <dmndi:DMNShape id="DMNShape_06bfry0" dmnElementRef="Decision">
+        <dc:Bounds height="80" width="180" x="370" y="210" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0fht76v" dmnElementRef="NoVariable">
+        <dc:Bounds height="45" width="125" x="298" y="368" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0fhbosu" dmnElementRef="InformationRequirement_16zqi7b">
+        <di:waypoint x="361" y="368" />
+        <di:waypoint x="415" y="310" />
+        <di:waypoint x="415" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1b8otgz" dmnElementRef="WithVariable">
+        <dc:Bounds height="45" width="125" x="488" y="369" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0j7kz9o" dmnElementRef="InformationRequirement_1xtdno6">
+        <di:waypoint x="551" y="369" />
+        <di:waypoint x="460" y="310" />
+        <di:waypoint x="460" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0osfi8p" dmnElementRef="TextAnnotation">
+        <dc:Bounds height="80" width="100" x="550" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0dls7mr" dmnElementRef="Association">
+        <di:waypoint x="557" y="160" />
+        <di:waypoint x="503" y="210" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1uojdyl" dmnElementRef="KnowledgeSource">
+        <dc:Bounds height="63" width="100" x="660" y="219" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_08622fa" dmnElementRef="AuthorityRequirement_094ndjb">
+        <di:waypoint x="660" y="251" />
+        <di:waypoint x="550" y="250" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0lq3971" dmnElementRef="BusinessKnowledgeModel">
+        <dc:Bounds height="46" width="135" x="153" y="227" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1w5r9yz" dmnElementRef="KnowledgeRequirement_10mz43p">
+        <di:waypoint x="288" y="250" />
+        <di:waypoint x="370" y="250" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0x9hnzv" dmnElementRef="NoType">
+        <dc:Bounds height="45" width="125" x="648" y="369" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_13torhu" dmnElementRef="InformationRequirement_0j52lfm">
+        <di:waypoint x="711" y="369" />
+        <di:waypoint x="505" y="310" />
+        <di:waypoint x="505" y="290" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
