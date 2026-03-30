@@ -17,7 +17,7 @@ import {
   query as domQuery
 } from 'min-dom';
 
-import { getBusinessObject } from 'dmn-js-shared/lib/util/ModelUtil';
+import { getBusinessObject, is } from 'dmn-js-shared/lib/util/ModelUtil';
 
 import DmnPropertiesPanel from 'src/render';
 
@@ -47,6 +47,7 @@ describe('provider/dmn - TypeRefProps', function() {
     container = TestContainer.get(this);
   });
 
+
   it('should display type dropdown for InputData', inject(async function(elementRegistry, selection) {
 
     // given
@@ -63,6 +64,7 @@ describe('provider/dmn - TypeRefProps', function() {
     expect(typeDropdown).to.exist;
     expect(typeDropdown.value).to.eql(getBusinessObject(shape).get('variable').get('typeRef'));
   }));
+
 
   it('should update type for Decision', inject(async function(elementRegistry, selection) {
 
@@ -84,6 +86,7 @@ describe('provider/dmn - TypeRefProps', function() {
     expect(typeDropdown.value).to.eql('boolean');
     expect(originalType).to.not.eql(typeDropdown.value);
   }));
+
 
   it('should undo and redo type change', inject(async function(elementRegistry, selection, commandStack) {
 
@@ -115,6 +118,7 @@ describe('provider/dmn - TypeRefProps', function() {
     expect(typeDropdown.value).to.eql('boolean');
   }));
 
+
   it('should add variable if missing', inject(async function(elementRegistry, selection) {
 
     // given
@@ -133,8 +137,9 @@ describe('provider/dmn - TypeRefProps', function() {
     changeInput(typeDropdown, 'string');
 
     // then
-    expect(businessObject.variable).to.exist;
-    expect(businessObject.variable.typeRef).to.eql('string');
+    const variable = businessObject.get('variable');
+    expect(variable).to.exist;
+    expect(is(variable, 'dmn:InformationItem'), 'variable should be an InformationItem').to.be.true;
+    expect(variable.get('typeRef')).to.eql('string');
   }));
-
 });
