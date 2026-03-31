@@ -39,9 +39,17 @@ function TypeRef(props) {
   const modeling = useService('modeling');
   const debounce = useService('debounceInput');
   const translate = useService('translate');
+  const dataTypes = useService('dataTypes');
+  const drdFactory = useService('drdFactory');
 
   const businessObject = getBusinessObject(element);
-  const currentType = businessObject.variable ? businessObject.variable.typeRef || businessObject.typeRef : 'any';
+  const variable = businessObject.get('variable');
+
+  if (!variable) {
+    modeling.updateProperties(element, { variable: drdFactory.create('dmn:InformationItem', { typeRef: 'Any' }) });
+  }
+
+  const currentType = businessObject.variable.typeRef ? businessObject.variable.typeRef || businessObject.typeRef : 'Any';
 
   const getValue = () => currentType;
 
@@ -53,9 +61,10 @@ function TypeRef(props) {
       }
     });
   };
-  const DEFAULT_DATA_TYPES = [ 'string', 'boolean', 'integer', 'number', 'date', 'time', 'dateTime', 'dayTimeDuration', 'yearMonthDuration', 'any' ];
+
   const getOptions = () => {
-    return DEFAULT_DATA_TYPES.map(type => ({
+    const availableDataTypes = dataTypes.getAll();
+    return availableDataTypes.map(type => ({
       value: type,
       label: type
     }));
