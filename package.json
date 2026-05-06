@@ -84,7 +84,7 @@
     "puppeteer": "^24.37.0",
     "rollup": "^4.57.1",
     "rollup-plugin-copy": "^3.4.0",
-    "sinon": "^21.0.1",
+    "sinon": "^22.0.0",
     "sinon-chai": "^4.0.1",
     "webpack": "^5.105.0",
     "zeebe-dmn-moddle": "^1.0.0"
