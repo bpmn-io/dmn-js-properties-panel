@@ -24,6 +24,7 @@
   <inputData id="NoType" name="No type">
     <variable name="No type" />
   </inputData>
+  <decision id="NoNameDecision" />
   <knowledgeSource id="KnowledgeSource" name="Knowledge Source" />
   <businessKnowledgeModel id="BusinessKnowledgeModel" name="BKM" />
   <textAnnotation id="TextAnnotation">
@@ -77,6 +78,9 @@
       </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_0x9hnzv" dmnElementRef="NoType">
         <dc:Bounds height="45" width="125" x="648" y="369" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_noname" dmnElementRef="NoNameDecision">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_13torhu" dmnElementRef="InformationRequirement_0j52lfm">
         <di:waypoint x="711" y="369" />

@@ -57,7 +57,11 @@ function TypeRef(props) {
   const setValue = (value) => {
     const variable = businessObject.get('variable');
     if (!variable) {
-      modeling.updateProperties(element, { variable: drdFactory.create('dmn:InformationItem', { typeRef: value }) });
+      modeling.updateProperties(element, {
+        variable: drdFactory.create('dmn:InformationItem', {
+          name: businessObject.get('name') || '',
+          typeRef: value }),
+      });
       return;
     }
 
