@@ -277,7 +277,31 @@ describe('provider/dmn - TypeRefProps', function() {
       expect(variable).to.exist;
       expect(is(variable, 'dmn:InformationItem'), 'variable should be an InformationItem').to.be.true;
       expect(variable.get('typeRef')).to.eql('string');
+      expect(variable.get('name')).to.eql('No variable');
     });
+
+    it('should add variable with empty name if element has no name', inject(async function(elementRegistry, selection) {
+
+      // given
+      const decision = elementRegistry.get('NoNameDecision');
+
+      await act(() => {
+        selection.select(decision);
+      });
+
+      // when
+      const typeDropdown = domQuery('select[name=typeRef]', container);
+      changeInput(typeDropdown, 'string');
+
+      // then
+      const businessObject = getBusinessObject(decision);
+      const variable = businessObject.get('variable');
+
+      expect(variable).to.exist;
+      expect(is(variable, 'dmn:InformationItem'), 'variable should be an InformationItem').to.be.true;
+      expect(variable.get('typeRef')).to.eql('string');
+      expect(variable.get('name')).to.eql('');
+    }));
 
 
     it('should undo', inject(async function(commandStack) {
