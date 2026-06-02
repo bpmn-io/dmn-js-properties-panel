@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.11.1
+
+* `FIX`: add variable name assignment when it's created ([#141](https://github.com/bpmn-io/dmn-js-properties-panel/pull/141))
+
 ## 3.11.0
 
 * `FEAT`: add Variable group with type selector ([#135](https://github.com/bpmn-io/dmn-js-properties-panel/pull/135))
