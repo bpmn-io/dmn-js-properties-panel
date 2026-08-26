@@ -6,6 +6,10 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.12.0
+
+* `DEPS`: update to `min-dom@5.3.0`
+* `DEPS`: update to `min-dash@5.1.0`
 * `CHORE`: support `@bpmn-io/properties-panel@3.52.0`
 
 ## 3.11.1
