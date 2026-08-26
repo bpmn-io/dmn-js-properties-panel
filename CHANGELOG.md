@@ -6,6 +6,8 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+* `CHORE`: support `@bpmn-io/properties-panel@3.52.0`
+
 ## 3.11.1
 
 * `FIX`: add variable name assignment when it's created ([#141](https://github.com/bpmn-io/dmn-js-properties-panel/pull/141))
