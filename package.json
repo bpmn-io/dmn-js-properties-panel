@@ -66,7 +66,7 @@
     "dmn-js": "^17.10.2",
     "dmn-js-drd": "^17.10.2",
     "dmn-js-shared": "^17.10.2",
-    "dmn-moddle": "^12.0.1",
+    "dmn-moddle": "^12.1.0",
     "eslint": "^9.39.5",
     "eslint-plugin-bpmn-io": "^2.3.1",
     "eslint-plugin-import": "^2.32.0",
