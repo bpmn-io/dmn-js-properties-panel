@@ -2,6 +2,7 @@ import AssociationIcon from './dmn-icon-association.svg';
 import AuthorityRequirementIcon from './dmn-icon-authority-requirement.svg';
 import BusinessKnowledgeIcon from './dmn-icon-business-knowledge.svg';
 import DecisionIcon from './dmn-icon-decision.svg';
+import DecisionServiceIcon from './dmn-icon-decision-service.svg';
 import DRDIcon from './dmn-icon-drd.svg';
 import InformationRequirementIcon from './dmn-icon-information-requirement.svg';
 import InputDataIcon from './dmn-icon-input-data.svg';
@@ -14,6 +15,7 @@ export default {
   'AuthorityRequirement': AuthorityRequirementIcon,
   'BusinessKnowledgeModel': BusinessKnowledgeIcon,
   'Decision': DecisionIcon,
+  'DecisionService': DecisionServiceIcon,
   'DecisionTable': DRDIcon,
   'Definitions': DRDIcon,
   'DRD': DRDIcon,

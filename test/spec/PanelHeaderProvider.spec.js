@@ -109,6 +109,29 @@ describe('<PanelHeaderProvider>', function() {
       expect(typeNode.innerText).to.equal('DECISION');
     });
 
+
+
+    it('should render decision service with icon and type', function() {
+
+      // given
+      const element = createElement('dmn:DecisionService', {
+        name: 'service'
+      });
+
+      // when
+      const result = createHeader({ container, element });
+
+      const iconNode = domQuery('.bio-properties-panel-header-icon', result.container);
+      const typeNode = domQuery('.bio-properties-panel-header-type', result.container);
+      const labelNode = domQuery('.bio-properties-panel-header-label', result.container);
+
+      // then
+      expect(iconNode).to.exist;
+      expect(iconNode.querySelector('svg')).to.exist;
+      expect(typeNode.innerText).to.equal('DECISION SERVICE');
+      expect(labelNode.innerText).to.equal('service');
+    });
+
   });
 
 
@@ -158,6 +181,19 @@ describe('<PanelHeaderProvider>', function() {
 
       // then
       expect(type).to.equal('Decision');
+    });
+
+
+    it('should get type - decision service', async function() {
+
+      // given
+      const element = createElement('dmn:DecisionService');
+
+      // when
+      const type = getConcreteType(element);
+
+      // then
+      expect(type).to.equal('DecisionService');
     });
 
 
