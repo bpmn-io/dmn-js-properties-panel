@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="definitions_dish" name="Dish" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.45.0">
+  <itemDefinition id="ItemDefinition_Customer" name="tCustomer">
+    <typeRef>string</typeRef>
+  </itemDefinition>
   <decision id="Decision" name="Decision">
     <informationRequirement id="InformationRequirement_16zqi7b">
       <requiredInput href="#NoVariable" />
