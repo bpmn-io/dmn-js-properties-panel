@@ -9,7 +9,8 @@ import TestContainer from 'mocha-test-container-support';
 import {
   bootstrapPropertiesPanel,
   inject,
-  changeInput
+  changeInput,
+  describeWithDmnJs
 } from 'test/TestHelper';
 
 import { stub } from 'sinon';
@@ -380,7 +381,7 @@ describe('provider/dmn - TypeRefProps - data types', function() {
   }
 
 
-  describe('default', function() {
+  describeWithDmnJs('>=18')('default', function() {
 
     beforeEach(inject(async function(elementRegistry, selection) {
       await act(() => {
@@ -425,7 +426,7 @@ describe('provider/dmn - TypeRefProps - data types', function() {
   });
 
 
-  describe('grouped', function() {
+  describeWithDmnJs('>=18')('grouped', function() {
 
     it('should display name as value and label as text', async function() {
 
