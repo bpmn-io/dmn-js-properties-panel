@@ -70,13 +70,7 @@ function TypeRef(props) {
     });
   };
 
-  const getOptions = () => {
-    const availableDataTypes = dataTypes.getAll();
-    return availableDataTypes.map(type => ({
-      value: type,
-      label: type
-    }));
-  };
+  const getOptions = () => getTypeRefOptions(dataTypes.getAll());
 
   return SelectEntry({
     element,
@@ -87,4 +81,73 @@ function TypeRef(props) {
     getOptions,
     debounce
   });
+}
+
+// helpers //////////
+
+/**
+ * @typedef {{
+ *   name: string,
+ *   label: string,
+ *   group?: { id: string, name: string }
+ * }} DataType
+ */
+
+/**
+ * Get select options for the given data types.
+ *
+ * Data types are grouped if there is more than one group, with
+ * ungrouped data types coming first. Plain strings, as provided
+ * by older versions of dmn-js, are supported, too.
+ *
+ * @param {Array<string|DataType>} dataTypes
+ *
+ * @return {Array<Object>} options
+ */
+function getTypeRefOptions(dataTypes) {
+  const ungrouped = [];
+
+  const groups = [];
+
+  dataTypes.forEach(dataType => {
+    const {
+      name,
+      label = name,
+      group
+    } = typeof dataType === 'string' ? { name: dataType } : dataType;
+
+    const option = {
+      value: name,
+      label
+    };
+
+    if (!group) {
+      return ungrouped.push(option);
+    }
+
+    let entry = groups.find(({ id }) => id === group.id);
+
+    if (!entry) {
+      entry = { id: group.id, name: group.name, options: [] };
+
+      groups.push(entry);
+    }
+
+    entry.options.push(option);
+  });
+
+  if (groups.length + (ungrouped.length ? 1 : 0) < 2) {
+    return [
+      ...ungrouped,
+      ...groups.flatMap(({ options }) => options)
+    ];
+  }
+
+  return [
+    ...ungrouped,
+    ...groups.map(({ name, options }) => ({
+      label: name,
+      children: options
+    }))
+  ];
 }
