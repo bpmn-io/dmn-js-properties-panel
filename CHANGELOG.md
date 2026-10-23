@@ -6,6 +6,7 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+* `FEAT`: show icon for decision service in header
 * `FEAT`: support grouped data types in type selector, as provided by `dmn-js@18` ([#151](https://github.com/bpmn-io/dmn-js-properties-panel/pull/151))
 * `DEPS`: update to `dmn-js*@18.0.0`
 
