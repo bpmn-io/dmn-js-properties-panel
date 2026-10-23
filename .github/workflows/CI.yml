@@ -9,6 +9,7 @@ jobs:
         node-version: [ 24 ]
         integration-deps:
         - "" # as defined in package.json
+        - "dmn-js@17 dmn-js-drd@17 dmn-js-shared@17"
 
     runs-on: ${{ matrix.os }}
 

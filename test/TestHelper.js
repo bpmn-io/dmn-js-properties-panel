@@ -97,6 +97,26 @@ function propertiesPanelSatisfies(versionRange) {
   return semver.satisfies(version, versionRange, { includePrerelease: true });
 }
 
+/**
+ * Execute suite only if currently installed dmn-js is of given version.
+ *
+ * @param {string} versionRange
+ * @param {boolean} only
+ */
+export function describeWithDmnJs(versionRange, only = false) {
+  if (dmnJsSatisfies(versionRange)) {
+    return only ? describe.only : describe;
+  } else {
+    return describe.skip;
+  }
+}
+
+function dmnJsSatisfies(versionRange) {
+  const version = require('dmn-js-shared/package.json').version;
+
+  return semver.satisfies(version, versionRange, { includePrerelease: true });
+}
+
 export function insertDmnStyles() {
 
   insertCSS(
