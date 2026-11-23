@@ -6,6 +6,8 @@ All notable changes to [dmn-js-properties-panel](https://github.com/bpmn-io/dmn-
 
 ___Note:__ Yet to be released changes appear here._
 
+* `FIX`: show element selected right after import
+
 ## 3.13.0
 
 * `FEAT`: show icon for decision service in header

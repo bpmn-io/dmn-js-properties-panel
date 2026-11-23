@@ -6,6 +6,7 @@ import {
 } from 'diagram-js/lib/features/keyboard/KeyboardUtil';
 
 import {
+  Component,
   render
 } from '@bpmn-io/properties-panel/preact';
 
@@ -14,6 +15,8 @@ import {
   query as domQuery,
   event as domEvent
 } from 'min-dom';
+
+import { find } from 'min-dash';
 
 { /* Required to break up imports, see https://github.com/babel/babel/issues/15156 */ }
 
@@ -45,6 +48,18 @@ export default class DmnPropertiesPanelRenderer {
       '<div style="height: 100%" tabindex="-1" class="bio-properties-panel-container"></div>'
     );
 
+    this._element = null;
+
+    this._listeners = [];
+
+    this._root = null;
+
+    this._setRoot = (root) => {
+      this._root = root;
+    };
+
+    this._getPanelProps = this._getPanelProps.bind(this);
+
     var commandStack = injector.get('commandStack', false);
 
     commandStack && setupKeyboard(this._container, eventBus, commandStack);
@@ -53,13 +68,58 @@ export default class DmnPropertiesPanelRenderer {
       this.detach();
     });
 
-    eventBus.on('import.done', (event) => {
-      const { element } = event;
-
+    this._on('import.done', () => {
       if (parent) {
         this.attachTo(parent);
       }
-      this._render(element);
+
+      const rootElement = this._injector.get('canvas').getRootElement();
+
+      // a failed import leaves no root; do not select the implicit one
+      if (isImplicitRoot(rootElement)) {
+        return;
+      }
+
+      this._render(rootElement);
+
+      // notify interested parties on property panel updates
+      this._eventBus.fire('propertiesPanel.updated', {
+        element: rootElement
+      });
+    });
+
+    this._on('selection.changed', (event) => {
+      const { newSelection = [] } = event;
+
+      if (newSelection.length > 1) {
+        return this._update(newSelection);
+      }
+
+      const newElement = newSelection[0];
+
+      const rootElement = this._injector.get('canvas').getRootElement();
+
+      if (isImplicitRoot(rootElement)) {
+        return;
+      }
+
+      this._update(newElement || rootElement);
+    });
+
+    this._on('elements.changed', (event) => {
+      const { elements } = event;
+
+      const elementRegistry = this._injector.get('elementRegistry');
+
+      const updatedElement = find(elements, (element) => element === this._element);
+
+      if (updatedElement && elementRegistry.get(updatedElement.id)) {
+        this._update(updatedElement);
+      }
+    });
+
+    this._on('propertiesPanel.providersChanged', () => {
+      this._update(this._element);
     });
 
     eventBus.on('detach', (event) => {
@@ -153,7 +213,7 @@ export default class DmnPropertiesPanelRenderer {
     return event.providers;
   }
 
-  _render(element) {
+  _render(element = this._element) {
     const canvas = this._injector.get('canvas');
 
     if (!element) {
@@ -164,22 +224,71 @@ export default class DmnPropertiesPanelRenderer {
       return;
     }
 
+    this._element = element;
+
     render(
-      <DmnPropertiesPanel
-        element={ element }
-        injector={ this._injector }
-        getProviders={ this._getProviders.bind(this) }
-        layoutConfig={ this._layoutConfig }
-        descriptionConfig={ this._descriptionConfig }
-        tooltipConfig={ this._tooltipConfig }
-      />,
+      <DmnPropertiesPanelRoot
+        ref={ this._setRoot }
+        getProps={ this._getPanelProps } />,
       this._container
     );
 
     this._eventBus.fire('propertiesPanel.rendered');
   }
 
+  _update(element) {
+
+    if (!element) {
+      return;
+    }
+
+    // handle labels
+    if (element.type === 'label') {
+      element = element.labelTarget;
+    }
+
+    this._element = element;
+
+    this._scheduleRender();
+
+    // notify interested parties on property panel updates
+    this._eventBus.fire('propertiesPanel.updated', {
+      element
+    });
+  }
+
+  _scheduleRender() {
+    if (this._root) {
+      this._root.forceUpdate();
+    }
+  }
+
+  _getPanelProps() {
+    return {
+      element: this._element,
+      injector: this._injector,
+      getProviders: this._getProviders.bind(this),
+      layoutConfig: this._layoutConfig,
+      descriptionConfig: this._descriptionConfig,
+      tooltipConfig: this._tooltipConfig
+    };
+  }
+
+  _on(events, callback) {
+    this._eventBus.on(events, callback);
+
+    this._listeners.push({ events, callback });
+  }
+
   _destroy() {
+    this._listeners.forEach(({ events, callback }) => {
+      this._eventBus.off(events, callback);
+    });
+
+    this._listeners = [];
+
+    this._element = null;
+
     if (this._container) {
       render(null, this._container);
 
@@ -189,6 +298,15 @@ export default class DmnPropertiesPanelRenderer {
 }
 
 DmnPropertiesPanelRenderer.$inject = [ 'config.propertiesPanel', 'injector', 'eventBus', '_parent' ];
+
+
+class DmnPropertiesPanelRoot extends Component {
+  render() {
+    const { getProps } = this.props;
+
+    return <DmnPropertiesPanel { ...getProps() } />;
+  }
+}
 
 
 // helpers ///////////////////////

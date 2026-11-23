@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 
 import {
-  act,
   render
 } from '@testing-library/preact/pure';
 
@@ -15,7 +14,6 @@ import {
 
 import {
   Injector as injectorMock,
-  ElementRegistry as elementRegistryMock,
   EventBus as eventBusMock,
   getProviders as getProvidersMock
 } from './mocks';
@@ -137,19 +135,13 @@ describe('<DmnPropertiesPanel>', function() {
   withPropertiesPanel('>=0.14')('should render - multiple', async function() {
 
     // given
-    const newElements = [
+    const element = [
       noopElement,
       noopElement
     ];
 
-    const eventBus = new eventBusMock();
-
-    const result = createDmnPropertiesPanel({ container, eventBus });
-
     // when
-    await act(() => {
-      eventBus.fire('selection.changed', { newSelection:  newElements });
-    });
+    const result = createDmnPropertiesPanel({ container, element });
 
     // then
     expect(domQuery('.bio-properties-panel-placeholder', result.container)).to.exist;
@@ -159,116 +151,6 @@ describe('<DmnPropertiesPanel>', function() {
 
 
   describe('event emitting', function() {
-
-    it('should update on selection changed', function() {
-
-      // given
-      const updateSpy = spy();
-
-      const eventBus = new eventBusMock();
-
-      eventBus.on('propertiesPanel.updated', updateSpy);
-
-      createDmnPropertiesPanel({ container, eventBus });
-
-      // when
-      eventBus.fire('selection.changed', { newSelection: [ noopElement ] });
-
-      // then
-      expect(updateSpy).to.have.been.calledWith({
-        element: noopElement
-      });
-    });
-
-
-    it('should update on selection changed - multiple', async function() {
-
-      // given
-      const updateSpy = spy();
-
-      const eventBus = new eventBusMock();
-
-      const elements = [
-        noopElement,
-        noopElement
-      ];
-
-      eventBus.on('propertiesPanel.updated', updateSpy);
-
-      createDmnPropertiesPanel({ container, eventBus });
-
-      // when
-      eventBus.fire('selection.changed', { newSelection: elements });
-
-      // then
-      expect(updateSpy).to.have.been.calledWith({
-        element: elements
-      });
-    });
-
-
-    it('should update on element changed', function() {
-
-      // given
-      const updateSpy = spy();
-
-      const eventBus = new eventBusMock();
-
-      eventBus.on('propertiesPanel.updated', updateSpy);
-
-      createDmnPropertiesPanel({ container, eventBus });
-
-      // when
-      eventBus.fire('elements.changed', { elements: [ noopElement ] });
-
-      // then
-      expect(updateSpy).to.have.been.calledWith({
-        element: noopElement
-      });
-    });
-
-
-    it('should update on providers changed', function() {
-
-      // given
-      const updateSpy = spy();
-
-      const eventBus = new eventBusMock();
-
-      eventBus.on('propertiesPanel.updated', updateSpy);
-
-      createDmnPropertiesPanel({ container, eventBus });
-
-      // when
-      eventBus.fire('propertiesPanel.providersChanged');
-
-      // then
-      expect(updateSpy).to.have.been.calledOnce;
-    });
-
-
-    it('should not update on implicit root selected',function() {
-
-      // given
-      var updateSpy = spy();
-
-      const eventBus = new eventBusMock();
-      const injector = new injectorMock();
-
-      createDmnPropertiesPanel({ container, injector, eventBus });
-
-      // when
-      eventBus.fire('selection.changed', {
-        oldSelectiom: {},
-        newSelection: [ {
-          isImplicit: true
-        } ]
-      });
-
-      // expect
-      expect(updateSpy).to.not.have.been.called;
-    });
-
 
     it('should notify on layout changed', function() {
 
@@ -303,65 +185,6 @@ describe('<DmnPropertiesPanel>', function() {
       expect(loadedSpy).to.have.been.calledOnce;
     });
 
-
-    it('should notify on properties panel changed', function() {
-
-      // given
-      const updateSpy = spy();
-
-      const eventBus = new eventBusMock();
-
-      eventBus.on('propertiesPanel.updated', updateSpy);
-
-      createDmnPropertiesPanel({ container, eventBus });
-
-      // when
-      eventBus.fire('propertiesPanel.providersChanged');
-
-      // then
-      expect(updateSpy).to.have.been.calledOnce;
-    });
-
-
-    it('should not update deleted element', async function() {
-
-      // given
-      const element = {
-        ...noopElement,
-        id: 'B',
-        type: 'foo:Deleted'
-      };
-
-      let elements = [
-        element,
-        noopElement,
-        noopElement
-      ];
-
-      const elementRegistry = new elementRegistryMock();
-      elementRegistry.setElements(elements);
-
-      const updateSpy = spy();
-      const eventBus = new eventBusMock();
-      eventBus.on('propertiesPanel.updated', updateSpy);
-
-      createDmnPropertiesPanel({
-        container,
-        element,
-        elementRegistry,
-        eventBus
-      });
-
-      // when --> remove the currently selected element
-      elements.splice(0, 1);
-      elementRegistry.setElements(elements);
-
-      eventBus.fire('elements.changed', { elements: [ element ] });
-
-      // then
-      expect(updateSpy).to.not.have.been.called;
-    });
-
   });
 
 });
@@ -380,27 +203,7 @@ function createDmnPropertiesPanel(options = {}) {
     container
   } = options;
 
-  let {
-    canvas,
-    elementRegistry
-  } = options;
-
-  if (!canvas) {
-    canvas = {
-      getRootElement: () => noopElement
-    };
-  }
-
-  if (!elementRegistry) {
-    elementRegistry = new elementRegistryMock();
-    elementRegistry.setElements([ element ]);
-  }
-
-  const injector = new injectorMock({
-    ...options,
-    canvas,
-    elementRegistry
-  });
+  const injector = new injectorMock(options);
 
   return render(
     <DmnPropertiesPanel

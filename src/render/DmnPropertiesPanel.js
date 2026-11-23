@@ -1,11 +1,8 @@
 import {
-  useState,
-  useMemo,
-  useEffect
+  useMemo
 } from '@bpmn-io/properties-panel/preact/hooks';
 
 import {
-  find,
   isArray,
   reduce
 } from 'min-dash';
@@ -32,7 +29,7 @@ import { PanelPlaceholderProvider } from './PanelPlaceholderProvider';
    */
 export default function DmnPropertiesPanel(props) {
   const {
-    element,
+    element: selectedElement,
     injector,
     getProviders,
     layoutConfig,
@@ -40,118 +37,7 @@ export default function DmnPropertiesPanel(props) {
     tooltipConfig
   } = props;
 
-  const canvas = injector.get('canvas');
-  const elementRegistry = injector.get('elementRegistry');
   const eventBus = injector.get('eventBus');
-
-  const [ state, setState ] = useState({
-    selectedElement: element
-  });
-
-  const selectedElement = state.selectedElement;
-
-  /**
-   * @param {djs.model.Base | Array<djs.model.Base>} element
-   */
-  const _update = (element) => {
-
-    if (!element) {
-      return;
-    }
-
-    let newSelectedElement = element;
-
-    // handle labels
-    if (newSelectedElement && newSelectedElement.type === 'label') {
-      newSelectedElement = newSelectedElement.labelTarget;
-    }
-
-    setState({
-      ...state,
-      selectedElement: newSelectedElement
-    });
-
-    // notify interested parties on property panel updates
-    eventBus.fire('propertiesPanel.updated', {
-      element: newSelectedElement
-    });
-  };
-
-  // (2) react on element changes
-
-  // (2a) selection changed
-  useEffect(() => {
-    const onSelectionChanged = (e) => {
-      const { newSelection = [] } = e;
-
-      if (newSelection.length > 1) {
-        return _update(newSelection);
-      }
-
-      const newElement = newSelection[0];
-
-      const rootElement = canvas.getRootElement();
-
-      if (isImplicitRoot(rootElement)) {
-        return;
-      }
-
-      _update(newElement || rootElement);
-    };
-
-    eventBus.on('selection.changed', onSelectionChanged);
-
-    return () => {
-      eventBus.off('selection.changed', onSelectionChanged);
-    };
-  }, []);
-
-  // (2b) selected element changed
-  useEffect(() => {
-    const onElementsChanged = (e) => {
-      const elements = e.elements;
-
-      const updatedElement = findElement(elements, selectedElement);
-
-      if (updatedElement && elementExists(updatedElement, elementRegistry)) {
-        _update(updatedElement);
-      }
-    };
-
-    eventBus.on('elements.changed', onElementsChanged);
-
-    return () => {
-      eventBus.off('elements.changed', onElementsChanged);
-    };
-  }, [ selectedElement ]);
-
-  // (2c) import done
-  useEffect(() => {
-    const onImportDone = () => {
-      const rootElement = canvas.getRootElement();
-
-      _update(rootElement);
-    };
-
-    eventBus.on('import.done', onImportDone);
-
-    return () => {
-      eventBus.off('import.done', onImportDone);
-    };
-  }, []);
-
-  // (2d) provided entries changed
-  useEffect(() => {
-    const onProvidersChanged = () => {
-      _update(selectedElement);
-    };
-
-    eventBus.on('propertiesPanel.providersChanged', onProvidersChanged);
-
-    return () => {
-      eventBus.off('propertiesPanel.providersChanged', onProvidersChanged);
-    };
-  }, [ selectedElement ]);
 
   // (3) create properties panel context
   const dmnPropertiesPanelContext = {
@@ -214,17 +100,3 @@ export default function DmnPropertiesPanel(props) {
   </DmnPropertiesPanelContext.Provider>;
 }
 
-
-// helpers //////////////////////////
-
-function isImplicitRoot(element) {
-  return element && element.isImplicit;
-}
-
-function findElement(elements, element) {
-  return find(elements, (e) => e === element);
-}
-
-function elementExists(element, elementRegistry) {
-  return element && elementRegistry.get(element.id);
-}
