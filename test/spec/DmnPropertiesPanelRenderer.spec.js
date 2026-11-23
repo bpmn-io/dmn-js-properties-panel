@@ -1,5 +1,9 @@
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import {
+  match,
+  spy,
+  stub
+} from 'sinon';
 
 import TestContainer from 'mocha-test-container-support';
 
@@ -421,6 +425,202 @@ describe('<DmnPropertiesPanelRenderer>', function() {
   });
 
 
+  it('should show element selected right after import', async function() {
+
+    // given
+    const { modeler } = await createModeler(diagramXml);
+
+    const elementRegistry = get(modeler, 'elementRegistry'),
+          selection = get(modeler, 'selection');
+
+    // when
+    await act(() => selection.select(elementRegistry.get('dish-decision')));
+
+    // then
+    expect(getHeaderName(propertiesContainer)).to.eql('Dish Decision');
+  });
+
+
+  describe('update', function() {
+
+    let modeler, elementRegistry, eventBus, selection, updateSpy;
+
+    beforeEach(async function() {
+      await act(async () => {
+        ({ modeler } = await createModeler(diagramXml));
+      });
+
+      elementRegistry = get(modeler, 'elementRegistry');
+      eventBus = get(modeler, 'eventBus');
+      selection = get(modeler, 'selection');
+
+      updateSpy = spy();
+
+      eventBus.on('propertiesPanel.updated', updateSpy);
+    });
+
+
+    it('should update on selection change', function() {
+
+      // given
+      const decision = elementRegistry.get('dish-decision');
+
+      // when
+      selection.select(decision);
+
+      // then
+      expect(updateSpy).to.have.been.calledOnceWith(match({ element: decision }));
+    });
+
+
+    it('should update on selection change - multiple', function() {
+
+      // given
+      const elements = [
+        elementRegistry.get('dish-decision'),
+        elementRegistry.get('guestCount')
+      ];
+
+      // when
+      selection.select(elements);
+
+      // then
+      expect(updateSpy).to.have.been.calledOnceWith(match({ element: elements }));
+    });
+
+
+    it('should update on selection change - deselect', function() {
+
+      // given
+      selection.select(elementRegistry.get('dish-decision'));
+
+      updateSpy.resetHistory();
+
+      // when
+      selection.select(null);
+
+      // then
+      expect(updateSpy).to.have.been.calledOnceWith(match({
+        element: get(modeler, 'canvas').getRootElement()
+      }));
+    });
+
+
+    it('should update on element change', function() {
+
+      // given
+      const decision = elementRegistry.get('dish-decision');
+
+      selection.select(decision);
+
+      updateSpy.resetHistory();
+
+      // when
+      get(modeler, 'modeling').updateProperties(decision, { name: 'foo' });
+
+      // then
+      expect(updateSpy).to.have.been.calledOnceWith(match({ element: decision }));
+    });
+
+
+    it('should NOT update on removed element change', function() {
+
+      // given
+      const decision = elementRegistry.get('dish-decision');
+
+      selection.select(decision);
+
+      stub(elementRegistry, 'get').returns(undefined);
+
+      updateSpy.resetHistory();
+
+      // when
+      eventBus.fire('elements.changed', { elements: [ decision ] });
+
+      // then
+      expect(updateSpy).not.to.have.been.called;
+    });
+
+
+    it('should update on import done', function() {
+
+      // given
+      selection.select(elementRegistry.get('dish-decision'));
+
+      updateSpy.resetHistory();
+
+      // when
+      eventBus.fire('import.done');
+
+      // then
+      expect(updateSpy).to.have.been.calledOnceWith(match({
+        element: get(modeler, 'canvas').getRootElement()
+      }));
+    });
+
+
+    it('should show root after reopening DRD', async function() {
+
+      // given
+      await act(() => selection.select(elementRegistry.get('dish-decision')));
+
+      const drdView = modeler.getActiveView();
+
+      await modeler.open(modeler.getViews().find(view => view.type === 'decisionTable'));
+
+      // when
+      await act(() => modeler.open(drdView));
+
+      // then
+      expect(getHeaderName(propertiesContainer)).to.eql('Dish');
+    });
+
+
+    it('should keep selection on <propertiesPanel.providersChanged> fired right after selection change', async function() {
+
+      // when
+      await act(() => {
+        selection.select(elementRegistry.get('dish-decision'));
+
+        eventBus.fire('propertiesPanel.providersChanged');
+      });
+
+      // then
+      expect(getHeaderName(propertiesContainer)).to.eql('Dish Decision');
+    });
+
+
+    it('should render provider registered after import', async function() {
+
+      // given
+      await act(() => selection.select(elementRegistry.get('dish-decision')));
+
+      // when
+      await act(() => {
+        new LateInitProvider(get(modeler, 'propertiesPanel'));
+      });
+
+      // then
+      expect(getGroup(propertiesContainer, 'late-init')).to.exist;
+    });
+
+
+    it('should NOT update after destroy', function() {
+
+      // given
+      get(modeler, 'propertiesPanel')._destroy();
+
+      // when
+      selection.select(elementRegistry.get('dish-decision'));
+
+      // then
+      expect(updateSpy).not.to.have.been.called;
+      expect(domQuery('.bio-properties-panel', propertiesContainer)).not.to.exist;
+    });
+
+  });
+
+
   describe('header name', function() {
 
     beforeEach(async function() {
@@ -656,6 +856,32 @@ describe('<DmnPropertiesPanelRenderer>', function() {
 
 function get(modeler, module) {
   return modeler.getActiveViewer().get(module);
+}
+
+function getGroup(container, id) {
+  return domQuery(`[data-group-id="group-${ id }"]`, container);
+}
+
+class LateInitProvider {
+  constructor(propertiesPanel) {
+    propertiesPanel.registerProvider(this);
+  }
+
+  getGroups() {
+    return (groups) => [
+      ...groups,
+      {
+        id: 'late-init',
+        label: 'Late init',
+        entries: [
+          {
+            id: 'late-init-entry',
+            component: () => null
+          }
+        ]
+      }
+    ];
+  }
 }
 
 function getHeaderName(container) {
